@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:finapp/app/components/app_navigator.dart';
+import 'package:finapp/app/components/app_themes.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -9,6 +10,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Finapp',
+      theme: AppTheme.apptheme(),
       routes: AppNavigator.getRoutes(),
       initialRoute: AppNavigator.getInitialRoute(),
     );
