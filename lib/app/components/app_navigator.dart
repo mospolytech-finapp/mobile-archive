@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 abstract class AppNavigator {
   static Map<String, WidgetBuilder> getRoutes() {
+    // Заглушки для экранов
     return {
       '/home': (context) => HomePage(),
       '/login': (context) => LoginPage(),
