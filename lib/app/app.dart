@@ -1,3 +1,4 @@
+import 'package:finapp/app/widgets/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:finapp/app/components/app_navigator.dart';
 import 'package:finapp/app/components/app_themes.dart';
@@ -11,8 +12,9 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Finapp',
       theme: AppTheme.apptheme(),
-      routes: AppNavigator.getRoutes(),
-      initialRoute: AppNavigator.getInitialRoute(),
+      home: SplashScreen(),
+      // routes: AppNavigator.getRoutes(),
+      // initialRoute: AppNavigator.getInitialRoute(),
     );
   }
 }
