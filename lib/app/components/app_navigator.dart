@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:finapp/app/login/loginpage_page.dart';
 
 abstract class AppNavigator {
   static Map<String, WidgetBuilder> getRoutes() {
