@@ -5,9 +5,9 @@ abstract class AppNavigator {
   static Map<String, WidgetBuilder> getRoutes() {
     // Заглушки для экранов
     return {
-      '/home': (context) => HomePage(),
+      // '/home': (context) => HomePage(),
       '/login': (context) => LoginPage(),
-      '/login/register': (context) => RegistrationPage(),
+      // '/login/register': (context) => RegistrationPage(),
     };
   }
 
