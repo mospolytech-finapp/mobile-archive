@@ -23,11 +23,7 @@ class _LoginPageState extends State<LoginPage> {
           resizeToAvoidBottomInset: false,
           body: Column(children: <Widget>[
             SizedBox(
-                height: 16.h,
-                child: SizedBox(
-                    height: 10.h,
-                    width: 28.w,
-                    child: SvgPicture.asset('assets/logo.svg'))),
+                height: 16.h, child: SizedBox(height: 10.h, width: 28.w, child: SvgPicture.asset('assets/logo.svg'))),
             Expanded(
               child: Container(
                 padding: const EdgeInsets.fromLTRB(60, 0, 60, 0),
@@ -94,12 +90,10 @@ class _LoginPageState extends State<LoginPage> {
                           focusColor: const Color(0xff1BD0B8),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50.0),
-                              borderSide:
-                                  const BorderSide(color: Colors.transparent)),
+                              borderSide: const BorderSide(color: Colors.transparent)),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50.0),
-                              borderSide:
-                                  const BorderSide(color: Colors.transparent)),
+                              borderSide: const BorderSide(color: Colors.transparent)),
                           filled: true,
                           fillColor: const Color(0xffDCDCDC)),
                     ),
@@ -141,9 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                           contentPadding: const EdgeInsets.all(10.0),
                           focusColor: const Color(0xff1BD0B8),
                           suffixIcon: IconButton(
-                            icon: Icon(_showPassword
-                                ? Icons.visibility
-                                : Icons.visibility_off),
+                            icon: Icon(_showPassword ? Icons.visibility : Icons.visibility_off),
                             onPressed: () {
                               setState(() {
                                 _showPassword = !_showPassword;
@@ -153,13 +145,11 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50),
-                            borderSide:
-                                const BorderSide(color: Colors.transparent),
+                            borderSide: const BorderSide(color: Colors.transparent),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50),
-                            borderSide:
-                                const BorderSide(color: Colors.transparent),
+                            borderSide: const BorderSide(color: Colors.transparent),
                           ),
                           filled: true,
                           fillColor: const Color(0xffDCDCDC)),
@@ -187,20 +177,17 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Checkbox(
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           value: isChecked,
                           onChanged: (value) {
                             setState(() {
                               isChecked = !isChecked;
                             });
                           },
-                          fillColor: MaterialStateColor.resolveWith(
-                              (_) => const Color(0xffECECEC)),
+                          fillColor: MaterialStateColor.resolveWith((_) => const Color(0xffECECEC)),
                           checkColor: const Color(0xff1BD0B8),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
-                              side: const BorderSide(color: Color(0xffECECEC))),
+                              borderRadius: BorderRadius.circular(5), side: const BorderSide(color: Color(0xffECECEC))),
                         ),
                         TextButton(
                             onPressed: () => setState(() {
@@ -220,9 +207,6 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 12.h,
                   ),
-                  const SizedBox(
-                    height: 11,
-                  ),
                   SizedBox(
                     height: 5.h,
                     width: 66.h,
@@ -231,8 +215,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextButton.styleFrom(
                           backgroundColor: const Color(0xff1BD0B8),
                           elevation: 0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25))),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
                       child: Text(
                         'Войти',
                         style: TextStyle(
