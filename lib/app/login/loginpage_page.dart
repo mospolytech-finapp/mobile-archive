@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter/services.dart';
+
+import '../model/AuthModel.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -211,7 +214,10 @@ class _LoginPageState extends State<LoginPage> {
                     height: 5.h,
                     width: 66.h,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        final authModel = Provider.of<AuthModel>(context, listen: false);
+                        authModel.logIn('email@example.com', 'password'); // Заменить на вводимые данные
+                      },
                       style: TextButton.styleFrom(
                           backgroundColor: const Color(0xff1BD0B8),
                           elevation: 0,
@@ -243,7 +249,10 @@ class _LoginPageState extends State<LoginPage> {
                         width: 0.20.h,
                       ),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            final authModel = Provider.of<AuthModel>(context, listen: false);
+                            authModel.logOut();
+                          },
                           child: Text(
                             'Зарегистрироваться',
                             style: TextStyle(
