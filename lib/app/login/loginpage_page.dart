@@ -18,8 +18,10 @@ class _LoginPageState extends State<LoginPage> {
   bool isChecked = false;
   bool _showPassword = false;
 
+
   @override
   Widget build(BuildContext context) {
+    final authModel = Provider.of<AuthModel>(context, listen: false);
     return Sizer(
       builder: (context, orientation, deviceType) {
         return Scaffold(
@@ -81,6 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 5.h,
                     width: 70.w,
                     child: TextFormField(
+                      controller: authModel.emailController,
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 15,
@@ -127,6 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 5.h,
                     width: 70.w,
                     child: TextFormField(
+                      controller: authModel.passwordController,
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 15,
@@ -215,8 +219,8 @@ class _LoginPageState extends State<LoginPage> {
                     width: 66.h,
                     child: ElevatedButton(
                       onPressed: () {
-                        final authModel = Provider.of<AuthModel>(context, listen: false);
-                        authModel.logIn('email@example.com', 'password'); // Заменить на вводимые данные
+
+                        authModel.logIn(authModel.emailController.text, authModel.passwordController.text);
                       },
                       style: TextButton.styleFrom(
                           backgroundColor: const Color(0xff1BD0B8),
