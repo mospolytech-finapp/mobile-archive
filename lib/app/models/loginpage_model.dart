@@ -4,15 +4,14 @@ import 'package:flutter/foundation.dart';
 
 class AuthModel extends ChangeNotifier {
   bool _isLoggedIn = false;
- TextEditingController emailController = TextEditingController();
- TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   bool get isLoggedIn => _isLoggedIn;
 
-  Future<void> logIn(String email, String password) async {
+  Future<void> logIn() async {
     try {
-      final response =
-          await AppNetwork.loginUser(email: email, password: password);
+      final response = await AppNetwork.loginUser(email: emailController.text, password: passwordController.text);
       if (response.statusCode == 200) {
         _isLoggedIn = true;
         notifyListeners();
@@ -28,6 +27,4 @@ class AuthModel extends ChangeNotifier {
     _isLoggedIn = false;
     notifyListeners();
   }
-
-
 }
