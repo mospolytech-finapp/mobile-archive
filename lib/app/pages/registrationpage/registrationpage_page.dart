@@ -45,8 +45,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     bottom: 0.h,
                   ),
                   decoration: const BoxDecoration(
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(25)),
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
                     // Фоновый градиент
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
@@ -432,8 +431,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               ),
                             ),
                             minimumSize: Size(66.66667.w, 4.6875.h),
-                            backgroundColor:
-                                const Color.fromRGBO(27, 208, 184, 1),
+                            backgroundColor: const Color.fromRGBO(27, 208, 184, 1),
                             side: const BorderSide(
                               width: 0,
                               color: Color.fromRGBO(27, 208, 184, 1),
@@ -467,7 +465,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             ),
                             TextButton(
                               onPressed: () {
-                                Navigator.of(context).pushNamed('/login');
+                                Navigator.of(context).pop();
                               },
                               style: TextButton.styleFrom(
                                 padding: const EdgeInsets.all(0),
@@ -503,8 +501,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 style: TextStyle(
                                   fontSize: 9.sp,
                                   color: Colors.white,
-                                  fontFamily:
-                                      GoogleFonts.bebasNeue().fontFamily,
+                                  fontFamily: GoogleFonts.bebasNeue().fontFamily,
                                 ),
                               ),
                             ),

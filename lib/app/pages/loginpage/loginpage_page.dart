@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../models/AuthModel.dart';
+import 'package:finapp/app/models/loginpage_model.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -276,7 +276,9 @@ class _LoginPageState extends State<LoginPage> {
                           width: 2.4.w,
                         ),
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pushNamed('/login/register');
+                            },
                             style: TextButton.styleFrom(
                               padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                               //fixedSize: Size(33.88.w, 2.5.h),
