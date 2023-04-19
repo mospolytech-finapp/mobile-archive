@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../model/AuthModel.dart';
+import '../../models/AuthModel.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
