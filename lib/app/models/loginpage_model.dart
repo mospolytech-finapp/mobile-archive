@@ -6,7 +6,7 @@ class AuthModel extends ChangeNotifier {
   bool _isLoggedIn = false;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  bool saveUser = false;
   bool get isLoggedIn => _isLoggedIn;
 
   Future<void> logIn() async {

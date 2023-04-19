@@ -1,4 +1,6 @@
+import 'package:finapp/app/models/registerpage_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +17,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   @override
   Widget build(BuildContext context) {
+    final registerModel = Provider.of<RegisterModel>(context, listen: false);
     return Sizer(
       builder: (
         BuildContext context,
@@ -93,6 +96,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         width: 66.67.h,
                         height: 4.69.h,
                         child: TextField(
+                          controller:registerModel.lastNameController ,
                           style: GoogleFonts.bebasNeue(
                             color: Colors.black,
                             fontSize: 18.sp,
@@ -137,6 +141,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         width: 66.67.h,
                         height: 4.69.h,
                         child: TextField(
+                          controller: registerModel.firstNameController,
                           style: GoogleFonts.bebasNeue(
                             color: Colors.black,
                             fontSize: 18.sp,
@@ -181,6 +186,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         width: 66.67.h,
                         height: 4.69.h,
                         child: TextField(
+                          controller: registerModel.middleNameController,
                           style: GoogleFonts.bebasNeue(
                             color: Colors.black,
                             fontSize: 18.sp,
@@ -225,6 +231,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         width: 66.67.h,
                         height: 4.69.h,
                         child: TextField(
+                          controller: registerModel.passwordController,
                           style: GoogleFonts.bebasNeue(
                             color: Colors.black,
                             fontSize: 18.sp,
@@ -280,6 +287,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         width: 66.67.h,
                         height: 4.69.h,
                         child: TextField(
+                          controller: registerModel.emailController,
                           style: GoogleFonts.bebasNeue(
                             color: Colors.black,
                             fontSize: 18.sp,
@@ -326,6 +334,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         width: 66.67.h,
                         height: 4.69.h,
                         child: TextField(
+                          controller: registerModel.dateController,
                           style: GoogleFonts.bebasNeue(
                             color: Colors.black,
                             fontSize: 18.sp,
@@ -437,7 +446,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               color: Color.fromRGBO(27, 208, 184, 1),
                             ),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            registerModel.registerUser(context);
+                          },
                           child: Text(
                             'Продолжить',
                             style: GoogleFonts.bebasNeue(

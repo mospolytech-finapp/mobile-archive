@@ -14,7 +14,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool isChecked = false;
   bool _showPassword = false;
 
   @override
@@ -198,10 +197,10 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         Checkbox(
                           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          value: isChecked,
+                          value: authModel.saveUser,
                           onChanged: (value) {
                             setState(() {
-                              isChecked = !isChecked;
+                              authModel.saveUser = !authModel.saveUser;
                             });
                           },
                           fillColor: MaterialStateColor.resolveWith((_) => const Color(0xffECECEC)),
@@ -215,7 +214,7 @@ class _LoginPageState extends State<LoginPage> {
                               fixedSize: Size(36.5.w, 1.88.h),
                             ),
                             onPressed: () => setState(() {
-                                  isChecked = !isChecked;
+                              authModel.saveUser = !authModel.saveUser;
                                 }),
                             child: Text(
                               'Запомнить  аккаунт',
@@ -237,7 +236,7 @@ class _LoginPageState extends State<LoginPage> {
                     width: 66.67.w,
                     child: ElevatedButton(
                       onPressed: () {
-                        authModel.logIn(authModel.emailController.text, authModel.passwordController.text);
+                        authModel.logIn();
                       },
                       style: TextButton.styleFrom(
                           backgroundColor: const Color(0xff1BD0B8),
