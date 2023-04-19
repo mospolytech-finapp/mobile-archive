@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:finapp/app/login/loginpage_page.dart';
+import 'package:finapp/app/pages/loginpage/loginpage_page.dart';
+import '../pages/registrationpage/registrationpage_page.dart';
 
 abstract class AppNavigator {
   static Map<String, WidgetBuilder> getRoutes() {
@@ -7,7 +8,7 @@ abstract class AppNavigator {
     return {
       // '/home': (context) => HomePage(),
       '/login': (context) => LoginPage(),
-      // '/login/register': (context) => RegistrationPage(),
+      '/login/register': (context) => RegistrationPage(),
     };
   }
 
