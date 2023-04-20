@@ -11,8 +11,6 @@ class RegisterModel extends ChangeNotifier {
   TextEditingController middleNameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
 
-
-
   Future<void> registerUser(BuildContext context) async {
     try {
       final response = await AppNetwork.registerUser(
@@ -24,7 +22,6 @@ class RegisterModel extends ChangeNotifier {
         date: dateController, // Исправить на календарь
       );
       if (response.statusCode == 201) {
-
       } else {
         print("Undefined error");
       }

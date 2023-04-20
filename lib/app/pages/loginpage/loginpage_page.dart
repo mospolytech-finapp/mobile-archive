@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import 'package:finapp/app/models/loginpage_model.dart';
+import 'package:finapp/app/pages/loginpage/loginpage_model.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -214,7 +214,7 @@ class _LoginPageState extends State<LoginPage> {
                               fixedSize: Size(36.5.w, 1.88.h),
                             ),
                             onPressed: () => setState(() {
-                              authModel.saveUser = !authModel.saveUser;
+                                  authModel.saveUser = !authModel.saveUser;
                                 }),
                             child: Text(
                               'Запомнить  аккаунт',
