@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:finapp/app/components/app_network.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -19,7 +17,7 @@ class RegisterModel extends ChangeNotifier {
         lastName: lastNameController.text,
         firstName: firstNameController.text,
         middleName: middleNameController.text,
-        date: dateController, // Исправить на календарь
+        // date: dateController, // Исправить на календарь
       );
       if (response.statusCode == 201) {
       } else {

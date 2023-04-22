@@ -1,4 +1,4 @@
-import 'package:finapp/app/models/registerpage_model.dart';
+import 'package:finapp/app/pages/registrationpage/registerpage_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -96,7 +96,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         width: 66.67.h,
                         height: 4.69.h,
                         child: TextField(
-                          controller:registerModel.lastNameController ,
+                          controller: registerModel.lastNameController,
                           style: GoogleFonts.bebasNeue(
                             color: Colors.black,
                             fontSize: 18.sp,

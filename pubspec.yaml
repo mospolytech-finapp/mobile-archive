@@ -26,3 +26,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logo.svg
+  fonts:
+    - family: Gilroy-Light
+      fonts:
+      - asset: assets/Gilroy-Light.ttf
