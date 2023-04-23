@@ -1,67 +1,126 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sizer/sizer.dart';
 
 class ContactUsDialogWidget extends StatelessWidget {
+  const ContactUsDialogWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      backgroundColor: Colors.grey,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(height: 12),
-            Text(
-              'Связаться с нами',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Color.fromRGBO(174, 216, 255, 1)),
-            ),
-            SizedBox(height: 12),
-            Text(
-              'Почта',
-              textAlign: TextAlign.start,
-              style: TextStyle(fontSize: 20, color: Color.fromRGBO(174, 216, 255, 1)),
-            ),
-            Text(
-              'HelpMe@FINAPP.COM',
-              textAlign: TextAlign.start,
-              style: TextStyle(fontSize: 20, color: Colors.white),
-            ),
-            IconButton(
-                onPressed: () {
-                  Clipboard.setData(ClipboardData(text: 'HelpMe@FINAPP.COM')).then((_) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email скопирован")));
-                  });
-                },
-                icon: Icon(Icons.copy)),
-            SizedBox(height: 20),
-            Text(
-              'Телефон',
-              textAlign: TextAlign.start,
-              style: TextStyle(fontSize: 20, color: Color.fromRGBO(174, 216, 255, 1)),
-            ),
-            Text(
-              '89996663132',
-              textAlign: TextAlign.start,
-              style: TextStyle(fontSize: 20, color: Colors.white),
-            ),
-            IconButton(
-                onPressed: () {
-                  Clipboard.setData(ClipboardData(text: '89996663132')).then((_) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Телефон скопирован")));
-                  });
-                },
-                icon: Icon(Icons.copy)),
-            SizedBox(height: 12),
-            ElevatedButton(
-              child: Text('Close'),
-              onPressed: () => Navigator.of(context).pop(),
-            )
-          ],
-        ),
-      ),
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return Dialog(
+            child: Container(
+          decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(25)),
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Color(0xFF3589d7), Color(0xFF02c98d)])),
+          child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Center(
+                    child: Row(children: [
+                      SizedBox(width: 14.w),
+                      Text(
+                        'Связаться с нами',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 15.sp,
+                            fontFamily: 'Gilroy-Light',
+                            color: Colors.white),
+                      ),
+                      SizedBox(width: 2.7.w),
+                      IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(
+                            Icons.cancel_outlined,
+                            color: Colors.white,
+                            size: 28,
+                          ))
+                    ]),
+                  ),
+                  SizedBox(height: 1.875.h),
+                  Text(
+                    'Почта',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        fontSize: 13.sp,
+                        fontFamily: 'Gilroy-Light',
+                        color: Color(0xFF7DEDCB)),
+                  ),
+                  GestureDetector(
+                    child: Text(
+                      'HELPME@FINAPP.COM',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                          fontSize: 15.sp,
+                          fontFamily: 'Gilroy-Light',
+                          color: Colors.white,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.white),
+                    ),
+                    onTap: () {
+                      Clipboard.setData(
+                              const ClipboardData(text: 'HELPME@FINAPP.COM'))
+                          .then((_) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                                content: Text("Email скопирован",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Gilroy-Light',
+                                    ))));
+                      });
+                    },
+                  ),
+                  SizedBox(height: 3.125.h),
+                  Text(
+                    'Телефон',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        fontSize: 13.sp,
+                        fontFamily: 'Gilroy-Light',
+                        color: Color(0xFF7DEDCB)),
+                  ),
+                  GestureDetector(
+                    child: Text(
+                      '89996663132',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                          fontSize: 15.sp,
+                          fontFamily: 'Gilroy-Light',
+                          color: Colors.white,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.white),
+                    ),
+                    onTap: () {
+                      Clipboard.setData(
+                              const ClipboardData(text: '89996663132'))
+                          .then((_) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                                content: Text(
+                          "Телефон скопирован",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Gilroy-Light',
+                          ),
+                        )));
+                      });
+                    },
+                  ),
+                  SizedBox(height: 4.69.h)
+                ],
+              )),
+        ));
+      },
     );
   }
 }
