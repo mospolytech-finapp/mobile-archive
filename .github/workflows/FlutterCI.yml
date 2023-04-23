@@ -4,23 +4,29 @@ on:
   push:
     branches:
       - draft
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-java@v1
+      - uses: actions/checkout@v2
+      - name: Set up Java
+        uses: actions/setup-java@v1
         with:
           java-version: '12.x'
-      - uses: subosito/flutter-action@v1
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v1
         with:
-          channel: 'beta'
-      - run: flutter pub get
-      - run: dart format --set-exit-if-changed .
-      - run: flutter analyze .
-      - run: flutter build apk
-      - uses: actions/upload-artifact@v1
+          channel: 'stable'
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Format code
+        run: dart format --set-exit-if-changed .
+      - name: Analyze code
+        run: flutter analyze
+      - name: Build APK
+        run: flutter build apk
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
         with:
           name: release-apk
-          path: build/app/outputs/apk/release/app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
