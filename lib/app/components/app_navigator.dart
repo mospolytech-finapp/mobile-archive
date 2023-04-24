@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:finapp/app/pages/loginpage/loginpage_page.dart';
-import '../pages/registrationpage/registrationpage_page.dart';
+import 'package:finapp/app/pages/registrationpage/registrationpage_page.dart';
 
 abstract class AppNavigator {
   static Map<String, WidgetBuilder> getRoutes() {
@@ -12,12 +12,8 @@ abstract class AppNavigator {
     };
   }
 
-  static bool isLoggedIn() {
-    return false;
-  }
-
-  static String getInitialRoute() {
-    if (isLoggedIn()) {
+  static String getInitialRoute(bool isLoggedIn) {
+    if (isLoggedIn) {
       return '/home';
     }
     return '/login';
