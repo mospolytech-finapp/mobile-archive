@@ -16,9 +16,7 @@ void main() {
           create: (context) => RegisterModel(),
         ),
       ],
-      child: const MaterialApp(
-        home: App(),
-      ),
+      child: const App(),
     ),
   );
 }
