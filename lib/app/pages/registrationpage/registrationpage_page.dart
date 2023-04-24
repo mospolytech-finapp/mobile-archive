@@ -1,8 +1,9 @@
-import 'package:finapp/app/pages/registrationpage/registerpage_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
+import 'package:finapp/app/pages/registrationpage/registerpage_model.dart';
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({super.key});
@@ -34,8 +35,7 @@ class RegistrationPage extends StatelessWidget {
               Expanded(
                 child: Container(
                   decoration: const BoxDecoration(
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(25)),
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
                     // Фоновый градиент
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
@@ -66,8 +66,7 @@ class RegistrationPage extends StatelessWidget {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 16.67.w, vertical: 0.h),
+                          padding: EdgeInsets.symmetric(horizontal: 16.67.w, vertical: 0.h),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -91,16 +90,14 @@ class RegistrationPage extends StatelessWidget {
                                     height: 0.94.h,
                                   ),
                                   TextField(
-                                    controller:
-                                        registerModel.lastNameController,
+                                    controller: registerModel.lastNameController,
                                     style: TextStyle(
                                       fontFamily: 'Gilroy-Light',
                                       color: Colors.black,
                                       fontSize: 16.sp,
                                     ),
                                     textAlign: TextAlign.start,
-                                    cursorColor:
-                                        const Color.fromRGBO(2, 201, 141, 1),
+                                    cursorColor: const Color.fromRGBO(2, 201, 141, 1),
                                     textAlignVertical: TextAlignVertical.top,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -111,20 +108,17 @@ class RegistrationPage extends StatelessWidget {
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(50),
                                         borderSide: const BorderSide(
-                                          color:
-                                              Color.fromRGBO(220, 220, 220, 1),
+                                          color: Color.fromRGBO(220, 220, 220, 1),
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(50),
                                         borderSide: const BorderSide(
-                                          color:
-                                              Color.fromRGBO(220, 220, 220, 1),
+                                          color: Color.fromRGBO(220, 220, 220, 1),
                                         ),
                                       ),
                                       filled: true,
-                                      fillColor: const Color.fromRGBO(
-                                          220, 220, 220, 1),
+                                      fillColor: const Color.fromRGBO(220, 220, 220, 1),
                                     ),
                                   ),
                                   SizedBox(
@@ -144,16 +138,14 @@ class RegistrationPage extends StatelessWidget {
                                     height: 0.94.h,
                                   ),
                                   TextField(
-                                    controller:
-                                        registerModel.firstNameController,
+                                    controller: registerModel.firstNameController,
                                     style: TextStyle(
                                       fontFamily: 'Gilroy-Light',
                                       color: Colors.black,
                                       fontSize: 16.sp,
                                     ),
                                     textAlign: TextAlign.start,
-                                    cursorColor:
-                                        const Color.fromRGBO(2, 201, 141, 1),
+                                    cursorColor: const Color.fromRGBO(2, 201, 141, 1),
                                     textAlignVertical: TextAlignVertical.top,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -164,20 +156,17 @@ class RegistrationPage extends StatelessWidget {
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(50),
                                         borderSide: const BorderSide(
-                                          color:
-                                              Color.fromRGBO(220, 220, 220, 1),
+                                          color: Color.fromRGBO(220, 220, 220, 1),
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(50),
                                         borderSide: const BorderSide(
-                                          color:
-                                              Color.fromRGBO(220, 220, 220, 1),
+                                          color: Color.fromRGBO(220, 220, 220, 1),
                                         ),
                                       ),
                                       filled: true,
-                                      fillColor: const Color.fromRGBO(
-                                          220, 220, 220, 1),
+                                      fillColor: const Color.fromRGBO(220, 220, 220, 1),
                                     ),
                                   ),
                                   SizedBox(
@@ -197,16 +186,14 @@ class RegistrationPage extends StatelessWidget {
                                     height: 0.94.h,
                                   ),
                                   TextField(
-                                    controller:
-                                        registerModel.middleNameController,
+                                    controller: registerModel.middleNameController,
                                     style: TextStyle(
                                       fontFamily: 'Gilroy-Light',
                                       color: Colors.black,
                                       fontSize: 16.sp,
                                     ),
                                     textAlign: TextAlign.start,
-                                    cursorColor:
-                                        const Color.fromRGBO(2, 201, 141, 1),
+                                    cursorColor: const Color.fromRGBO(2, 201, 141, 1),
                                     textAlignVertical: TextAlignVertical.top,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -217,20 +204,17 @@ class RegistrationPage extends StatelessWidget {
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(50),
                                         borderSide: const BorderSide(
-                                          color:
-                                              Color.fromRGBO(220, 220, 220, 1),
+                                          color: Color.fromRGBO(220, 220, 220, 1),
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(50),
                                         borderSide: const BorderSide(
-                                          color:
-                                              Color.fromRGBO(220, 220, 220, 1),
+                                          color: Color.fromRGBO(220, 220, 220, 1),
                                         ),
                                       ),
                                       filled: true,
-                                      fillColor: const Color.fromRGBO(
-                                          220, 220, 220, 1),
+                                      fillColor: const Color.fromRGBO(220, 220, 220, 1),
                                     ),
                                   ),
                                   SizedBox(
@@ -250,16 +234,14 @@ class RegistrationPage extends StatelessWidget {
                                     height: 0.94.h,
                                   ),
                                   TextField(
-                                    controller:
-                                        registerModel.passwordController,
+                                    controller: registerModel.passwordController,
                                     style: TextStyle(
                                       fontFamily: 'Gilroy-Light',
                                       color: Colors.black,
                                       fontSize: 16.sp,
                                     ),
                                     textAlign: TextAlign.start,
-                                    cursorColor:
-                                        const Color.fromRGBO(2, 201, 141, 1),
+                                    cursorColor: const Color.fromRGBO(2, 201, 141, 1),
                                     textAlignVertical: TextAlignVertical.top,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -270,20 +252,17 @@ class RegistrationPage extends StatelessWidget {
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(50),
                                         borderSide: const BorderSide(
-                                          color:
-                                              Color.fromRGBO(220, 220, 220, 1),
+                                          color: Color.fromRGBO(220, 220, 220, 1),
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(50),
                                         borderSide: const BorderSide(
-                                          color:
-                                              Color.fromRGBO(220, 220, 220, 1),
+                                          color: Color.fromRGBO(220, 220, 220, 1),
                                         ),
                                       ),
                                       filled: true,
-                                      fillColor: const Color.fromRGBO(
-                                          220, 220, 220, 1),
+                                      fillColor: const Color.fromRGBO(220, 220, 220, 1),
                                     ),
                                   ),
                                   SizedBox(
@@ -322,8 +301,7 @@ class RegistrationPage extends StatelessWidget {
                                       fontSize: 16.sp,
                                     ),
                                     textAlign: TextAlign.start,
-                                    cursorColor:
-                                        const Color.fromRGBO(2, 201, 141, 1),
+                                    cursorColor: const Color.fromRGBO(2, 201, 141, 1),
                                     textAlignVertical: TextAlignVertical.top,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -334,20 +312,17 @@ class RegistrationPage extends StatelessWidget {
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(50),
                                         borderSide: const BorderSide(
-                                          color:
-                                              Color.fromRGBO(220, 220, 220, 1),
+                                          color: Color.fromRGBO(220, 220, 220, 1),
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(50),
                                         borderSide: const BorderSide(
-                                          color:
-                                              Color.fromRGBO(220, 220, 220, 1),
+                                          color: Color.fromRGBO(220, 220, 220, 1),
                                         ),
                                       ),
                                       filled: true,
-                                      fillColor: const Color.fromRGBO(
-                                          220, 220, 220, 1),
+                                      fillColor: const Color.fromRGBO(220, 220, 220, 1),
                                     ),
                                   ),
                                   SizedBox(
@@ -378,8 +353,7 @@ class RegistrationPage extends StatelessWidget {
                                       fontSize: 16.sp,
                                     ),
                                     textAlign: TextAlign.start,
-                                    cursorColor:
-                                        const Color.fromRGBO(2, 201, 141, 1),
+                                    cursorColor: const Color.fromRGBO(2, 201, 141, 1),
                                     textAlignVertical: TextAlignVertical.top,
                                     decoration: InputDecoration(
                                       isDense: true,
@@ -396,20 +370,17 @@ class RegistrationPage extends StatelessWidget {
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(50),
                                         borderSide: const BorderSide(
-                                          color:
-                                              Color.fromRGBO(220, 220, 220, 1),
+                                          color: Color.fromRGBO(220, 220, 220, 1),
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(50),
                                         borderSide: const BorderSide(
-                                          color:
-                                              Color.fromRGBO(220, 220, 220, 1),
+                                          color: Color.fromRGBO(220, 220, 220, 1),
                                         ),
                                       ),
                                       filled: true,
-                                      fillColor: const Color.fromRGBO(
-                                          220, 220, 220, 1),
+                                      fillColor: const Color.fromRGBO(220, 220, 220, 1),
                                     ),
                                   ),
                                   SizedBox(
@@ -441,12 +412,10 @@ class RegistrationPage extends StatelessWidget {
                                           ),
                                         ),
                                         minimumSize: Size(66.66667.w, 4.6875.h),
-                                        backgroundColor: const Color.fromRGBO(
-                                            27, 208, 184, 1),
+                                        backgroundColor: const Color.fromRGBO(27, 208, 184, 1),
                                         side: const BorderSide(
                                           width: 0,
-                                          color:
-                                              Color.fromRGBO(27, 208, 184, 1),
+                                          color: Color.fromRGBO(27, 208, 184, 1),
                                         ),
                                       ),
                                       onPressed: () {
@@ -469,8 +438,7 @@ class RegistrationPage extends StatelessWidget {
                                     height: 2.5.h,
                                     width: 66.67.w,
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           'Уже зарегистрированы? ',
@@ -493,8 +461,7 @@ class RegistrationPage extends StatelessWidget {
                                               fontFamily: 'Gilroy-Light',
                                               fontSize: 11.sp,
                                               color: Colors.white,
-                                              decoration:
-                                                  TextDecoration.underline,
+                                              decoration: TextDecoration.underline,
                                               decorationColor: Colors.white,
                                             ),
                                           ),
@@ -508,13 +475,11 @@ class RegistrationPage extends StatelessWidget {
                                   SizedBox(
                                     height: 2.5.h,
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         OutlinedButton(
                                           style: OutlinedButton.styleFrom(
-                                            side: const BorderSide(
-                                                color: Colors.white),
+                                            side: const BorderSide(color: Colors.white),
                                           ),
                                           onPressed: () {},
                                           child: Text(

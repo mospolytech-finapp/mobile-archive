@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'package:finapp/app/components/app_navigator.dart';
 import 'package:finapp/app/components/app_themes.dart';
-import 'components/secure_storage.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'package:finapp/app/components/secure_storage.dart';
 
 class App extends StatefulWidget {
   const App({super.key});

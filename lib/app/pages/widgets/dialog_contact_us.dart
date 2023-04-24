@@ -29,10 +29,7 @@ class ContactUsDialogWidget extends StatelessWidget {
                       Text(
                         'Связаться с нами',
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 15.sp,
-                            fontFamily: 'Gilroy-Light',
-                            color: Colors.white),
+                        style: TextStyle(fontSize: 15.sp, fontFamily: 'Gilroy-Light', color: Colors.white),
                       ),
                       SizedBox(width: 2.7.w),
                       IconButton(
@@ -50,10 +47,7 @@ class ContactUsDialogWidget extends StatelessWidget {
                   Text(
                     'Почта',
                     textAlign: TextAlign.start,
-                    style: TextStyle(
-                        fontSize: 13.sp,
-                        fontFamily: 'Gilroy-Light',
-                        color: Color(0xFF7DEDCB)),
+                    style: TextStyle(fontSize: 13.sp, fontFamily: 'Gilroy-Light', color: Color(0xFF7DEDCB)),
                   ),
                   GestureDetector(
                     child: Text(
@@ -67,16 +61,13 @@ class ContactUsDialogWidget extends StatelessWidget {
                           decorationColor: Colors.white),
                     ),
                     onTap: () {
-                      Clipboard.setData(
-                              const ClipboardData(text: 'HELPME@FINAPP.COM'))
-                          .then((_) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                                content: Text("Email скопирован",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Gilroy-Light',
-                                    ))));
+                      Clipboard.setData(const ClipboardData(text: 'HELPME@FINAPP.COM')).then((_) {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            content: Text("Email скопирован",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Gilroy-Light',
+                                ))));
                       });
                     },
                   ),
@@ -84,10 +75,7 @@ class ContactUsDialogWidget extends StatelessWidget {
                   Text(
                     'Телефон',
                     textAlign: TextAlign.start,
-                    style: TextStyle(
-                        fontSize: 13.sp,
-                        fontFamily: 'Gilroy-Light',
-                        color: Color(0xFF7DEDCB)),
+                    style: TextStyle(fontSize: 13.sp, fontFamily: 'Gilroy-Light', color: Color(0xFF7DEDCB)),
                   ),
                   GestureDetector(
                     child: Text(
@@ -101,12 +89,9 @@ class ContactUsDialogWidget extends StatelessWidget {
                           decorationColor: Colors.white),
                     ),
                     onTap: () {
-                      Clipboard.setData(
-                              const ClipboardData(text: '89996663132'))
-                          .then((_) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                                content: Text(
+                      Clipboard.setData(const ClipboardData(text: '89996663132')).then((_) {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                            content: Text(
                           "Телефон скопирован",
                           style: TextStyle(
                             color: Colors.white,

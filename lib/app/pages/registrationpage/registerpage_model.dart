@@ -1,5 +1,6 @@
-import 'package:finapp/app/components/app_network.dart';
 import 'package:flutter/material.dart';
+
+import 'package:finapp/app/components/app_network.dart';
 
 class RegisterModel extends ChangeNotifier {
   TextEditingController emailController = TextEditingController();
@@ -17,8 +18,7 @@ class RegisterModel extends ChangeNotifier {
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
-    String? dateOfBirth =
-        date != null ? "${date?.day}.${date?.month}.${date?.year}" : "";
+    String? dateOfBirth = date != null ? "${date?.day}.${date?.month}.${date?.year}" : "";
     dateController.text = dateOfBirth;
     notifyListeners();
   }

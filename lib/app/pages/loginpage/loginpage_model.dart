@@ -1,5 +1,6 @@
-import 'package:finapp/app/components/app_network.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'package:finapp/app/components/app_network.dart';
 import 'package:finapp/app/components/secure_storage.dart';
 
 class AuthModel extends ChangeNotifier {
@@ -9,8 +10,7 @@ class AuthModel extends ChangeNotifier {
 
   Future<void> logIn() async {
     try {
-      final response = await AppNetwork.loginUser(
-          email: emailController.text, password: passwordController.text);
+      final response = await AppNetwork.loginUser(email: emailController.text, password: passwordController.text);
       if (response.statusCode == 200) {
         if (saveUser) {
           await AppSecureStorage.putToken(response.data['token']);
