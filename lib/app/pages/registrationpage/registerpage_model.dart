@@ -9,15 +9,16 @@ class RegisterModel extends ChangeNotifier {
   TextEditingController middleNameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
 
+  DateTime? date;
   Future<void> setDate(BuildContext context) async {
-    final DateTime? date = await showDatePicker(
+    date = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
     String? dateOfBirth =
-        date != null ? "${date.year}-${date.month}-${date.day}" : "";
+        date != null ? "${date?.day}.${date?.month}.${date?.year}" : "";
     dateController.text = dateOfBirth;
     notifyListeners();
   }
@@ -30,7 +31,7 @@ class RegisterModel extends ChangeNotifier {
         lastName: lastNameController.text,
         firstName: firstNameController.text,
         middleName: middleNameController.text,
-        date: dateController.text,
+        date: date,
       );
       if (response.statusCode == 201) {
       } else {
