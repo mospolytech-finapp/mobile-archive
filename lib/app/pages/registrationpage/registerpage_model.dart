@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/cupertino.dart';
-
 import 'package:finapp/app/components/app_network.dart';
+import 'package:flutter/material.dart';
 
 class RegisterModel extends ChangeNotifier {
   TextEditingController emailController = TextEditingController();
@@ -10,10 +8,16 @@ class RegisterModel extends ChangeNotifier {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController middleNameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
-  DateTime? date;
 
-  void setDate() {
-    String? dateOfBirth = date != null ? "${date?.year}-${date?.month}-${date?.day}" : "";
+  Future<void> setDate(BuildContext context) async {
+    final DateTime? date = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+    String? dateOfBirth =
+        date != null ? "${date.year}-${date.month}-${date.day}" : "";
     dateController.text = dateOfBirth;
     notifyListeners();
   }
@@ -26,7 +30,7 @@ class RegisterModel extends ChangeNotifier {
         lastName: lastNameController.text,
         firstName: firstNameController.text,
         middleName: middleNameController.text,
-        date: dateController.text, // Исправить на календарь
+        date: dateController.text,
       );
       if (response.statusCode == 201) {
       } else {

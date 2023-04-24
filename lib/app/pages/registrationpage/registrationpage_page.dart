@@ -4,15 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class RegistrationPage extends StatefulWidget {
+class RegistrationPage extends StatelessWidget {
   const RegistrationPage({super.key});
-
-  @override
-  State<RegistrationPage> createState() => _RegistrationPageState();
-}
-
-class _RegistrationPageState extends State<RegistrationPage> {
-  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -393,52 +386,48 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   SizedBox(
                                     height: 0.94.h,
                                   ),
-                                  SizedBox(
-                                    width: 66.67.h,
-                                    height: 4.69.h,
-                                    child: TextField(
-                                      controller: registerModel.dateController,
-                                      style: TextStyle(
-                                        fontFamily: 'Gilroy-Light',
-                                        color: Colors.black,
-                                        fontSize: 18.sp,
+                                  TextField(
+                                    onTap: () => registerModel.setDate(context),
+                                    controller: registerModel.dateController,
+                                    readOnly: true,
+                                    style: TextStyle(
+                                      fontFamily: 'Gilroy-Light',
+                                      color: Colors.black,
+                                      fontSize: 18.sp,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    cursorColor:
+                                        const Color.fromRGBO(2, 201, 141, 1),
+                                    textAlignVertical: TextAlignVertical.top,
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 0.5.h,
+                                        horizontal: 2.77.w,
                                       ),
-                                      textAlign: TextAlign.start,
-                                      cursorColor:
-                                          const Color.fromRGBO(2, 201, 141, 1),
-                                      textAlignVertical: TextAlignVertical.top,
-                                      decoration: InputDecoration(
-                                        isDense: true,
-                                        contentPadding: EdgeInsets.symmetric(
-                                          vertical: 0.5.h,
-                                          horizontal: 2.77.w,
+                                      // hintText: 'dd.mm.yyyy',
+                                      // hintStyle: TextStyle(
+                                      //   fontFamily: 'Gilroy-Light',
+                                      //   fontSize: 16.sp,
+                                      //   color: Colors.grey,
+                                      // ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        borderSide: const BorderSide(
+                                          color:
+                                              Color.fromRGBO(220, 220, 220, 1),
                                         ),
-                                        hintText: 'dd.mm.yyyy',
-                                        hintStyle: TextStyle(
-                                          fontFamily: 'Gilroy-Light',
-                                          fontSize: 16.sp,
-                                          color: Colors.grey,
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          borderSide: const BorderSide(
-                                            color: Color.fromRGBO(
-                                                220, 220, 220, 1),
-                                          ),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          borderSide: const BorderSide(
-                                            color: Color.fromRGBO(
-                                                220, 220, 220, 1),
-                                          ),
-                                        ),
-                                        filled: true,
-                                        fillColor: const Color.fromRGBO(
-                                            220, 220, 220, 1),
                                       ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        borderSide: const BorderSide(
+                                          color:
+                                              Color.fromRGBO(220, 220, 220, 1),
+                                        ),
+                                      ),
+                                      filled: true,
+                                      fillColor: const Color.fromRGBO(
+                                          220, 220, 220, 1),
                                     ),
                                   ),
                                   SizedBox(
