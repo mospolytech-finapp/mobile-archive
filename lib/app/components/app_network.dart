@@ -1,6 +1,6 @@
 import "package:dio/dio.dart";
 
-const String url = "127.0.0.1:8000";
+const String url = "http://127.0.0.1:8000";
 
 class AppNetwork {
   static final Dio dio = Dio(
@@ -19,8 +19,7 @@ class AppNetwork {
     String? middleName,
     DateTime? date,
   }) async {
-    final String dateOfBirth =
-        date != null ? "${date.year}-${date.month}-${date.day}" : "";
+    final String dateOfBirth = date != null ? "${date.year}-${date.month}-${date.day}" : "";
     return await dio.post(
       "/api/auth/registration/",
       data: {
