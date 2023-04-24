@@ -96,7 +96,7 @@ class RegistrationPage extends StatelessWidget {
                                     style: TextStyle(
                                       fontFamily: 'Gilroy-Light',
                                       color: Colors.black,
-                                      fontSize: 18.sp,
+                                      fontSize: 16.sp,
                                     ),
                                     textAlign: TextAlign.start,
                                     cursorColor:
@@ -149,7 +149,7 @@ class RegistrationPage extends StatelessWidget {
                                     style: TextStyle(
                                       fontFamily: 'Gilroy-Light',
                                       color: Colors.black,
-                                      fontSize: 18.sp,
+                                      fontSize: 16.sp,
                                     ),
                                     textAlign: TextAlign.start,
                                     cursorColor:
@@ -196,47 +196,41 @@ class RegistrationPage extends StatelessWidget {
                                   SizedBox(
                                     height: 0.94.h,
                                   ),
-                                  SizedBox(
-                                    width: 66.67.h,
-                                    height: 4.69.h,
-                                    child: TextField(
-                                      controller:
-                                          registerModel.middleNameController,
-                                      style: TextStyle(
-                                        fontFamily: 'Gilroy-Light',
-                                        color: Colors.black,
-                                        fontSize: 18.sp,
+                                  TextField(
+                                    controller:
+                                        registerModel.middleNameController,
+                                    style: TextStyle(
+                                      fontFamily: 'Gilroy-Light',
+                                      color: Colors.black,
+                                      fontSize: 16.sp,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    cursorColor:
+                                        const Color.fromRGBO(2, 201, 141, 1),
+                                    textAlignVertical: TextAlignVertical.top,
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 0.5.h,
+                                        horizontal: 2.77.w,
                                       ),
-                                      textAlign: TextAlign.start,
-                                      cursorColor:
-                                          const Color.fromRGBO(2, 201, 141, 1),
-                                      textAlignVertical: TextAlignVertical.top,
-                                      decoration: InputDecoration(
-                                        isDense: true,
-                                        contentPadding: EdgeInsets.symmetric(
-                                          vertical: 0.5.h,
-                                          horizontal: 2.77.w,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        borderSide: const BorderSide(
+                                          color:
+                                              Color.fromRGBO(220, 220, 220, 1),
                                         ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          borderSide: const BorderSide(
-                                            color: Color.fromRGBO(
-                                                220, 220, 220, 1),
-                                          ),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          borderSide: const BorderSide(
-                                            color: Color.fromRGBO(
-                                                220, 220, 220, 1),
-                                          ),
-                                        ),
-                                        filled: true,
-                                        fillColor: const Color.fromRGBO(
-                                            220, 220, 220, 1),
                                       ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        borderSide: const BorderSide(
+                                          color:
+                                              Color.fromRGBO(220, 220, 220, 1),
+                                        ),
+                                      ),
+                                      filled: true,
+                                      fillColor: const Color.fromRGBO(
+                                          220, 220, 220, 1),
                                     ),
                                   ),
                                   SizedBox(
@@ -255,47 +249,41 @@ class RegistrationPage extends StatelessWidget {
                                   SizedBox(
                                     height: 0.94.h,
                                   ),
-                                  SizedBox(
-                                    width: 66.67.h,
-                                    height: 4.69.h,
-                                    child: TextField(
-                                      controller:
-                                          registerModel.passwordController,
-                                      style: TextStyle(
-                                        fontFamily: 'Gilroy-Light',
-                                        color: Colors.black,
-                                        fontSize: 18.sp,
+                                  TextField(
+                                    controller:
+                                        registerModel.passwordController,
+                                    style: TextStyle(
+                                      fontFamily: 'Gilroy-Light',
+                                      color: Colors.black,
+                                      fontSize: 16.sp,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    cursorColor:
+                                        const Color.fromRGBO(2, 201, 141, 1),
+                                    textAlignVertical: TextAlignVertical.top,
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 0.5.h,
+                                        horizontal: 2.77.w,
                                       ),
-                                      textAlign: TextAlign.start,
-                                      cursorColor:
-                                          const Color.fromRGBO(2, 201, 141, 1),
-                                      textAlignVertical: TextAlignVertical.top,
-                                      decoration: InputDecoration(
-                                        isDense: true,
-                                        contentPadding: EdgeInsets.symmetric(
-                                          vertical: 0.5.h,
-                                          horizontal: 2.77.w,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        borderSide: const BorderSide(
+                                          color:
+                                              Color.fromRGBO(220, 220, 220, 1),
                                         ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          borderSide: const BorderSide(
-                                            color: Color.fromRGBO(
-                                                220, 220, 220, 1),
-                                          ),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          borderSide: const BorderSide(
-                                            color: Color.fromRGBO(
-                                                220, 220, 220, 1),
-                                          ),
-                                        ),
-                                        filled: true,
-                                        fillColor: const Color.fromRGBO(
-                                            220, 220, 220, 1),
                                       ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        borderSide: const BorderSide(
+                                          color:
+                                              Color.fromRGBO(220, 220, 220, 1),
+                                        ),
+                                      ),
+                                      filled: true,
+                                      fillColor: const Color.fromRGBO(
+                                          220, 220, 220, 1),
                                     ),
                                   ),
                                   SizedBox(
@@ -326,46 +314,40 @@ class RegistrationPage extends StatelessWidget {
                                   SizedBox(
                                     height: 0.94.h,
                                   ),
-                                  SizedBox(
-                                    width: 66.67.h,
-                                    height: 4.69.h,
-                                    child: TextField(
-                                      controller: registerModel.emailController,
-                                      style: TextStyle(
-                                        fontFamily: 'Gilroy-Light',
-                                        color: Colors.black,
-                                        fontSize: 18.sp,
+                                  TextField(
+                                    controller: registerModel.emailController,
+                                    style: TextStyle(
+                                      fontFamily: 'Gilroy-Light',
+                                      color: Colors.black,
+                                      fontSize: 16.sp,
+                                    ),
+                                    textAlign: TextAlign.start,
+                                    cursorColor:
+                                        const Color.fromRGBO(2, 201, 141, 1),
+                                    textAlignVertical: TextAlignVertical.top,
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 0.5.h,
+                                        horizontal: 2.77.w,
                                       ),
-                                      textAlign: TextAlign.start,
-                                      cursorColor:
-                                          const Color.fromRGBO(2, 201, 141, 1),
-                                      textAlignVertical: TextAlignVertical.top,
-                                      decoration: InputDecoration(
-                                        isDense: true,
-                                        contentPadding: EdgeInsets.symmetric(
-                                          vertical: 0.5.h,
-                                          horizontal: 2.77.w,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        borderSide: const BorderSide(
+                                          color:
+                                              Color.fromRGBO(220, 220, 220, 1),
                                         ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          borderSide: const BorderSide(
-                                            color: Color.fromRGBO(
-                                                220, 220, 220, 1),
-                                          ),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          borderSide: const BorderSide(
-                                            color: Color.fromRGBO(
-                                                220, 220, 220, 1),
-                                          ),
-                                        ),
-                                        filled: true,
-                                        fillColor: const Color.fromRGBO(
-                                            220, 220, 220, 1),
                                       ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(50),
+                                        borderSide: const BorderSide(
+                                          color:
+                                              Color.fromRGBO(220, 220, 220, 1),
+                                        ),
+                                      ),
+                                      filled: true,
+                                      fillColor: const Color.fromRGBO(
+                                          220, 220, 220, 1),
                                     ),
                                   ),
                                   SizedBox(
@@ -393,7 +375,7 @@ class RegistrationPage extends StatelessWidget {
                                     style: TextStyle(
                                       fontFamily: 'Gilroy-Light',
                                       color: Colors.black,
-                                      fontSize: 18.sp,
+                                      fontSize: 16.sp,
                                     ),
                                     textAlign: TextAlign.start,
                                     cursorColor:
