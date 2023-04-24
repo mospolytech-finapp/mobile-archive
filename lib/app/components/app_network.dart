@@ -17,9 +17,9 @@ class AppNetwork {
     required String lastName,
     required String firstName,
     String? middleName,
-    DateTime? date,
+    String? date,
   }) async {
-    String? dateOfBirth = date != null ? "${date.year}-${date.month}-${date.day}" : "";
+    ;
     return await dio.post(
       "/api/auth/registration/",
       data: {
@@ -28,7 +28,7 @@ class AppNetwork {
         "last_name": lastName,
         "first_name": firstName,
         "middle_name": middleName ?? "",
-        "date_of_birth": dateOfBirth,
+        "date_of_birth": date ?? "",
       },
     );
   }
