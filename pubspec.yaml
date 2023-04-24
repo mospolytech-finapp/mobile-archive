@@ -12,12 +12,14 @@ dependencies:
   dio: ^5.1.1
   flutter:
     sdk: flutter
-  google_fonts: ^4.0.3
-  flutter_svg: ^2.0.5
-  sizer: ^2.0.15
-  provider: ^6.0.5
+  flutter_localizations:
+    sdk: flutter
+  intl: any
   flutter_secure_storage: ^8.0.0
-
+  flutter_svg: ^2.0.5
+  google_fonts: ^4.0.3
+  provider: ^6.0.5
+  sizer: ^2.0.15
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -31,4 +33,4 @@ flutter:
   fonts:
     - family: Gilroy-Light
       fonts:
-      - asset: assets/Gilroy-Light.ttf
+        - asset: assets/Gilroy-Light.ttf
