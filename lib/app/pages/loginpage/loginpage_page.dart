@@ -17,7 +17,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final authModel = Provider.of<AuthModel>(context, listen: false);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -26,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
       ],
       child: Sizer(
         builder: (context, orientation, deviceType) {
+          final authModel = Provider.of<AuthModel>(context, listen: false);
           return Scaffold(
             resizeToAvoidBottomInset: false,
             body: Column(children: <Widget>[
