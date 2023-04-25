@@ -7,17 +7,5 @@ import 'package:finapp/app/pages/registrationpage/registerpage_model.dart';
 
 void main() {
   Paint.enableDithering = true;
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => AuthModel(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => RegisterModel(),
-        ),
-      ],
-      child: const App(),
-    ),
-  );
+  runApp(const App(),);
 }

@@ -7,19 +7,24 @@ class AuthModel extends ChangeNotifier {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool saveUser = false;
+  bool isError = false;
 
   Future<void> logIn() async {
     try {
-      final response = await AppNetwork.loginUser(email: emailController.text, password: passwordController.text);
+      final response = await AppNetwork.loginUser(
+          email: emailController.text, password: passwordController.text);
       if (response.statusCode == 200) {
         if (saveUser) {
           await AppSecureStorage.putToken(response.data['token']);
+          isError = false;
         }
         notifyListeners();
       } else {
+        isError = true;
         print("Undefined error");
       }
     } catch (e) {
+      isError = true;
       print(e);
     }
   }
