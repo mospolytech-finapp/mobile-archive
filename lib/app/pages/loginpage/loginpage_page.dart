@@ -110,7 +110,13 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final authModel = Provider.of<AuthModel>(context, listen: false);
-    return Sizer(
+    MultiProvider(
+        providers: [
+        ChangeNotifierProvider(
+        create: (context) => AuthModel(),
+    ),
+    ],
+    child: Sizer(
       builder: (context, orientation, deviceType) {
         return Scaffold(
           resizeToAvoidBottomInset: false,
