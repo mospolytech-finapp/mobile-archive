@@ -10,7 +10,6 @@ class RegistrationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final registerModel = Provider.of<RegisterModel>(context, listen: false);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -23,6 +22,7 @@ class RegistrationPage extends StatelessWidget {
           Orientation orientation,
           DeviceType deviceType,
         ) {
+          final registerModel = Provider.of<RegisterModel>(context, listen: false);
           return Scaffold(
             resizeToAvoidBottomInset: false,
             body: Column(
