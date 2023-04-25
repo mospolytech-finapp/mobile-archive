@@ -14,90 +14,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _showPassword = false;
-  //? переменная влияющая на "Неверный логин или пароль"
-  bool _value = false;
-
-  InputDecoration decoration_email() {
-    if (_value) {
-      return InputDecoration(
-          isDense: true,
-          contentPadding: EdgeInsets.fromLTRB(2.77.w, 0.5.h, 2.77.w, 0.5.h),
-          focusColor: const Color(0xff1BD0B8),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50.0), borderSide: const BorderSide(color: Colors.transparent)),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50.0), borderSide: const BorderSide(color: Colors.transparent)),
-          filled: true,
-          fillColor: const Color(0xffDCDCDC));
-    } else {
-      return InputDecoration(
-          isDense: true,
-          contentPadding: EdgeInsets.fromLTRB(2.77.w, 0.5.h, 2.77.w, 0.5.h),
-          focusColor: const Color(0xff1BD0B8),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50.0), borderSide: const BorderSide(color: Color(0xffDE580D))),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50.0), borderSide: const BorderSide(color: Color(0xffDE580D))),
-          filled: true,
-          fillColor: const Color(0xffC1B3AB));
-    }
-  }
-
-  InputDecoration decoration_password() {
-    if (_value) {
-      return InputDecoration(
-          isDense: true,
-          contentPadding: EdgeInsets.fromLTRB(2.77.w, 0.5.h, 2.77.w, 0.5.h),
-          //? Иконка глаза
-          suffixIconConstraints: BoxConstraints(maxHeight: 24),
-          suffixIcon: IconButton(
-            padding: EdgeInsets.zero,
-            iconSize: 24,
-            icon: Icon(
-              _showPassword ? Icons.visibility : Icons.visibility_off,
-              color: Colors.grey,
-            ),
-            onPressed: () {
-              setState(() {
-                _showPassword = !_showPassword;
-              });
-            },
-          ),
-          focusColor: const Color(0xff1BD0B8),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50.0), borderSide: const BorderSide(color: Colors.transparent)),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50.0), borderSide: const BorderSide(color: Colors.transparent)),
-          filled: true,
-          fillColor: const Color(0xffDCDCDC));
-    } else {
-      return InputDecoration(
-          isDense: true,
-          contentPadding: EdgeInsets.fromLTRB(2.77.w, 0.5.h, 2.77.w, 0.5.h),
-          //? Иконка глаза
-          suffixIconConstraints: BoxConstraints(maxHeight: 24),
-          suffixIcon: IconButton(
-            padding: EdgeInsets.zero,
-            iconSize: 24,
-            icon: Icon(
-              _showPassword ? Icons.visibility : Icons.visibility_off,
-              color: Colors.grey,
-            ),
-            onPressed: () {
-              setState(() {
-                _showPassword = !_showPassword;
-              });
-            },
-          ),
-          focusColor: const Color(0xff1BD0B8),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50.0), borderSide: const BorderSide(color: Color(0xffDE580D))),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50.0), borderSide: const BorderSide(color: Color(0xffDE580D))),
-          filled: true,
-          fillColor: const Color(0xffC1B3AB));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
       ],
       child: Sizer(
         builder: (context, orientation, deviceType) {
-          final authModel = Provider.of<AuthModel>(context, listen: false);
+          final authModel = Provider.of<AuthModel>(context, listen: true);
           return Scaffold(
             resizeToAvoidBottomInset: false,
             body: Column(children: <Widget>[
@@ -182,7 +98,35 @@ class _LoginPageState extends State<LoginPage> {
                                 style: TextStyle(color: Colors.black, fontSize: 16.sp, fontFamily: 'Gilroy-Light'),
                                 cursorColor: const Color(0xff1BD0B8),
                                 textAlign: TextAlign.justify,
-                                decoration: decoration_email()),
+                                decoration: () {
+                                  if (authModel.isError) {
+                                    return InputDecoration(
+                                        isDense: true,
+                                        contentPadding: EdgeInsets.fromLTRB(2.77.w, 0.5.h, 2.77.w, 0.5.h),
+                                        focusColor: const Color(0xff1BD0B8),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(50.0),
+                                            borderSide: const BorderSide(color: Color(0xffDE580D))),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(50.0),
+                                            borderSide: const BorderSide(color: Color(0xffDE580D))),
+                                        filled: true,
+                                        fillColor: const Color(0xffC1B3AB));
+                                  } else {
+                                    return InputDecoration(
+                                        isDense: true,
+                                        contentPadding: EdgeInsets.fromLTRB(2.77.w, 0.5.h, 2.77.w, 0.5.h),
+                                        focusColor: const Color(0xff1BD0B8),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(50.0),
+                                            borderSide: const BorderSide(color: Colors.transparent)),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(50.0),
+                                            borderSide: const BorderSide(color: Colors.transparent)),
+                                        filled: true,
+                                        fillColor: const Color(0xffDCDCDC));
+                                  }
+                                }()),
                             SizedBox(
                               height: 3.13.h,
                             ),
@@ -215,13 +159,71 @@ class _LoginPageState extends State<LoginPage> {
                                 textAlign: TextAlign.justify,
                                 //? для скрытия пароля
                                 obscureText: !_showPassword,
-                                decoration: decoration_password()),
+                                decoration: () {
+                                  if (!authModel.isError) {
+                                    return InputDecoration(
+                                        isDense: true,
+                                        contentPadding: EdgeInsets.fromLTRB(2.77.w, 0.5.h, 2.77.w, 0.5.h),
+                                        //? Иконка глаза
+                                        suffixIconConstraints: BoxConstraints(maxHeight: 24),
+                                        suffixIcon: IconButton(
+                                          padding: EdgeInsets.zero,
+                                          iconSize: 24,
+                                          icon: Icon(
+                                            _showPassword ? Icons.visibility_off : Icons.visibility,
+                                            color: Colors.grey,
+                                          ),
+                                          onPressed: () {
+                                            setState(() {
+                                              _showPassword = !_showPassword;
+                                            });
+                                          },
+                                        ),
+                                        focusColor: const Color(0xff1BD0B8),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(50.0),
+                                            borderSide: const BorderSide(color: Colors.transparent)),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(50.0),
+                                            borderSide: const BorderSide(color: Colors.transparent)),
+                                        filled: true,
+                                        fillColor: const Color(0xffDCDCDC));
+                                  } else {
+                                    return InputDecoration(
+                                        isDense: true,
+                                        contentPadding: EdgeInsets.fromLTRB(2.77.w, 0.5.h, 2.77.w, 0.5.h),
+                                        //? Иконка глаза
+                                        suffixIconConstraints: BoxConstraints(maxHeight: 24),
+                                        suffixIcon: IconButton(
+                                          padding: EdgeInsets.zero,
+                                          iconSize: 24,
+                                          icon: Icon(
+                                            _showPassword ? Icons.visibility_off : Icons.visibility,
+                                            color: Colors.grey,
+                                          ),
+                                          onPressed: () {
+                                            setState(() {
+                                              _showPassword = !_showPassword;
+                                            });
+                                          },
+                                        ),
+                                        focusColor: const Color(0xff1BD0B8),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(50.0),
+                                            borderSide: const BorderSide(color: Color(0xffDE580D))),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(50.0),
+                                            borderSide: const BorderSide(color: Color(0xffDE580D))),
+                                        filled: true,
+                                        fillColor: const Color(0xffC1B3AB));
+                                  }
+                                }()),
                           ],
                         ),
                       ),
                       //? Текст Забыли пароль
                       Builder(builder: (BuildContext context) {
-                        if (_value) {
+                        if (!authModel.isError) {
                           return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                             SizedBox(
                               width: 16.67.w,
