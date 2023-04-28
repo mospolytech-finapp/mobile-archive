@@ -5,8 +5,18 @@ import 'package:sizer/sizer.dart';
 
 import 'package:finapp/app/pages/registrationpage/registerpage_model.dart';
 
-class RegistrationPage extends StatelessWidget {
+import '../widgets/dialog_contact_us.dart';
+
+class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
+
+  @override
+  State<RegistrationPage> createState() => _RegistrationPage();
+}
+
+class _RegistrationPage extends State<RegistrationPage> {
+  bool _showPassword = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -274,32 +284,66 @@ class RegistrationPage extends StatelessWidget {
                                       cursorColor:
                                           const Color.fromRGBO(2, 201, 141, 1),
                                       textAlignVertical: TextAlignVertical.top,
-                                      decoration: InputDecoration(
-                                        isDense: true,
-                                        contentPadding: EdgeInsets.symmetric(
-                                          vertical: 0.5.h,
-                                          horizontal: 2.77.w,
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          borderSide: const BorderSide(
-                                            color: Color.fromRGBO(
-                                                220, 220, 220, 1),
-                                          ),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          borderSide: const BorderSide(
-                                            color: Color.fromRGBO(
-                                                220, 220, 220, 1),
-                                          ),
-                                        ),
-                                        filled: true,
-                                        fillColor: const Color.fromRGBO(
-                                            220, 220, 220, 1),
-                                      ),
+                                        obscureText: !_showPassword,
+                                        decoration: () {
+                                          if (!_showPassword) {
+                                            return InputDecoration(
+                                                isDense: true,
+                                                contentPadding: EdgeInsets.fromLTRB(2.77.w, 0.5.h, 2.77.w, 0.5.h),
+                                                //? Иконка глаза
+                                                suffixIconConstraints: BoxConstraints(maxHeight: 24),
+                                                suffixIcon: IconButton(
+                                                  padding: EdgeInsets.zero,
+                                                  iconSize: 24,
+                                                  icon: Icon(
+                                                    _showPassword ? Icons.visibility_off : Icons.visibility,
+                                                    color: Colors.grey,
+                                                  ),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _showPassword = !_showPassword;
+                                                    });
+                                                  },
+                                                ),
+                                                focusColor: const Color(0xff1BD0B8),
+                                                enabledBorder: OutlineInputBorder(
+                                                    borderRadius: BorderRadius.circular(50.0),
+                                                    borderSide: const BorderSide(color: Colors.transparent)),
+                                                focusedBorder: OutlineInputBorder(
+                                                    borderRadius: BorderRadius.circular(50.0),
+                                                    borderSide: const BorderSide(color: Colors.transparent)),
+                                                filled: true,
+                                                fillColor: const Color(0xffDCDCDC));
+                                          } else {
+                                            return InputDecoration(
+                                                isDense: true,
+                                                contentPadding: EdgeInsets.fromLTRB(2.77.w, 0.5.h, 2.77.w, 0.5.h),
+                                                //? Иконка глаза
+                                                suffixIconConstraints: BoxConstraints(maxHeight: 24),
+                                                suffixIcon: IconButton(
+                                                  padding: EdgeInsets.zero,
+                                                  iconSize: 24,
+                                                  icon: Icon(
+                                                    _showPassword ? Icons.visibility_off : Icons.visibility,
+                                                    color: Colors.grey,
+                                                  ),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _showPassword = !_showPassword;
+                                                    });
+                                                  },
+                                                ),
+                                                focusColor: const Color(0xff1BD0B8),
+                                                enabledBorder: OutlineInputBorder(
+                                                    borderRadius: BorderRadius.circular(50.0),
+                                                    borderSide: const BorderSide(color: Color(0xffDE580D))),
+                                                focusedBorder: OutlineInputBorder(
+                                                    borderRadius: BorderRadius.circular(50.0),
+                                                    borderSide: const BorderSide(color: Color(0xffDE580D))),
+                                                filled: true,
+                                                fillColor: const Color(0xffC1B3AB));
+                                          }
+                                        }(),
                                     ),
                                     SizedBox(
                                       height: 0.625.h,
@@ -537,7 +581,12 @@ class RegistrationPage extends StatelessWidget {
                                               side: const BorderSide(
                                                   color: Colors.white),
                                             ),
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) => const ContactUsDialogWidget(),
+                                              );
+                                            },
                                             child: Text(
                                               'Связаться с нами',
                                               style: TextStyle(
