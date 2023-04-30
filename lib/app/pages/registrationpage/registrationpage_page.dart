@@ -101,16 +101,12 @@ class _RegistrationPage extends State<RegistrationPage> {
                                         SizedBox(
                                           height: 1.72.h,
                                         ),
-                                        SizedBox(
-                                          height: 1.88.h,
-                                          width: 66.67.w,
-                                          child: Text('Фамилия*',
-                                              style: TextStyle(
-                                                fontFamily: 'Gilroy-Light',
-                                                fontSize: 10.sp,
-                                                color: Colors.white,
-                                              )),
-                                        ),
+                                        Text('Фамилия*',
+                                            style: TextStyle(
+                                              fontFamily: 'Gilroy-Light',
+                                              fontSize: 10.sp,
+                                              color: Colors.white,
+                                            )),
                                         SizedBox(
                                           height: 0.94.h,
                                         ),
@@ -158,16 +154,12 @@ class _RegistrationPage extends State<RegistrationPage> {
                                         SizedBox(
                                           height: 0.625.h,
                                         ),
-                                        SizedBox(
-                                          height: 1.88.h,
-                                          width: 66.67.w,
-                                          child: Text('Имя*',
-                                              style: TextStyle(
-                                                fontFamily: 'Gilroy-Light',
-                                                fontSize: 10.sp,
-                                                color: Colors.white,
-                                              )),
-                                        ),
+                                        Text('Имя*',
+                                            style: TextStyle(
+                                              fontFamily: 'Gilroy-Light',
+                                              fontSize: 10.sp,
+                                              color: Colors.white,
+                                            )),
                                         SizedBox(
                                           height: 0.94.h,
                                         ),
@@ -215,16 +207,12 @@ class _RegistrationPage extends State<RegistrationPage> {
                                         SizedBox(
                                           height: 0.625.h,
                                         ),
-                                        SizedBox(
-                                          height: 1.88.h,
-                                          width: 66.67.w,
-                                          child: Text('Отчество',
-                                              style: TextStyle(
-                                                fontFamily: 'Gilroy-Light',
-                                                fontSize: 10.sp,
-                                                color: Colors.white,
-                                              )),
-                                        ),
+                                        Text('Отчество',
+                                            style: TextStyle(
+                                              fontFamily: 'Gilroy-Light',
+                                              fontSize: 10.sp,
+                                              color: Colors.white,
+                                            )),
                                         SizedBox(
                                           height: 0.94.h,
                                         ),
@@ -272,16 +260,12 @@ class _RegistrationPage extends State<RegistrationPage> {
                                         SizedBox(
                                           height: 0.625.h,
                                         ),
-                                        SizedBox(
-                                          height: 1.88.h,
-                                          width: 66.67.w,
-                                          child: Text('Пароль*',
-                                              style: TextStyle(
-                                                fontFamily: 'Gilroy-Light',
-                                                fontSize: 10.sp,
-                                                color: Colors.white,
-                                              )),
-                                        ),
+                                        Text('Пароль*',
+                                            style: TextStyle(
+                                              fontFamily: 'Gilroy-Light',
+                                              fontSize: 10.sp,
+                                              color: Colors.white,
+                                            )),
                                         SizedBox(
                                           height: 0.94.h,
                                         ),
@@ -351,27 +335,13 @@ class _RegistrationPage extends State<RegistrationPage> {
                                         SizedBox(
                                           height: 0.625.h,
                                         ),
-                                        SizedBox(
-                                          height: 1.88.h,
-                                          width: 20.w,
-                                          // child: Text(
-                                          //   'Адрес электронной почты*',
-                                          // style: TextStyle(
-                                          //   fontFamily: 'Gilroy-Light',
-                                          //   fontSize: 10.sp,
-                                          //   color: Colors.white,
-                                          // ),
-                                          // ),
-                                          // ? Вариант с надписью 'Адрес электронной почты*'
-                                          child: Text(
-                                            'E-mail*',
-                                            style: TextStyle(
-                                              fontFamily: 'Gilroy-Light',
-                                              fontSize: 10.sp,
-                                              color: Colors.white,
-                                            ),
+                                        Text(
+                                          'E-mail*',
+                                          style: TextStyle(
+                                            fontFamily: 'Gilroy-Light',
+                                            fontSize: 10.sp,
+                                            color: Colors.white,
                                           ),
-                                          //? Вариант с надписью 'E-mail*'
                                         ),
                                         SizedBox(
                                           height: 0.94.h,
@@ -420,16 +390,12 @@ class _RegistrationPage extends State<RegistrationPage> {
                                         SizedBox(
                                           height: 0.625.h,
                                         ),
-                                        SizedBox(
-                                          height: 1.88.h,
-                                          width: 25.w,
-                                          child: Text(
-                                            'Дата рождения*',
-                                            style: TextStyle(
-                                              fontFamily: 'Gilroy-Light',
-                                              fontSize: 10.sp,
-                                              color: Colors.white,
-                                            ),
+                                        Text(
+                                          'Дата рождения*',
+                                          style: TextStyle(
+                                            fontFamily: 'Gilroy-Light',
+                                            fontSize: 10.sp,
+                                            color: Colors.white,
                                           ),
                                         ),
                                         SizedBox(
@@ -488,20 +454,16 @@ class _RegistrationPage extends State<RegistrationPage> {
                                         SizedBox(
                                           height: 0.625.h,
                                         ),
-                                        SizedBox(
-                                          height: 1.88.h,
-                                          width: 60.w,
-                                          child: Text(
-                                            '* - Обязательное поле для ввода',
-                                            style: TextStyle(
-                                              fontFamily: 'Gilroy-Light',
-                                              fontSize: 9.sp,
-                                              color: Colors.white,
-                                            ),
+                                        Text(
+                                          '* - Обязательное поле для ввода',
+                                          style: TextStyle(
+                                            fontFamily: 'Gilroy-Light',
+                                            fontSize: 9.sp,
+                                            color: Colors.white,
                                           ),
                                         ),
                                         SizedBox(
-                                          height: 6.h,
+                                          height: 3.7.h,
                                         ),
                                       ],
                                     ),
