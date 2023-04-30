@@ -231,7 +231,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               TextButton(
                                 onPressed: () {},
-                                style: TextButton.styleFrom(fixedSize: Size(30.56.w, 1.88.h)),
+                                style: TextButton.styleFrom(fixedSize: Size(32.w, 1.88.h)),
                                 child: Text(
                                   'Забыли пароль?',
                                   textAlign: TextAlign.left,
@@ -254,7 +254,7 @@ class _LoginPageState extends State<LoginPage> {
                                   )),
                               TextButton(
                                 onPressed: () {},
-                                style: TextButton.styleFrom(fixedSize: Size(30.56.w, 1.88.h)),
+                                style: TextButton.styleFrom(fixedSize: Size(32.w, 1.88.h)),
                                 child: Text(
                                   'Забыли пароль?',
                                   textAlign: TextAlign.left,
