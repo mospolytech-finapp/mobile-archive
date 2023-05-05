@@ -37,6 +37,10 @@ class _AppState extends State<App> {
         Locale('en', ''),
         Locale('ru', ''),
       ],
+      builder: (context, child) {
+        final mediaQueryData = MediaQuery.of(context);
+        return MediaQuery(data: mediaQueryData.copyWith(textScaleFactor: 1.0), child: child!);
+      },
       debugShowCheckedModeBanner: false,
       title: 'Finapp',
       theme: AppTheme.apptheme(),
