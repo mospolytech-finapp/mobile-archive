@@ -45,4 +45,31 @@ class AppNetwork {
       },
     );
   }
+
+  static Future<Response> getUserInfo({required String token}) async {
+    // Реализуй вызов API здесь
+  }
+
+  // В AppNetwork
+  static Future<Response> addTransaction({
+    required String token,
+    required String type,
+    required String category,
+    required String title,
+    required DateTime date,
+    required double amount,
+     String? description,
+  }) async {
+    // Реализуй вызов API здесь
+  }
+
+  static Future<Response> getTransactions({required String token}) async {
+    // Реализуй вызов API здесь
+  }
+
+  static Future<Response> deleteTransaction({required String token, required String transactionId}) async {
+    // Реализуй вызов API здесь
+  }
+
+
 }
