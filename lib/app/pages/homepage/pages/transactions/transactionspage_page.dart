@@ -16,6 +16,9 @@ class TransactionsPage extends StatefulWidget {
 
 class _TransactionsPageState extends State<TransactionsPage> {
   String dropdownValue = list.first;
+  bool isTap = false;
+  int selectedIndex = -1;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -132,7 +135,26 @@ class _TransactionsPageState extends State<TransactionsPage> {
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: EdgeInsets.only(bottom: 2.5.h),
-                    child: ListViewItemWidget(index),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isTap = (selectedIndex == index);
+                          selectedIndex = index;
+                        });
+                      },
+                      onDoubleTap: () {
+                        setState(() {
+                          selectedIndex = -1;
+                        });
+                      },
+                      child: AnimatedContainer(
+                        height: calculate_height(index, selectedIndex),
+                        curve: Curves.easeInOutCubic,
+                        duration: const Duration(milliseconds: 1000),
+                        child: ListViewItemWidget(
+                            index, calculate_height(index, selectedIndex)),
+                      ),
+                    ),
                   );
                 },
               ),
@@ -142,4 +164,14 @@ class _TransactionsPageState extends State<TransactionsPage> {
       ],
     );
   }
+}
+
+double calculate_height(int index, int selectedIndex) {
+  double item_height;
+  if (selectedIndex == index) {
+    item_height = 26.h;
+  } else {
+    item_height = 13.h;
+  }
+  return item_height;
 }

@@ -8,10 +8,10 @@ String month = 'марта';
 String name = 'Кварплата';
 int expense = 40376;
 String time = '14:30';
+String discript = 'Перевели за вторую половину текущего месяца.';
 
-Widget ListViewItemWidget(int index) {
+Widget ListViewItemWidget(int index, double calculate_height) {
   return Container(
-    height: 13.h,
     decoration: BoxDecoration(
         color: Color(0xffEAEAEA),
         borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -42,120 +42,273 @@ Widget ListViewItemWidget(int index) {
       ),
       //? Информация о транзакциях
       Padding(
-        padding: EdgeInsets.fromLTRB(0, 1.h, 9.w, 1.h),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+        padding: EdgeInsets.fromLTRB(0, 1.h, 5.w, 1.h),
+        child: Builder(builder: (BuildContext context) {
+          if (calculate_height == 26.h) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(
-                  Icons.arrow_downward,
-                  color: Color(0xff383737),
-                  size: 4.h,
-                ),
-                SizedBox(
-                  width: 2.w,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    //? Название транзакции и доход/расход
-                    Row(
+                    Icon(
+                      Icons.arrow_downward,
+                      color: Color(0xff383737),
+                      size: 4.h,
+                    ),
+                    SizedBox(
+                      width: 2.w,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        //? Название транзакции и доход/расход
+                        Row(
+                          children: [
+                            Text(
+                              name,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w200,
+                                fontSize: 12.sp,
+                                color: Colors.black,
+                                fontFamily: 'Gilroy-Light',
+                              ),
+                            ),
+                            SizedBox(
+                              width: 3.w,
+                            ),
+                            Text(
+                              '-$expense ₽',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 11.sp,
+                                color: Colors.black,
+                                fontFamily: 'Gilroy-Light',
+                              ),
+                            )
+                          ],
+                        ),
+                        //? Время транзакции
                         Text(
-                          name,
+                          time,
                           style: TextStyle(
                             fontWeight: FontWeight.w200,
-                            fontSize: 12.sp,
+                            fontSize: 10.sp,
                             color: Colors.black,
                             fontFamily: 'Gilroy-Light',
                           ),
                         ),
-                        SizedBox(
-                          width: 3.w,
-                        ),
-                        Text(
-                          '-$expense ₽',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 11.sp,
-                            color: Colors.black,
-                            fontFamily: 'Gilroy-Light',
-                          ),
-                        )
                       ],
                     ),
-                    //? Время транзакции
-                    Text(
-                      time,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w200,
-                        fontSize: 10.sp,
-                        color: Colors.black,
-                        fontFamily: 'Gilroy-Light',
-                      ),
+                  ],
+                ),
+                Container(
+                  width: 57.w,
+                  padding: EdgeInsets.fromLTRB(3.w, 1.w, 3.w, 1.w),
+                  decoration: BoxDecoration(
+                      color: Color(0xffA1C7EA),
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: Text(
+                    discript,
+                    maxLines: 2,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w200,
+                      fontSize: 10.sp,
+                      color: Colors.black,
+                      fontFamily: 'Gilroy-Light',
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.arrow_upward,
+                      color: Color(0xff009C6D),
+                      size: 4.h,
+                    ),
+                    SizedBox(
+                      width: 2.w,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //? Название транзакции и доход/расход
+                        Row(
+                          children: [
+                            Text(
+                              name,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w200,
+                                fontSize: 12.sp,
+                                color: Colors.black,
+                                fontFamily: 'Gilroy-Light',
+                              ),
+                            ),
+                            SizedBox(
+                              width: 3.w,
+                            ),
+                            Text(
+                              '+$expense ₽',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 11.sp,
+                                color: Color(0xff009C6D),
+                                fontFamily: 'Gilroy-Light',
+                              ),
+                            )
+                          ],
+                        ),
+                        //? Время транзакции
+                        Text(
+                          '$time',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w200,
+                            fontSize: 10.sp,
+                            color: Colors.black,
+                            fontFamily: 'Gilroy-Light',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Container(
+                  width: 57.w,
+                  padding: EdgeInsets.fromLTRB(3.w, 1.w, 3.w, 1.w),
+                  decoration: BoxDecoration(
+                      color: Color(0xffA1C7EA),
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: Text(
+                    discript,
+                    maxLines: 2,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w200,
+                      fontSize: 10.sp,
+                      color: Colors.black,
+                      fontFamily: 'Gilroy-Light',
+                    ),
+                  ),
+                ),
+              ],
+            );
+          } else {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.arrow_downward,
+                      color: Color(0xff383737),
+                      size: 4.h,
+                    ),
+                    SizedBox(
+                      width: 2.w,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //? Название транзакции и доход/расход
+                        Row(
+                          children: [
+                            Text(
+                              name,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w200,
+                                fontSize: 12.sp,
+                                color: Colors.black,
+                                fontFamily: 'Gilroy-Light',
+                              ),
+                            ),
+                            SizedBox(
+                              width: 3.w,
+                            ),
+                            Text(
+                              '-$expense ₽',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 11.sp,
+                                color: Colors.black,
+                                fontFamily: 'Gilroy-Light',
+                              ),
+                            )
+                          ],
+                        ),
+                        //? Время транзакции
+                        Text(
+                          time,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w200,
+                            fontSize: 10.sp,
+                            color: Colors.black,
+                            fontFamily: 'Gilroy-Light',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(
+                      Icons.arrow_upward,
+                      color: Color(0xff009C6D),
+                      size: 4.h,
+                    ),
+                    SizedBox(
+                      width: 2.w,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //? Название транзакции и доход/расход
+                        Row(
+                          children: [
+                            Text(
+                              name,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w200,
+                                fontSize: 12.sp,
+                                color: Colors.black,
+                                fontFamily: 'Gilroy-Light',
+                              ),
+                            ),
+                            SizedBox(
+                              width: 3.w,
+                            ),
+                            Text(
+                              '+$expense ₽',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 11.sp,
+                                color: Color(0xff009C6D),
+                                fontFamily: 'Gilroy-Light',
+                              ),
+                            )
+                          ],
+                        ),
+                        //? Время транзакции
+                        Text(
+                          '$time',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w200,
+                            fontSize: 10.sp,
+                            color: Colors.black,
+                            fontFamily: 'Gilroy-Light',
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Icon(
-                  Icons.arrow_upward,
-                  color: Color(0xff009C6D),
-                  size: 4.h,
-                ),
-                SizedBox(
-                  width: 2.w,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    //? Название транзакции и доход/расход
-                    Row(
-                      children: [
-                        Text(
-                          name,
-                          style: TextStyle(
-                            fontWeight: FontWeight.w200,
-                            fontSize: 12.sp,
-                            color: Colors.black,
-                            fontFamily: 'Gilroy-Light',
-                          ),
-                        ),
-                        SizedBox(
-                          width: 3.w,
-                        ),
-                        Text(
-                          '+$expense ₽',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 11.sp,
-                            color: Color(0xff009C6D),
-                            fontFamily: 'Gilroy-Light',
-                          ),
-                        )
-                      ],
-                    ),
-                    //? Время транзакции
-                    Text(
-                      '$time',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w200,
-                        fontSize: 10.sp,
-                        color: Colors.black,
-                        fontFamily: 'Gilroy-Light',
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
+            );
+          }
+        }),
       ),
     ]),
   );
