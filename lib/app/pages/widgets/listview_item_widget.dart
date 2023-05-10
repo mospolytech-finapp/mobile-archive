@@ -19,26 +19,31 @@ Widget ListViewItemWidget(int index, double calculate_height) {
       //? День и месяц(Дата)
       Padding(
         padding: EdgeInsets.fromLTRB(9.w, 0, 8.w, 0),
-        child: Column(children: [
-          Text(
-            '$day',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 36.sp,
-              color: Colors.black,
-              fontFamily: 'Gilroy-Light',
-            ),
-          ),
-          Text(
-            month.toUpperCase(),
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 12.sp,
-              color: Colors.black,
-              fontFamily: 'Gilroy-Light',
-            ),
-          )
-        ]),
+        child: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  '$day',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 36.sp,
+                    color: Colors.black,
+                    fontFamily: 'Gilroy-Light',
+                  ),
+                ),
+                Text(
+                  month.toUpperCase(),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12.sp,
+                    color: Colors.black,
+                    fontFamily: 'Gilroy-Light',
+                  ),
+                )
+              ]),
+        ),
       ),
       //? Информация о транзакциях
       Padding(

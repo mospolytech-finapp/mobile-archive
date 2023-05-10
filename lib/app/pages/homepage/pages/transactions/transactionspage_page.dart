@@ -18,6 +18,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
   String dropdownValue = list.first;
   bool isTap = false;
   int selectedIndex = -1;
+  int count = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -138,13 +139,13 @@ class _TransactionsPageState extends State<TransactionsPage> {
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          isTap = (selectedIndex == index);
-                          selectedIndex = index;
-                        });
-                      },
-                      onDoubleTap: () {
-                        setState(() {
-                          selectedIndex = -1;
+                          if (selectedIndex == -1) {
+                            selectedIndex = index;
+                          } else if (selectedIndex == index) {
+                            selectedIndex = -1;
+                          } else if (selectedIndex != index) {
+                            selectedIndex = index;
+                          }
                         });
                       },
                       child: AnimatedContainer(
