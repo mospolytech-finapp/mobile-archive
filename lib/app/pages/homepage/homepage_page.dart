@@ -29,8 +29,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       appBar: AppBar(
         backgroundColor: Colors.white,
+        toolbarTextStyle: const TextStyle(fontFamily: 'Gilroy-Light'),
+        iconTheme: const IconThemeData(size: 30),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
             bottom: Radius.circular(30),
@@ -41,63 +44,52 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             onPressed: () {},
             color: Colors.black,
-            icon: const Icon(Icons.notifications_none),
+            icon: const Icon(Icons.notifications_none_rounded),
           ),
           IconButton(
             onPressed: () {},
             color: Colors.black,
-            icon: const Icon(Icons.account_circle_outlined),
+            icon: const Icon(Icons.person_outline_rounded),
           ),
         ],
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(Icons.settings),
+          icon: const Icon(Icons.settings_outlined),
         ),
       ),
       body: _screens[_selectedIndex],
       bottomNavigationBar: Theme(
-          data: Theme.of(context).copyWith(
-              // sets the background color of the `BottomNavigationBar`
-              canvasColor: Colors.purple,
-
-              // sets the active color of the `BottomNavigationBar` if `Brightness` is light
-              primaryColor: Colors.red,
-              textTheme: Theme.of(context)
-                  .textTheme
-                  .copyWith(caption: const TextStyle(color: Colors.yellow))),
-          // sets the inactive color of the `BottomNavigationBar`
-          child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(30),
-                    topLeft: Radius.circular(30)),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.black38, spreadRadius: 0, blurRadius: 10),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30.0),
-                  topRight: Radius.circular(30.0),
-                ),
-                child: BottomNavigationBar(
-                  selectedItemColor: Colors.white,
-                  useLegacyColorScheme: false,
-                  currentIndex: _selectedIndex,
-                  onTap: _changeIndex,
-                  items: const [
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.home), label: 'Главная'),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.credit_card), label: 'Транзакции'),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.account_tree), label: 'БДР'),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.checklist), label: 'Цели'),
-                  ],
-                ),
-              ))),
+        data: ThemeData(
+          canvasColor: const Color(0xFF801CAF),
+          textTheme: const TextTheme(
+            bodyLarge: TextStyle(fontFamily: 'Gilroy-Light'),
+          ),
+        ),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30.0),
+            topRight: Radius.circular(30.0),
+          ),
+          child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            elevation: 0,
+            enableFeedback: false,
+            unselectedItemColor: const Color(0x80FFFFFF),
+            selectedFontSize: 15,
+            unselectedFontSize: 15,
+            iconSize: 30,
+            selectedItemColor: Colors.white,
+            currentIndex: _selectedIndex,
+            onTap: _changeIndex,
+            items: const [
+              BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Главная'),
+              BottomNavigationBarItem(icon: Icon(Icons.credit_card), label: 'Транзакции'),
+              BottomNavigationBarItem(icon: Icon(Icons.pie_chart_outline), label: 'БДР'),
+              BottomNavigationBarItem(icon: Icon(Icons.checklist), label: 'Цели'),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
