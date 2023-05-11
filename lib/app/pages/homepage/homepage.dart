@@ -37,11 +37,6 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.white,
           toolbarTextStyle: const TextStyle(fontFamily: 'Gilroy-Light'),
           iconTheme: const IconThemeData(size: 30),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(30),
-            ),
-          ),
           title: const Text("FINAPP"),
           actions: [
             IconButton(
