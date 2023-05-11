@@ -9,13 +9,14 @@ class AuthModel extends ChangeNotifier {
   bool saveUser = false;
   bool isError = false;
 
-  Future<void> logIn() async {
+  Future<void> logIn(BuildContext context) async {
     try {
       final response = await AppNetwork.loginUser(email: emailController.text, password: passwordController.text);
       if (response.statusCode == 200) {
         if (saveUser) {
           await AppSecureStorage.putToken(response.data['token']);
           isError = false;
+          Navigator.of(context).pushReplacementNamed('/home');
         }
         notifyListeners();
       } else {

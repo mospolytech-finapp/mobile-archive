@@ -1,6 +1,6 @@
 import "package:dio/dio.dart";
 
-const String url = "http://127.0.0.1:8000";
+const String url = "https://zlp.nejern.ru";
 
 class AppNetwork {
   static final Dio dio = Dio(
@@ -19,7 +19,8 @@ class AppNetwork {
     String? middleName,
     DateTime? date,
   }) async {
-    final String dateOfBirth = date != null ? "${date.year}-${date.month}-${date.day}" : "";
+    final String dateOfBirth = date != null ? "${date.toIso8601String().split('T').first}" : "";
+
     return await dio.post(
       "/api/auth/registration/",
       data: {
@@ -38,7 +39,7 @@ class AppNetwork {
     required String password,
   }) async {
     return await dio.post(
-      "/api/auth/login/",
+      "/api/auth/token/",
       data: {
         "username": email,
         "password": password,

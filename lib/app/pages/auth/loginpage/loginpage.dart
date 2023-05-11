@@ -321,7 +321,7 @@ class _LoginPageState extends State<LoginPage> {
                             width: 66.67.w,
                             child: ElevatedButton(
                               onPressed: () {
-                                authModel.logIn();
+                                authModel.logIn(context);
                               },
                               style: TextButton.styleFrom(
                                   backgroundColor: const Color(0xff1BD0B8),

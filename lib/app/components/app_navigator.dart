@@ -18,6 +18,6 @@ abstract class AppNavigator {
     if (isLoggedIn) {
       return '/home';
     }
-    return '/home';
+    return '/login';
   }
 }
