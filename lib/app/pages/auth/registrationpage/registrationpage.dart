@@ -1,10 +1,10 @@
-import 'package:finapp/app/pages/registrationpage/registerpage_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../widgets/dialog_contact_us.dart';
+import 'package:finapp/app/pages/auth/registrationpage/registrationpage_model.dart';
+import 'package:finapp/app/pages/auth/widgets/dialog_contact_us.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -31,8 +31,7 @@ class _RegistrationPage extends State<RegistrationPage> {
             Orientation orientation,
             DeviceType deviceType,
           ) {
-            final registerModel =
-                Provider.of<RegisterModel>(context, listen: false);
+            final registerModel = Provider.of<RegisterModel>(context, listen: false);
             return Scaffold(
               resizeToAvoidBottomInset: false,
               body: Column(
@@ -51,8 +50,7 @@ class _RegistrationPage extends State<RegistrationPage> {
                   Expanded(
                     child: Container(
                       decoration: const BoxDecoration(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(25)),
+                        borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
                         // Фоновый градиент
                         gradient: LinearGradient(
                           begin: Alignment.topLeft,
@@ -88,15 +86,12 @@ class _RegistrationPage extends State<RegistrationPage> {
                           Column(
                             children: [
                               Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 16.67.w, vertical: 0.h),
+                                padding: EdgeInsets.symmetric(horizontal: 16.67.w, vertical: 0.h),
                                 child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         SizedBox(
                                           height: 1.72.h,
@@ -111,44 +106,35 @@ class _RegistrationPage extends State<RegistrationPage> {
                                           height: 0.94.h,
                                         ),
                                         TextField(
-                                          controller:
-                                              registerModel.lastNameController,
+                                          controller: registerModel.lastNameController,
                                           style: TextStyle(
                                             fontFamily: 'Gilroy-Light',
                                             color: Colors.black,
                                             fontSize: 16.sp,
                                           ),
                                           textAlign: TextAlign.start,
-                                          cursorColor: const Color.fromRGBO(
-                                              2, 201, 141, 1),
-                                          textAlignVertical:
-                                              TextAlignVertical.top,
+                                          cursorColor: const Color.fromRGBO(2, 201, 141, 1),
+                                          textAlignVertical: TextAlignVertical.top,
                                           decoration: InputDecoration(
                                             isDense: true,
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
+                                            contentPadding: EdgeInsets.symmetric(
                                               vertical: 0.5.h,
                                               horizontal: 2.77.w,
                                             ),
                                             enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
+                                              borderRadius: BorderRadius.circular(50),
                                               borderSide: const BorderSide(
-                                                color: Color.fromRGBO(
-                                                    220, 220, 220, 1),
+                                                color: Color.fromRGBO(220, 220, 220, 1),
                                               ),
                                             ),
                                             focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
+                                              borderRadius: BorderRadius.circular(50),
                                               borderSide: const BorderSide(
-                                                color: Color.fromRGBO(
-                                                    220, 220, 220, 1),
+                                                color: Color.fromRGBO(220, 220, 220, 1),
                                               ),
                                             ),
                                             filled: true,
-                                            fillColor: const Color.fromRGBO(
-                                                220, 220, 220, 1),
+                                            fillColor: const Color.fromRGBO(220, 220, 220, 1),
                                           ),
                                         ),
                                         SizedBox(
@@ -164,44 +150,35 @@ class _RegistrationPage extends State<RegistrationPage> {
                                           height: 0.94.h,
                                         ),
                                         TextField(
-                                          controller:
-                                              registerModel.firstNameController,
+                                          controller: registerModel.firstNameController,
                                           style: TextStyle(
                                             fontFamily: 'Gilroy-Light',
                                             color: Colors.black,
                                             fontSize: 16.sp,
                                           ),
                                           textAlign: TextAlign.start,
-                                          cursorColor: const Color.fromRGBO(
-                                              2, 201, 141, 1),
-                                          textAlignVertical:
-                                              TextAlignVertical.top,
+                                          cursorColor: const Color.fromRGBO(2, 201, 141, 1),
+                                          textAlignVertical: TextAlignVertical.top,
                                           decoration: InputDecoration(
                                             isDense: true,
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
+                                            contentPadding: EdgeInsets.symmetric(
                                               vertical: 0.5.h,
                                               horizontal: 2.77.w,
                                             ),
                                             enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
+                                              borderRadius: BorderRadius.circular(50),
                                               borderSide: const BorderSide(
-                                                color: Color.fromRGBO(
-                                                    220, 220, 220, 1),
+                                                color: Color.fromRGBO(220, 220, 220, 1),
                                               ),
                                             ),
                                             focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
+                                              borderRadius: BorderRadius.circular(50),
                                               borderSide: const BorderSide(
-                                                color: Color.fromRGBO(
-                                                    220, 220, 220, 1),
+                                                color: Color.fromRGBO(220, 220, 220, 1),
                                               ),
                                             ),
                                             filled: true,
-                                            fillColor: const Color.fromRGBO(
-                                                220, 220, 220, 1),
+                                            fillColor: const Color.fromRGBO(220, 220, 220, 1),
                                           ),
                                         ),
                                         SizedBox(
@@ -217,44 +194,35 @@ class _RegistrationPage extends State<RegistrationPage> {
                                           height: 0.94.h,
                                         ),
                                         TextField(
-                                          controller: registerModel
-                                              .middleNameController,
+                                          controller: registerModel.middleNameController,
                                           style: TextStyle(
                                             fontFamily: 'Gilroy-Light',
                                             color: Colors.black,
                                             fontSize: 16.sp,
                                           ),
                                           textAlign: TextAlign.start,
-                                          cursorColor: const Color.fromRGBO(
-                                              2, 201, 141, 1),
-                                          textAlignVertical:
-                                              TextAlignVertical.top,
+                                          cursorColor: const Color.fromRGBO(2, 201, 141, 1),
+                                          textAlignVertical: TextAlignVertical.top,
                                           decoration: InputDecoration(
                                             isDense: true,
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
+                                            contentPadding: EdgeInsets.symmetric(
                                               vertical: 0.5.h,
                                               horizontal: 2.77.w,
                                             ),
                                             enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
+                                              borderRadius: BorderRadius.circular(50),
                                               borderSide: const BorderSide(
-                                                color: Color.fromRGBO(
-                                                    220, 220, 220, 1),
+                                                color: Color.fromRGBO(220, 220, 220, 1),
                                               ),
                                             ),
                                             focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
+                                              borderRadius: BorderRadius.circular(50),
                                               borderSide: const BorderSide(
-                                                color: Color.fromRGBO(
-                                                    220, 220, 220, 1),
+                                                color: Color.fromRGBO(220, 220, 220, 1),
                                               ),
                                             ),
                                             filled: true,
-                                            fillColor: const Color.fromRGBO(
-                                                220, 220, 220, 1),
+                                            fillColor: const Color.fromRGBO(220, 220, 220, 1),
                                           ),
                                         ),
                                         SizedBox(
@@ -270,66 +238,44 @@ class _RegistrationPage extends State<RegistrationPage> {
                                           height: 0.94.h,
                                         ),
                                         TextField(
-                                          controller:
-                                              registerModel.passwordController,
+                                          controller: registerModel.passwordController,
                                           style: TextStyle(
                                             fontFamily: 'Gilroy-Light',
                                             color: Colors.black,
                                             fontSize: 16.sp,
                                           ),
                                           textAlign: TextAlign.start,
-                                          cursorColor: const Color.fromRGBO(
-                                              2, 201, 141, 1),
-                                          textAlignVertical:
-                                              TextAlignVertical.top,
+                                          cursorColor: const Color.fromRGBO(2, 201, 141, 1),
+                                          textAlignVertical: TextAlignVertical.top,
                                           obscureText: !_showPassword,
                                           decoration: () {
                                             return InputDecoration(
                                                 isDense: true,
-                                                contentPadding:
-                                                    EdgeInsets.fromLTRB(2.77.w,
-                                                        0.5.h, 2.77.w, 0.5.h),
+                                                contentPadding: EdgeInsets.fromLTRB(2.77.w, 0.5.h, 2.77.w, 0.5.h),
                                                 //? Иконка глаза
-                                                suffixIconConstraints:
-                                                    BoxConstraints(
-                                                        maxHeight: 24),
+                                                suffixIconConstraints: BoxConstraints(maxHeight: 24),
                                                 suffixIcon: IconButton(
                                                   padding: EdgeInsets.zero,
                                                   iconSize: 24,
                                                   icon: Icon(
-                                                    _showPassword
-                                                        ? Icons.visibility_off
-                                                        : Icons.visibility,
+                                                    _showPassword ? Icons.visibility_off : Icons.visibility,
                                                     color: Colors.grey,
                                                   ),
                                                   onPressed: () {
                                                     setState(() {
-                                                      _showPassword =
-                                                          !_showPassword;
+                                                      _showPassword = !_showPassword;
                                                     });
                                                   },
                                                 ),
-                                                focusColor:
-                                                    const Color(0xff1BD0B8),
+                                                focusColor: const Color(0xff1BD0B8),
                                                 enabledBorder: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            50.0),
-                                                    borderSide:
-                                                        const BorderSide(
-                                                            color: Colors
-                                                                .transparent)),
+                                                    borderRadius: BorderRadius.circular(50.0),
+                                                    borderSide: const BorderSide(color: Colors.transparent)),
                                                 focusedBorder: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            50.0),
-                                                    borderSide:
-                                                        const BorderSide(
-                                                            color: Colors
-                                                                .transparent)),
+                                                    borderRadius: BorderRadius.circular(50.0),
+                                                    borderSide: const BorderSide(color: Colors.transparent)),
                                                 filled: true,
-                                                fillColor:
-                                                    const Color(0xffDCDCDC));
+                                                fillColor: const Color(0xffDCDCDC));
                                           }(),
                                         ),
                                         SizedBox(
@@ -347,44 +293,35 @@ class _RegistrationPage extends State<RegistrationPage> {
                                           height: 0.94.h,
                                         ),
                                         TextField(
-                                          controller:
-                                              registerModel.emailController,
+                                          controller: registerModel.emailController,
                                           style: TextStyle(
                                             fontFamily: 'Gilroy-Light',
                                             color: Colors.black,
                                             fontSize: 16.sp,
                                           ),
                                           textAlign: TextAlign.start,
-                                          cursorColor: const Color.fromRGBO(
-                                              2, 201, 141, 1),
-                                          textAlignVertical:
-                                              TextAlignVertical.top,
+                                          cursorColor: const Color.fromRGBO(2, 201, 141, 1),
+                                          textAlignVertical: TextAlignVertical.top,
                                           decoration: InputDecoration(
                                             isDense: true,
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
+                                            contentPadding: EdgeInsets.symmetric(
                                               vertical: 0.5.h,
                                               horizontal: 2.77.w,
                                             ),
                                             enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
+                                              borderRadius: BorderRadius.circular(50),
                                               borderSide: const BorderSide(
-                                                color: Color.fromRGBO(
-                                                    220, 220, 220, 1),
+                                                color: Color.fromRGBO(220, 220, 220, 1),
                                               ),
                                             ),
                                             focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
+                                              borderRadius: BorderRadius.circular(50),
                                               borderSide: const BorderSide(
-                                                color: Color.fromRGBO(
-                                                    220, 220, 220, 1),
+                                                color: Color.fromRGBO(220, 220, 220, 1),
                                               ),
                                             ),
                                             filled: true,
-                                            fillColor: const Color.fromRGBO(
-                                                220, 220, 220, 1),
+                                            fillColor: const Color.fromRGBO(220, 220, 220, 1),
                                           ),
                                         ),
                                         SizedBox(
@@ -402,10 +339,8 @@ class _RegistrationPage extends State<RegistrationPage> {
                                           height: 0.94.h,
                                         ),
                                         TextField(
-                                          onTap: () =>
-                                              registerModel.setDate(context),
-                                          controller:
-                                              registerModel.dateController,
+                                          onTap: () => registerModel.setDate(context),
+                                          controller: registerModel.dateController,
                                           readOnly: true,
                                           style: TextStyle(
                                             fontFamily: 'Gilroy-Light',
@@ -413,14 +348,11 @@ class _RegistrationPage extends State<RegistrationPage> {
                                             fontSize: 16.sp,
                                           ),
                                           textAlign: TextAlign.start,
-                                          cursorColor: const Color.fromRGBO(
-                                              2, 201, 141, 1),
-                                          textAlignVertical:
-                                              TextAlignVertical.top,
+                                          cursorColor: const Color.fromRGBO(2, 201, 141, 1),
+                                          textAlignVertical: TextAlignVertical.top,
                                           decoration: InputDecoration(
                                             isDense: true,
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
+                                            contentPadding: EdgeInsets.symmetric(
                                               vertical: 0.5.h,
                                               horizontal: 2.77.w,
                                             ),
@@ -431,24 +363,19 @@ class _RegistrationPage extends State<RegistrationPage> {
                                             //   color: Colors.grey,
                                             // ),
                                             enabledBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
+                                              borderRadius: BorderRadius.circular(50),
                                               borderSide: const BorderSide(
-                                                color: Color.fromRGBO(
-                                                    220, 220, 220, 1),
+                                                color: Color.fromRGBO(220, 220, 220, 1),
                                               ),
                                             ),
                                             focusedBorder: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(50),
+                                              borderRadius: BorderRadius.circular(50),
                                               borderSide: const BorderSide(
-                                                color: Color.fromRGBO(
-                                                    220, 220, 220, 1),
+                                                color: Color.fromRGBO(220, 220, 220, 1),
                                               ),
                                             ),
                                             filled: true,
-                                            fillColor: const Color.fromRGBO(
-                                                220, 220, 220, 1),
+                                            fillColor: const Color.fromRGBO(220, 220, 220, 1),
                                           ),
                                         ),
                                         SizedBox(
@@ -473,26 +400,20 @@ class _RegistrationPage extends State<RegistrationPage> {
                                           height: 4.69.h,
                                           child: OutlinedButton(
                                             style: OutlinedButton.styleFrom(
-                                              shape:
-                                                  const RoundedRectangleBorder(
+                                              shape: const RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.all(
                                                   Radius.circular(50),
                                                 ),
                                               ),
-                                              minimumSize:
-                                                  Size(66.66667.w, 4.6875.h),
-                                              backgroundColor:
-                                                  const Color.fromRGBO(
-                                                      27, 208, 184, 1),
+                                              minimumSize: Size(66.66667.w, 4.6875.h),
+                                              backgroundColor: const Color.fromRGBO(27, 208, 184, 1),
                                               side: const BorderSide(
                                                 width: 0,
-                                                color: Color.fromRGBO(
-                                                    27, 208, 184, 1),
+                                                color: Color.fromRGBO(27, 208, 184, 1),
                                               ),
                                             ),
                                             onPressed: () {
-                                              registerModel
-                                                  .registerUser(context);
+                                              registerModel.registerUser(context);
                                             },
                                             child: Text(
                                               'Продолжить',
@@ -511,8 +432,7 @@ class _RegistrationPage extends State<RegistrationPage> {
                                           height: 2.5.h,
                                           width: 66.67.w,
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               Text(
                                                 'Уже зарегистрированы? ',
@@ -527,8 +447,7 @@ class _RegistrationPage extends State<RegistrationPage> {
                                                   Navigator.of(context).pop();
                                                 },
                                                 style: TextButton.styleFrom(
-                                                  padding:
-                                                      const EdgeInsets.all(0),
+                                                  padding: const EdgeInsets.all(0),
                                                 ),
                                                 child: Text(
                                                   'Войти',
@@ -536,10 +455,8 @@ class _RegistrationPage extends State<RegistrationPage> {
                                                     fontFamily: 'Gilroy-Light',
                                                     fontSize: 11.sp,
                                                     color: Colors.white,
-                                                    decoration: TextDecoration
-                                                        .underline,
-                                                    decorationColor:
-                                                        Colors.white,
+                                                    decoration: TextDecoration.underline,
+                                                    decorationColor: Colors.white,
                                                   ),
                                                 ),
                                               ),
@@ -552,19 +469,16 @@ class _RegistrationPage extends State<RegistrationPage> {
                                         SizedBox(
                                           height: 2.5.h,
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
+                                            mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               OutlinedButton(
                                                 style: OutlinedButton.styleFrom(
-                                                  side: const BorderSide(
-                                                      color: Colors.white),
+                                                  side: const BorderSide(color: Colors.white),
                                                 ),
                                                 onPressed: () {
                                                   showDialog(
                                                     context: context,
-                                                    builder: (context) =>
-                                                        const ContactUsDialogWidget(),
+                                                    builder: (context) => const ContactUsDialogWidget(),
                                                   );
                                                 },
                                                 child: Text(

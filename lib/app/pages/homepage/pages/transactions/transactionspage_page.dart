@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
-import 'package:finapp/app/pages/widgets/listview_item_widget.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:finapp/app/pages/homepage/pages/transactions/widgets/listview_item_widget.dart';
 
 List<String> list = <String>['Категория', 'Дата', 'Цели', 'Сумма', 'Время'];
 
@@ -24,7 +22,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
   Widget build(BuildContext context) {
     return Stack(
       fit: StackFit.expand,
-      children: <Widget>[
+      children: [
         SvgPicture.asset('assets/background.svg', fit: BoxFit.cover),
         Column(
           children: [
@@ -43,8 +41,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
                         style: TextButton.styleFrom(
                             shadowColor: Color(0xff383737),
                             backgroundColor: const Color(0xff00B881),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(35))),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(35))),
                         child: DropdownButton(
                           hint: Text(
                             'Фильтры',
@@ -69,8 +66,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
                             setState(() {});
                           },
                           items: list.map((itemone) {
-                            return DropdownMenuItem(
-                                value: itemone, child: Text(itemone));
+                            return DropdownMenuItem(value: itemone, child: Text(itemone));
                           }).toList(),
                         ),
                       ),
@@ -87,8 +83,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
                         style: TextButton.styleFrom(
                             backgroundColor: const Color(0xff00B881),
                             elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(35))),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(35))),
                         child: Text(
                           'Добавить',
                           style: TextStyle(
@@ -112,8 +107,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
                         style: TextButton.styleFrom(
                             backgroundColor: const Color(0xff00B881),
                             elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(35))),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(35))),
                         child: Text(
                           'Редактировать',
                           style: TextStyle(
@@ -152,8 +146,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
                         height: calculate_height(index, selectedIndex),
                         curve: Curves.easeInOutCubic,
                         duration: const Duration(milliseconds: 1000),
-                        child: ListViewItemWidget(
-                            index, calculate_height(index, selectedIndex)),
+                        child: ListViewItemWidget(index, calculate_height(index, selectedIndex)),
                       ),
                     ),
                   );

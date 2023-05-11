@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
               icon: const Icon(Icons.notifications_none_rounded),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).pushReplacementNamed('/login'),
               color: Colors.black,
               icon: const Icon(Icons.person_outline_rounded),
             ),
