@@ -84,7 +84,7 @@ class AppNetwork {
     String? time,
   }) async {
     return await dio.patch(
-      '/api/finance/transactions?$id',
+      '/api/finance/transactions/id',
       options: Options(headers: {"Authorization": 'Token $token'}),
       data: {
         {
@@ -108,7 +108,7 @@ class AppNetwork {
 
   static Future<Response> deleteTransaction({required String token, required int id}) async {
     return await dio.delete(
-      '/api/finance/transactions?$id',
+      '/api/finance/transactions/$id',
       options: Options(headers: {"Authorization": 'Token $token'}),
     );
   }
