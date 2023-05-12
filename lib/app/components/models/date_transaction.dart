@@ -1,4 +1,4 @@
-import 'package:finapp/app/components/transaction.model.dart';
+import 'package:finapp/app/components/models/transaction.dart';
 
 class DateWithTransactions {
   final DateTime date;
