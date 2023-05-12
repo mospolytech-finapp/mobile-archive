@@ -25,7 +25,7 @@ class _AppState extends State<App> {
           future: appModel.initApp(),
           builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             } else {
               return MaterialApp(
                 localizationsDelegates: const [

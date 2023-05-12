@@ -7,8 +7,17 @@ class AppModel extends ChangeNotifier {
   bool isLoggedIn = false;
   String? initialRoute;
   String? tempToken;
+
   Future<void> initApp() async {
     isLoggedIn = await AppSecureStorage.checkToken();
     initialRoute = AppNavigator.getInitialRoute(isLoggedIn);
+  }
+
+  void logOut(BuildContext context) {
+    tempToken = null;
+    isLoggedIn = false;
+    AppSecureStorage.deleteToken();
+    Navigator.of(context).pushReplacementNamed('/login');
+    notifyListeners();
   }
 }
