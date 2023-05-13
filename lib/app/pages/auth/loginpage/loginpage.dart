@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:finapp/app/pages/loginpage/loginpage_model.dart';
-import 'package:finapp/app/pages/widgets/dialog_contact_us.dart';
+import 'package:finapp/app/pages/auth/loginpage/loginpage_model.dart';
+import 'package:finapp/app/pages/auth/widgets/dialog_contact_us.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -321,7 +321,7 @@ class _LoginPageState extends State<LoginPage> {
                             width: 66.67.w,
                             child: ElevatedButton(
                               onPressed: () {
-                                authModel.logIn();
+                                authModel.logIn(context);
                               },
                               style: TextButton.styleFrom(
                                   backgroundColor: const Color(0xff1BD0B8),
