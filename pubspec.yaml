@@ -20,6 +20,7 @@ dependencies:
   google_fonts: ^4.0.3
   provider: ^6.0.5
   sizer: ^2.0.15
+  flutter_slidable: ^3.0.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
