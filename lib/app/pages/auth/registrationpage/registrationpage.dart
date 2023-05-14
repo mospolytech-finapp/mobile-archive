@@ -1,10 +1,10 @@
-import 'package:finapp/app/pages/registrationpage/registerpage_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../widgets/dialog_contact_us.dart';
+import 'package:finapp/app/pages/auth/registrationpage/registrationpage_model.dart';
+import 'package:finapp/app/pages/auth/widgets/dialog_contact_us.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({super.key});
@@ -260,81 +260,6 @@ class _RegistrationPage extends State<RegistrationPage> {
                                         SizedBox(
                                           height: 0.625.h,
                                         ),
-                                        Text('Пароль*',
-                                            style: TextStyle(
-                                              fontFamily: 'Gilroy-Light',
-                                              fontSize: 10.sp,
-                                              color: Colors.white,
-                                            )),
-                                        SizedBox(
-                                          height: 0.94.h,
-                                        ),
-                                        TextField(
-                                          controller:
-                                              registerModel.passwordController,
-                                          style: TextStyle(
-                                            fontFamily: 'Gilroy-Light',
-                                            color: Colors.black,
-                                            fontSize: 16.sp,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                          cursorColor: const Color.fromRGBO(
-                                              2, 201, 141, 1),
-                                          textAlignVertical:
-                                              TextAlignVertical.top,
-                                          obscureText: !_showPassword,
-                                          decoration: () {
-                                            return InputDecoration(
-                                                isDense: true,
-                                                contentPadding:
-                                                    EdgeInsets.fromLTRB(2.77.w,
-                                                        0.5.h, 2.77.w, 0.5.h),
-                                                //? Иконка глаза
-                                                suffixIconConstraints:
-                                                    BoxConstraints(
-                                                        maxHeight: 24),
-                                                suffixIcon: IconButton(
-                                                  padding: EdgeInsets.zero,
-                                                  iconSize: 24,
-                                                  icon: Icon(
-                                                    _showPassword
-                                                        ? Icons.visibility_off
-                                                        : Icons.visibility,
-                                                    color: Colors.grey,
-                                                  ),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      _showPassword =
-                                                          !_showPassword;
-                                                    });
-                                                  },
-                                                ),
-                                                focusColor:
-                                                    const Color(0xff1BD0B8),
-                                                enabledBorder: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            50.0),
-                                                    borderSide:
-                                                        const BorderSide(
-                                                            color: Colors
-                                                                .transparent)),
-                                                focusedBorder: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            50.0),
-                                                    borderSide:
-                                                        const BorderSide(
-                                                            color: Colors
-                                                                .transparent)),
-                                                filled: true,
-                                                fillColor:
-                                                    const Color(0xffDCDCDC));
-                                          }(),
-                                        ),
-                                        SizedBox(
-                                          height: 0.625.h,
-                                        ),
                                         Text(
                                           'E-mail*',
                                           style: TextStyle(
@@ -450,6 +375,83 @@ class _RegistrationPage extends State<RegistrationPage> {
                                             fillColor: const Color.fromRGBO(
                                                 220, 220, 220, 1),
                                           ),
+                                        ),
+                                        SizedBox(
+                                          height: 0.625.h,
+                                        ),
+                                        Text(
+                                          'Пароль*',
+                                          style: TextStyle(
+                                            fontFamily: 'Gilroy-Light',
+                                            fontSize: 10.sp,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 0.94.h,
+                                        ),
+                                        TextField(
+                                          controller:
+                                              registerModel.passwordController,
+                                          style: TextStyle(
+                                            fontFamily: 'Gilroy-Light',
+                                            color: Colors.black,
+                                            fontSize: 16.sp,
+                                          ),
+                                          textAlign: TextAlign.start,
+                                          cursorColor: const Color.fromRGBO(
+                                              2, 201, 141, 1),
+                                          textAlignVertical:
+                                              TextAlignVertical.top,
+                                          obscureText: !_showPassword,
+                                          decoration: () {
+                                            return InputDecoration(
+                                                isDense: true,
+                                                contentPadding:
+                                                    EdgeInsets.fromLTRB(2.77.w,
+                                                        0.5.h, 2.77.w, 0.5.h),
+                                                //? Иконка глаза
+                                                suffixIconConstraints:
+                                                    BoxConstraints(
+                                                        maxHeight: 24),
+                                                suffixIcon: IconButton(
+                                                  padding: EdgeInsets.zero,
+                                                  iconSize: 24,
+                                                  icon: Icon(
+                                                    _showPassword
+                                                        ? Icons.visibility_off
+                                                        : Icons.visibility,
+                                                    color: Colors.grey,
+                                                  ),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      _showPassword =
+                                                          !_showPassword;
+                                                    });
+                                                  },
+                                                ),
+                                                focusColor:
+                                                    const Color(0xff1BD0B8),
+                                                enabledBorder: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50.0),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                            color: Colors
+                                                                .transparent)),
+                                                focusedBorder: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50.0),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                            color: Colors
+                                                                .transparent)),
+                                                filled: true,
+                                                fillColor:
+                                                    const Color(0xffDCDCDC));
+                                          }(),
                                         ),
                                         SizedBox(
                                           height: 0.625.h,
