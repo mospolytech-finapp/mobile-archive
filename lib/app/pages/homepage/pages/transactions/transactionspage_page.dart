@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:finapp/app/pages/widgets/listview_item_widget.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -15,10 +16,10 @@ class TransactionsPage extends StatefulWidget {
 }
 
 class _TransactionsPageState extends State<TransactionsPage> {
-  String dropdownValue = list.first;
-  bool isTap = false;
   int selectedIndex = -1;
   int count = 0;
+  int item_ListViewBuilder = 8;
+  List<int> items = List<int>.generate(8, (int index) => index);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,11 @@ class _TransactionsPageState extends State<TransactionsPage> {
               children: [
                 Padding(
                   padding: EdgeInsets.fromLTRB(2.w, 2.h, 2.w, 2.h),
-                  child: Row(children: [
+                  child:
+                      Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                    SizedBox(
+                      width: 60.w,
+                    ),
                     //? кнопка Фильтры
                     SizedBox(
                       width: 35.w,
@@ -41,7 +46,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
                       child: ElevatedButton(
                         onPressed: () {},
                         style: TextButton.styleFrom(
-                            shadowColor: Color(0xff383737),
+                            shadowColor: const Color(0xff383737),
                             backgroundColor: const Color(0xff00B881),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(35))),
@@ -63,8 +68,8 @@ class _TransactionsPageState extends State<TransactionsPage> {
                             color: Colors.white,
                             size: 6.5.w,
                           ),
-                          style: TextStyle(color: Colors.white),
-                          dropdownColor: Color(0xff383737),
+                          style: const TextStyle(color: Colors.white),
+                          dropdownColor: const Color(0xff383737),
                           onChanged: (value) {
                             setState(() {});
                           },
@@ -75,56 +80,6 @@ class _TransactionsPageState extends State<TransactionsPage> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 2.5.w,
-                    ),
-                    //? кнопка Добавить
-                    SizedBox(
-                      width: 23.43.w,
-                      height: 4.5.h,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: TextButton.styleFrom(
-                            backgroundColor: const Color(0xff00B881),
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(35))),
-                        child: Text(
-                          'Добавить',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 10.sp,
-                            color: Colors.white,
-                            fontFamily: 'Gilroy-Light',
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 2.5.w,
-                    ),
-                    //? кнопка Редактировать
-                    SizedBox(
-                      width: 32.34.w,
-                      height: 4.5.h,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: TextButton.styleFrom(
-                            backgroundColor: const Color(0xff00B881),
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(35))),
-                        child: Text(
-                          'Редактировать',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 10.sp,
-                            color: Colors.white,
-                            fontFamily: 'Gilroy-Light',
-                          ),
-                        ),
-                      ),
-                    ),
                   ]),
                 )
               ],
@@ -132,30 +87,66 @@ class _TransactionsPageState extends State<TransactionsPage> {
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.all(8),
-                itemCount: 8,
+                itemCount: item_ListViewBuilder,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: EdgeInsets.only(bottom: 2.5.h),
                     child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          if (selectedIndex == -1) {
-                            selectedIndex = index;
-                          } else if (selectedIndex == index) {
-                            selectedIndex = -1;
-                          } else if (selectedIndex != index) {
-                            selectedIndex = index;
-                          }
-                        });
-                      },
-                      child: AnimatedContainer(
-                        height: calculate_height(index, selectedIndex),
-                        curve: Curves.easeInOutCubic,
-                        duration: const Duration(milliseconds: 1000),
-                        child: ListViewItemWidget(
-                            index, calculate_height(index, selectedIndex)),
-                      ),
-                    ),
+                        onTap: () {
+                          setState(() {
+                            if (selectedIndex == -1) {
+                              selectedIndex = index;
+                            } else if (selectedIndex == index) {
+                              selectedIndex = -1;
+                            } else if (selectedIndex != index) {
+                              selectedIndex = index;
+                            }
+                          });
+                        },
+                        child: Slidable(
+                          key: const ValueKey(0),
+                          startActionPane: ActionPane(
+                            motion: ScrollMotion(),
+                            children: [
+                              Expanded(
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff383737),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20))),
+                                    child: Center(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          IconButton(
+                                              onPressed: () {},
+                                              icon: Icon(
+                                                Icons.tune,
+                                                color: Colors.white,
+                                                size: 10.w,
+                                              )),
+                                          IconButton(
+                                              onPressed: () {},
+                                              icon: Icon(
+                                                Icons.delete,
+                                                color: Colors.white,
+                                                size: 10.w,
+                                              ))
+                                        ],
+                                      ),
+                                    )),
+                              ),
+                            ],
+                          ),
+                          child: AnimatedContainer(
+                            height: calculate_height(index, selectedIndex),
+                            curve: Curves.easeInOutCubic,
+                            duration: const Duration(milliseconds: 2000),
+                            child: ListViewItemWidget(
+                                index, calculate_height(index, selectedIndex)),
+                          ),
+                        )),
                   );
                 },
               ),
@@ -176,3 +167,5 @@ double calculate_height(int index, int selectedIndex) {
   }
   return item_height;
 }
+
+void doNothing(BuildContext context) {}
