@@ -47,31 +47,29 @@ class AppNetwork {
     );
   }
 
-  // В AppNetwork
   static Future<Response> addTransaction({
     required String token,
-    required int category,
     required String title,
-    required String date,
     required double amount,
-    String? description,
+    required String date,
     String? time,
+    String? description,
+    required int category,
   }) async {
     return await dio.post(
-      '/api/finance/transactions',
+      '/api/finance/transactions/',
       options: Options(headers: {"Authorization": 'Token $token'}),
       data: {
-        {
-          "name": title,
-          "amount": amount,
-          "date": date,
-          "time": time,
-          "description": description,
-          "category": category,
-        }
+        "name": title,
+        "amount": amount,
+        "date": date,
+        "time": time ?? "",
+        "description": description ?? "",
+        "category": category,
       },
     );
   }
+
 
   static Future<Response> editTransaction({
     required String token,
@@ -84,15 +82,15 @@ class AppNetwork {
     String? time,
   }) async {
     return await dio.patch(
-      '/api/finance/transactions/id',
+      '/api/finance/transactions/$id/',
       options: Options(headers: {"Authorization": 'Token $token'}),
       data: {
         {
           "name": title,
           "amount": amount,
           "date": date,
-          "time": time,
-          "description": description,
+          "time": time ?? "",
+          "description": description ?? "",
           "category": category,
         }
       },
@@ -101,15 +99,22 @@ class AppNetwork {
 
   static Future<Response> getTransactions({required String token}) async {
     return await dio.get(
-      '/api/finance/transactions',
+      '/api/finance/transactions/',
       options: Options(headers: {"Authorization": 'Token $token'}),
     );
   }
 
   static Future<Response> deleteTransaction({required String token, required int id}) async {
     return await dio.delete(
-      '/api/finance/transactions/$id',
+      '/api/finance/transactions/$id/',
       options: Options(headers: {"Authorization": 'Token $token'}),
     );
   }
+
+  static Future<Response> getCategory({required String token}) async{
+    return await dio.get(
+    '/api/finance/categories/',
+      options: Options(headers: {"Authorization": 'Token $token'}),);
+  }
+
 }

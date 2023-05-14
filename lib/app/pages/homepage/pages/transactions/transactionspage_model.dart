@@ -1,138 +1,150 @@
+import 'package:finapp/app/components/models/category.dart';
 import 'package:flutter/material.dart';
 
 import 'package:finapp/app/components/app_network.dart';
-import 'package:finapp/app/components/models/date_transaction.dart';
 import 'package:finapp/app/components/models/transaction.dart';
 import 'package:finapp/app/components/secure_storage.dart';
 
-class TransactionsPage extends ChangeNotifier {
+class Transactions_model extends ChangeNotifier {
+  List<Transaction>? transactions;
+  List<Category>? categories;
   bool isLoading = false;
   bool isError = false;
-  List<Transaction>? transactions;
-  List<DateWithTransactions>? groupedTransactions;
-  // Future<void> loadUserInfo() async {
-  //   isLoading = true;
-  //   notifyListeners();
 
-  // Future<void> addTransaction({
-  //   required String type,
-  //   required String category,
-  //   required String title,
-  //   required DateTime date,
-  //   required String time,
-  //   required double amount,
-  //   required String description,
-  // }) async {
-  //   isLoading = true;
-  //   notifyListeners();
+  Future<void> loadTransactions() async {
+    isLoading = true;
 
-  //   try {
-  //     String? token = await AppSecureStorage.getToken();
-  //     if (token != null) {
-  //       final response = await AppNetwork.addTransaction(
-  //         token: token,
-  //         type: type,
-  //         category: category,
-  //         title: title,
-  //         date: date,
-  //         // time: time,
-  //         amount: amount,
-  //         description: description,
-  //       );
-  //       if (response.statusCode == 200) {
-  //         //
-  //         notifyListeners();
-  //         isError = false;
-  //       } else {
-  //         isError = true;
-  //         print("Undefined error");
-  //       }
-  //     } else {
-  //       isError = true;
-  //       print("No token found");
-  //     }
-  //   } catch (e) {
-  //     isError = true;
-  //     print(e);
-  //   } finally {
-  //     isLoading = false;
-  //     notifyListeners();
-  //   }
-  // }
-
-  void _groupTransactionsByDate() {
-    if (transactions != null) {
-      Map<String, List<Transaction>> groupedMap = {};
-
-      for (Transaction transaction in transactions!) {
-        String date = transaction.date.toIso8601String().split('T')[0];
-
-        if (groupedMap.containsKey(date)) {
-          groupedMap[date]!.add(transaction);
+    try {
+      String? token = await AppSecureStorage.getToken();
+      if (token != null) {
+        final response = await AppNetwork.getTransactions(token: token);
+        if (response.statusCode == 200) {
+          print(response.data);
+          transactions = (response.data as List).map((json) => Transaction.fromJson(json)).toList();
+          print("loadTransactions() вызван");
+          isError = false;
         } else {
-          groupedMap[date] = [transaction];
+          isError = true;
+          print("Error loading transactions");
         }
+      } else {
+        isError = true;
+        print("No token found");
       }
-
-      groupedTransactions = groupedMap.entries
-          .map((entry) => DateWithTransactions(
-                date: DateTime.parse(entry.key),
-                transactions: entry.value,
-              ))
-          .toList();
-    } else {
-      groupedTransactions = null;
+    } catch (e) {
+      isError = true;
+      print(e);
+    } finally {
+      isLoading = false;
+      notifyListeners();
     }
   }
 
-  // Future<void> getTransactions() async {
-  //   isLoading = true;
-  //   notifyListeners();
-  //   try {
-  //     String? token = await AppSecureStorage.getToken();
-  //     if (token != null) {
-  //       isError = false;
-  //       for (json in await AppNetwork.getTransactions(token: token)){}
+  Future<void> addTransaction({
+    required String title,
+    required double amount,
+    required DateTime date,
+    String? time,
+    String? description,
+    required int category,
+  }) async {
+    String? token = await AppSecureStorage.getToken();
+    if (token != null) {
+      final response = await AppNetwork.addTransaction(
+        token: token,
+        title: title,
+        amount: amount,
+        date: date.toIso8601String().split('T').first,
+        time: time,
+        description: description,
+        category: category,
+      );
+      if (response.statusCode == 201) {
+        loadTransactions(); // Reload transactions after a new one has been added
+      } else {
+        print("Error adding transaction");
+      }
+    } else {
+      print("No token found");
+    }
+  }
 
-  //     } else {
-  //       isError = true;
-  //       print("No token found");
-  //     }
-  //   } catch (e) {
-  //     isError = true;
-  //     print(e);
-  //   } finally {
-  //     isLoading = false;
-  //     _groupTransactionsByDate();
-  //     notifyListeners();
-  //   }
-  // }
+  Future<void> editTransaction({
+    required int id,
+    int? category,
+    String? title,
+    DateTime? date,
+    double? amount,
+    String? description,
+    String? time,
+  }) async {
+    String? token = await AppSecureStorage.getToken();
+    if (token != null) {
+      final response = await AppNetwork.editTransaction(
+        token: token,
+        id: id,
+        category: category,
+        title: title,
+        date: date != null ? date.toIso8601String().split('T')[0] : null,
+        amount: amount,
+        description: description,
+        time: time,
+      );
+      if (response.statusCode == 200) {
+        loadTransactions(); // Reload transactions after one has been edited
+      } else {
+        print("Error editing transaction");
+      }
+    } else {
+      print("No token found");
+    }
+  }
 
-  // Future<void> deleteTransaction(String transactionId) async {
-  //   isLoading = true;
-  //   notifyListeners();
+  Future<void> deleteTransaction(int id) async {
+    String? token = await AppSecureStorage.getToken();
+    if (token != null) {
+      final response = await AppNetwork.deleteTransaction(token: token, id: id);
+      if (response.statusCode == 204) {
+        loadTransactions(); // Reload transactions after one has been deleted
+      } else {
+        print("Error deleting transaction");
+      }
+    } else {
+      print("No token found");
+    }
+  }
 
-  //   try {
-  //     String? token = await AppSecureStorage.getToken();
-  //     if (token != null) {
-  //       final response = await AppNetwork.deleteTransaction(token: token, transactionId: transactionId);
-  //       if (response.statusCode == 200) {
-  //         transactions = transactions?.where((transaction) => transaction.id != transactionId).toList();
-  //         isError = false;
-  //       } else {
-  //         isError = true;
-  //         print("Undefined error");
-  //       }
-  //     } else {
-  //       isError = true;
-  //       print("No token found");
-  //     }
-  //   } catch (e) {
-  //     isError = true;
-  //     print(e);
-  //   } finally {
-  //     isLoading = false;
-  //     notifyListeners();
-  //   }
-  // }
+
+
+  Future<void> loadCategories() async {
+    isLoading = true;
+
+
+    try {
+      String? token = await AppSecureStorage.getToken();
+      if (token != null) {
+        final response = await AppNetwork.getCategory(token: token);
+        if (response.statusCode == 200) {
+          categories = (response.data as List).map((json) => Category.fromJson(json)).toList();
+          print("loadCategories() вызван");
+          print(token);
+          isError = false;
+        } else {
+          isError = true;
+          print("Error loading categories");
+        }
+      } else {
+        isError = true;
+        print("No token found");
+      }
+    } catch (e) {
+      isError = true;
+      print(e);
+    } finally {
+      isLoading = false;
+      notifyListeners();
+    }
+  }
+
+
 }

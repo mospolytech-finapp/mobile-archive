@@ -24,6 +24,7 @@ dependencies:
   json_serializable: ^6.6.2
   provider: ^6.0.5
   sizer: ^2.0.15
+  collection: ^1.17.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
