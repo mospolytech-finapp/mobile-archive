@@ -35,6 +35,15 @@ class _HomePageState extends State<HomePage> {
           title: Text("Finapp"),
         ),
         body: _screens[_selectedIndex],
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Color(0xff00B881),
+          hoverColor: Color(0xff383737),
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           fixedColor: Colors.purple,
           currentIndex: _selectedIndex,
