@@ -3,42 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 
 class AddItemDialogWidget extends StatefulWidget {
-  AddItemDialogWidget({super.key});
+  const AddItemDialogWidget({super.key});
 
   @override
   State<AddItemDialogWidget> createState() => _AddItemDialogWidgetState();
 }
 
 class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
-  final _transactionType = ['Доходы', 'Расходы'];
-  String? _transactionTypeCurrentItemSelected;
-  void _transactionTypeOnDropdownItemSelected(String newValueSelected) {
-    setState(
-      () {
-        _transactionTypeCurrentItemSelected = newValueSelected;
-      },
-    );
-  }
-
-  final _transactionCategoryIncomes = [
-    'Работа',
-    'Подработка',
-    'Разовые выплаты',
-    'Подарок',
-    'Пособие',
-    'Премия',
-  ];
-
-  final _transactionCategoryOutcomes = [
-    'Путешествия',
-    'Транспорт',
-    'ЖКХ',
-    'Продукты',
-    'Еда',
-    'Развлечения',
-    'Образование',
-    'Подарки',
-  ];
+  int? _transactionTypeValue;
+  int? _transactionCategoryValue;
 
   //Список из DropdownMenuItem'ов
   final _transactionCategoryIncomesDropdown = [
@@ -48,7 +21,6 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
           Text('Работа'),
-          Icon(Icons.work),
         ],
       ),
     ),
@@ -58,7 +30,6 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
           Text('Подработка'),
-          Icon(Icons.work),
         ],
       ),
     ),
@@ -68,7 +39,6 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
           Text('Разовые выплаты'),
-          Icon(Icons.work),
         ],
       ),
     ),
@@ -78,7 +48,6 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
           Text('Подарок'),
-          Icon(Icons.work),
         ],
       ),
     ),
@@ -88,7 +57,6 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
           Text('Пособие'),
-          Icon(Icons.work),
         ],
       ),
     ),
@@ -98,20 +66,104 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
           Text('Премия'),
-          Icon(Icons.work),
         ],
       ),
     ),
   ];
-  String? _transactionCategoryIncomesCurrentItemSelected;
-  void _transactionCategoryIncomesOnDropdownItemSelected(
-      String newValueSelected) {
-    setState(
-      () {
-        _transactionCategoryIncomesCurrentItemSelected = newValueSelected;
-      },
-    );
-  }
+  final _transactionCategoryOutcomesDropdown = [
+    DropdownMenuItem(
+      value: 6,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Text('Путешествия'),
+        ],
+      ),
+    ),
+    DropdownMenuItem(
+      value: 7,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Text('Транспорт'),
+        ],
+      ),
+    ),
+    DropdownMenuItem(
+      value: 8,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Text('ЖКХ'),
+        ],
+      ),
+    ),
+    DropdownMenuItem(
+      value: 9,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Text('Продукты'),
+        ],
+      ),
+    ),
+    DropdownMenuItem(
+      value: 10,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Text('Еда'),
+        ],
+      ),
+    ),
+    DropdownMenuItem(
+      value: 11,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Text('Развлечения'),
+        ],
+      ),
+    ),
+    DropdownMenuItem(
+      value: 12,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Text('Образование'),
+        ],
+      ),
+    ),
+    DropdownMenuItem(
+      value: 13,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Text('Подарки'),
+        ],
+      ),
+    ),
+  ];
+  final _transactionTypeDropdown = [
+    DropdownMenuItem(
+      value: 0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Text('Доходы'),
+        ],
+      ),
+    ),
+    DropdownMenuItem(
+      value: 1,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Text('Расходы'),
+        ],
+      ),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -123,8 +175,8 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
             horizontal: 2.w,
           ),
           child: Container(
-            width: 90.w,
-            height: 76.h,
+            // width: 90.w,
+            // height: 76.h,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(25)),
               gradient: LinearGradient(
@@ -138,9 +190,11 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
             ),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: ListView(
+                physics: const NeverScrollableScrollPhysics(),
+                // mainAxisSize: MainAxisSize.min,
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                shrinkWrap: true,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -171,10 +225,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                   Text(
                     'Название',
                     textAlign: TextAlign.start,
-                    style: TextStyle(
-                        fontSize: 12.sp,
-                        fontFamily: 'Gilroy-Light',
-                        color: Colors.black),
+                    style: TextStyle(fontSize: 12.sp, fontFamily: 'Gilroy-Light', color: Colors.black),
                   ),
                   // GestureDetector(
                   //   child: Text(
@@ -214,7 +265,6 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                     cursorColor: const Color.fromRGBO(2, 201, 141, 1),
                     textAlignVertical: TextAlignVertical.top,
                     decoration: InputDecoration(
-                      hintText: 'Квартплата',
                       hintStyle: TextStyle(
                         fontFamily: 'Gilroy-Light',
                         color: Colors.black,
@@ -289,17 +339,14 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                       fontFamily: 'Gilroy-Light',
                       color: Colors.black,
                     ),
-                    items: _transactionType.map((String dropdownStringItem) {
-                      return DropdownMenuItem<String>(
-                        value: dropdownStringItem,
-                        child: Text(dropdownStringItem),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValueSelected) {
-                      _transactionTypeOnDropdownItemSelected(
-                          newValueSelected!); // Возможно, стоит сделать что-то с null check
+                    items: _transactionTypeDropdown,
+                    onChanged: (v) {
+                      setState(() {
+                        _transactionTypeValue = v as int;
+                        _transactionCategoryValue = null;
+                      });
                     },
-                    value: _transactionTypeCurrentItemSelected,
+                    value: _transactionTypeValue,
                   ),
                   SizedBox(height: 1.h),
                   Text(
@@ -350,18 +397,15 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                       fontFamily: 'Gilroy-Light',
                       color: Colors.black,
                     ),
-                    items: _transactionCategoryIncomes
-                        .map((String dropdownStringItem) {
-                      return DropdownMenuItem<String>(
-                        value: dropdownStringItem,
-                        child: Text(dropdownStringItem),
-                      );
-                    }).toList(),
-                    onChanged: (String? newValueSelected) {
-                      _transactionCategoryIncomesOnDropdownItemSelected(
-                          newValueSelected!); // Возможно, стоит сделать что-то с null check
+                    items: _transactionTypeValue == 0
+                        ? _transactionCategoryIncomesDropdown
+                        : _transactionCategoryOutcomesDropdown,
+                    onChanged: (v) {
+                      setState(() {
+                        _transactionCategoryValue = v as int;
+                      });
                     },
-                    value: _transactionCategoryIncomesCurrentItemSelected,
+                    value: _transactionCategoryValue,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -494,7 +538,6 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                     cursorColor: const Color.fromRGBO(2, 201, 141, 1),
                     textAlignVertical: TextAlignVertical.top,
                     decoration: InputDecoration(
-                      hintText: '40 376 ₽',
                       hintStyle: TextStyle(
                         fontFamily: 'Gilroy-Light',
                         color: Colors.black,
@@ -544,10 +587,11 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                     ),
                     textAlign: TextAlign.start,
                     maxLines: 4,
+                    scrollPhysics: const NeverScrollableScrollPhysics(),
+                    minLines: 1,
                     cursorColor: const Color.fromRGBO(2, 201, 141, 1),
                     textAlignVertical: TextAlignVertical.top,
                     decoration: InputDecoration(
-                      hintText: 'Оплатил(а) газ, электричество, воду.',
                       hintStyle: TextStyle(
                         fontFamily: 'Gilroy-Light',
                         color: Colors.black,
@@ -565,7 +609,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
+                        borderRadius: BorderRadius.circular(20),
                         borderSide: const BorderSide(
                           color: Color.fromRGBO(220, 220, 220, 1),
                         ),
@@ -587,7 +631,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                         ),
                       ),
                       child: Text(
-                        'Сохранить изменения',
+                        'Сохранить транзакцию',
                         style: TextStyle(
                           fontFamily: 'Gilroy-Light',
                           fontWeight: FontWeight.bold,

@@ -7,8 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:finapp/app/pages/homepage/pages/transactions/widgets/listview_item_widget.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-
-List<String> list = <String>['Категория', 'Дата', 'Цели', 'Сумма', 'Время'];
+import 'package:finapp/app/pages/homepage/pages/transactions/widgets/add_item_dialog.dart';
 
 class TransactionsPage extends StatefulWidget {
   const TransactionsPage({super.key});
@@ -18,7 +17,6 @@ class TransactionsPage extends StatefulWidget {
 }
 
 class _TransactionsPageState extends State<TransactionsPage> {
-  String dropdownValue = list.first;
   bool isTap = false;
   int selectedIndex = -1;
   int count = 0;
@@ -132,7 +130,12 @@ class _TransactionsPageState extends State<TransactionsPage> {
                 bottom: 16 + MediaQuery.of(context).padding.bottom,
                 right: 16,
                 child: FloatingActionButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AddItemDialogWidget(),
+                    );
+                  },
                   backgroundColor: Color(0xff00B881),
                   hoverColor: Color(0xff383737),
                   child: Icon(
