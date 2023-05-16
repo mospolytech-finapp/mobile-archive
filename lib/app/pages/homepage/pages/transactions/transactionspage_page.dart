@@ -133,7 +133,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
                   onPressed: () {
                     showDialog(
                       context: context,
-                      builder: (context) => AddItemDialogWidget(),
+                      builder: (context) => AddItemDialogWidget(model: transactionsModel),
                     );
                   },
                   backgroundColor: Color(0xff00B881),

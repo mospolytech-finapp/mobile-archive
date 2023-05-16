@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-class AddItemDialogWidget extends StatefulWidget {
-  const AddItemDialogWidget({super.key});
+import 'package:finapp/app/pages/homepage/pages/transactions/transactionspage_model.dart';
 
+class AddItemDialogWidget extends StatefulWidget {
+  final Transactions_model model;
+  const AddItemDialogWidget({
+    Key? key,
+    required this.model,
+  }) : super(key: key);
   @override
-  State<AddItemDialogWidget> createState() => _AddItemDialogWidgetState();
+  State<AddItemDialogWidget> createState() => _AddItemDialogWidgetState(model: model);
 }
 
 class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
-  int? _transactionTypeValue;
-  int? _transactionCategoryValue;
-  DateTime? _transactionDateValue;
-  TimeOfDay? _transactionTimeValue;
+  _AddItemDialogWidgetState({required this.model});
+  Transactions_model model;
+
   //Список из DropdownMenuItem'ов
   final _transactionCategoryIncomesDropdown = [
     DropdownMenuItem(
@@ -38,30 +42,12 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
-          Text('Разовые выплаты'),
-        ],
-      ),
-    ),
-    DropdownMenuItem(
-      value: 3,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Text('Подарок'),
-        ],
-      ),
-    ),
-    DropdownMenuItem(
-      value: 4,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
           Text('Пособие'),
         ],
       ),
     ),
     DropdownMenuItem(
-      value: 5,
+      value: 3,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
@@ -72,16 +58,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
   ];
   final _transactionCategoryOutcomesDropdown = [
     DropdownMenuItem(
-      value: 6,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          Text('Путешествия'),
-        ],
-      ),
-    ),
-    DropdownMenuItem(
-      value: 7,
+      value: 4,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
@@ -90,7 +67,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
       ),
     ),
     DropdownMenuItem(
-      value: 8,
+      value: 5,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
@@ -99,7 +76,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
       ),
     ),
     DropdownMenuItem(
-      value: 9,
+      value: 6,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
@@ -108,7 +85,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
       ),
     ),
     DropdownMenuItem(
-      value: 10,
+      value: 7,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
@@ -117,7 +94,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
       ),
     ),
     DropdownMenuItem(
-      value: 11,
+      value: 8,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
@@ -126,7 +103,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
       ),
     ),
     DropdownMenuItem(
-      value: 12,
+      value: 9,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
@@ -135,11 +112,29 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
       ),
     ),
     DropdownMenuItem(
-      value: 13,
+      value: 10,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
           Text('Подарки'),
+        ],
+      ),
+    ),
+    DropdownMenuItem(
+      value: 11,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Text('Налоги'),
+        ],
+      ),
+    ),
+    DropdownMenuItem(
+      value: 12,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: const [
+          Text('Прочее'),
         ],
       ),
     ),
@@ -229,6 +224,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                     height: 1.h,
                   ),
                   TextField(
+                    controller: model.nameController,
                     style: TextStyle(
                       fontFamily: 'Gilroy-Light',
                       color: Colors.black,
@@ -315,11 +311,11 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                     items: _transactionTypeDropdown,
                     onChanged: (v) {
                       setState(() {
-                        _transactionTypeValue = v as int;
-                        _transactionCategoryValue = null;
+                        model.transactionTypeValue = v as int;
+                        model.transactionCategoryValue = null;
                       });
                     },
-                    value: _transactionTypeValue,
+                    value: model.transactionTypeValue,
                   ),
                   SizedBox(height: 1.h),
                   Text(
@@ -370,15 +366,15 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                       fontFamily: 'Gilroy-Light',
                       color: Colors.black,
                     ),
-                    items: _transactionTypeValue == 0
+                    items: model.transactionTypeValue == 0
                         ? _transactionCategoryIncomesDropdown
                         : _transactionCategoryOutcomesDropdown,
                     onChanged: (v) {
                       setState(() {
-                        _transactionCategoryValue = v as int;
+                        model.transactionCategoryValue = v as int;
                       });
                     },
-                    value: _transactionCategoryValue,
+                    value: model.transactionCategoryValue,
                   ),
                   SizedBox(height: 1.h),
                   Row(
@@ -401,7 +397,9 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                           SizedBox(
                             width: 30.w,
                             child: TextField(
-                              readOnly: false,
+                              controller: model.dateController,
+                              onTap: () => model.setDate(context),
+                              readOnly: true,
                               style: TextStyle(
                                 fontFamily: 'Gilroy-Light',
                                 color: Colors.black,
@@ -457,7 +455,9 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                           SizedBox(
                             width: 30.w,
                             child: TextField(
-                              readOnly: false,
+                              controller: model.timeController,
+                              onTap: () => model.setTime(context),
+                              readOnly: true,
                               style: TextStyle(
                                 fontFamily: 'Gilroy-Light',
                                 color: Colors.black,
@@ -514,6 +514,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                     height: 1.h,
                   ),
                   TextField(
+                    controller: model.amountController,
                     style: TextStyle(
                       fontFamily: 'Gilroy-Light',
                       color: Colors.black,
@@ -565,6 +566,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                     height: 1.h,
                   ),
                   TextField(
+                    controller: model.descriptionController,
                     style: TextStyle(
                       fontFamily: 'Gilroy-Light',
                       color: Colors.black,
@@ -624,10 +626,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                           fontSize: 11.sp,
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.pop(context);
-                        // И сохранение данных
-                      },
+                      onPressed: () => model.onSaveTransactionClick(context),
                     ),
                   ),
                 ],

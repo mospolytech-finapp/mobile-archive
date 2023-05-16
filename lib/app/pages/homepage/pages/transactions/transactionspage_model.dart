@@ -11,6 +11,68 @@ class Transactions_model extends ChangeNotifier {
   bool isLoading = false;
   bool isError = false;
 
+//add item
+  int? transactionTypeValue;
+  int? transactionCategoryValue;
+  DateTime? date;
+  TimeOfDay? time;
+  TextEditingController dateController = TextEditingController();
+  TextEditingController timeController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+
+  Future<void> setDate(BuildContext context) async {
+    date = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+    String? dateText = date != null ? "${date?.day}.${date?.month}.${date?.year}" : "";
+    dateController.text = dateText;
+    notifyListeners();
+  }
+
+  Future<void> setTime(BuildContext context) async {
+    time = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+    String? timeText = time != null ? "${time?.hour}:${time?.minute}" : "";
+    timeController.text = timeText;
+    notifyListeners();
+  }
+
+  Future<void> onSaveTransactionClick(BuildContext context) async {
+    final amountValue =
+        transactionTypeValue == 0 ? double.parse(amountController.text) : -double.parse(amountController.text);
+
+    final flag = await addTransaction(
+      title: nameController.text,
+      amount: amountValue,
+      date: date!,
+      time: timeController.text,
+      description: descriptionController.text,
+      category: categories![transactionCategoryValue!].id,
+    );
+    if (flag) {
+      Navigator.pop(context);
+    } else {
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Ошибка при добавлении транзакции"),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    }
+    notifyListeners();
+  }
+
+//add item
   Future<void> loadTransactions() async {
     isLoading = true;
 
@@ -40,7 +102,7 @@ class Transactions_model extends ChangeNotifier {
     }
   }
 
-  Future<void> addTransaction({
+  Future<bool> addTransaction({
     required String title,
     required double amount,
     required DateTime date,
@@ -60,12 +122,15 @@ class Transactions_model extends ChangeNotifier {
         category: category,
       );
       if (response.statusCode == 201) {
-        loadTransactions(); // Reload transactions after a new one has been added
+        loadTransactions();
+        return true; // Reload transactions after a new one has been added
       } else {
         print("Error adding transaction");
+        return false;
       }
     } else {
       print("No token found");
+      return false;
     }
   }
 
@@ -114,11 +179,8 @@ class Transactions_model extends ChangeNotifier {
     }
   }
 
-
-
   Future<void> loadCategories() async {
     isLoading = true;
-
 
     try {
       String? token = await AppSecureStorage.getToken();
@@ -145,6 +207,4 @@ class Transactions_model extends ChangeNotifier {
       notifyListeners();
     }
   }
-
-
 }
