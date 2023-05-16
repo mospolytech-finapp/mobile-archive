@@ -28,13 +28,13 @@ class _AppState extends State<App> {
               return const CircularProgressIndicator();
             } else {
               return MaterialApp(
-                localizationsDelegates: const [
+                localizationsDelegates: [
                   GlobalMaterialLocalizations.delegate,
                   GlobalWidgetsLocalizations.delegate,
                 ],
-                supportedLocales: const [
-                  Locale('en', ''),
-                  Locale('ru', ''),
+                supportedLocales: [
+                  const Locale('ru', 'RU'),
+                  // const Locale('en', 'US'),
                 ],
                 builder: (context, child) {
                   final mediaQueryData = MediaQuery.of(context);
