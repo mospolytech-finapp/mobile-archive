@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 
 class AddItemDialogWidget extends StatefulWidget {
@@ -12,7 +11,8 @@ class AddItemDialogWidget extends StatefulWidget {
 class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
   int? _transactionTypeValue;
   int? _transactionCategoryValue;
-
+  DateTime? _transactionDateValue;
+  TimeOfDay? _transactionTimeValue;
   //Список из DropdownMenuItem'ов
   final _transactionCategoryIncomesDropdown = [
     DropdownMenuItem(
@@ -191,9 +191,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: ListView(
-                physics: const NeverScrollableScrollPhysics(),
-                // mainAxisSize: MainAxisSize.min,
-                // crossAxisAlignment: CrossAxisAlignment.start,
+                physics: const ClampingScrollPhysics(),
                 shrinkWrap: true,
                 children: [
                   Row(
@@ -227,31 +225,6 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 12.sp, fontFamily: 'Gilroy-Light', color: Colors.black),
                   ),
-                  // GestureDetector(
-                  //   child: Text(
-                  //     'HELPME@FINAPP.COM',
-                  //     textAlign: TextAlign.start,
-                  //     style: TextStyle(
-                  //         fontSize: 15.sp,
-                  //         fontFamily: 'Gilroy-Light',
-                  //         color: Colors.white,
-                  //         decoration: TextDecoration.underline,
-                  //         decorationColor: Colors.white),
-                  //   ),
-                  //   onTap: () {
-                  //     ScaffoldMessenger.of(context).showSnackBar(
-                  //       const SnackBar(
-                  //         content: Text(
-                  //           "Email скопирован",
-                  //           style: TextStyle(
-                  //             color: Colors.white,
-                  //             fontFamily: 'Gilroy-Light',
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     );
-                  //   },
-                  // ),
                   SizedBox(
                     height: 1.h,
                   ),
@@ -407,10 +380,12 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                     },
                     value: _transactionCategoryValue,
                   ),
+                  SizedBox(height: 1.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             'Дата',
@@ -420,48 +395,53 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                               color: Colors.black,
                             ),
                           ),
-                          /* - При вставке TextField (даже пустого) программа выдает ошибку; добавить DatePicker
-                          TextField(
-                            readOnly: true,
-                            style: TextStyle(
-                              fontFamily: 'Gilroy-Light',
-                              color: Colors.black,
-                              fontSize: 11.sp,
-                            ),
-                            textAlign: TextAlign.start,
-                            cursorColor: const Color.fromRGBO(2, 201, 141, 1),
-                            textAlignVertical: TextAlignVertical.top,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              contentPadding: EdgeInsets.symmetric(
-                                vertical: 0.5.h,
-                                horizontal: 2.77.w,
-                              ),
-                              hintText: '31.03.2023',
-                              hintStyle: TextStyle(
+                          SizedBox(
+                            height: 1.h,
+                          ),
+                          SizedBox(
+                            width: 30.w,
+                            child: TextField(
+                              readOnly: false,
+                              style: TextStyle(
                                 fontFamily: 'Gilroy-Light',
+                                color: Colors.black,
                                 fontSize: 11.sp,
-                                color: Colors.grey,
                               ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(50),
-                                borderSide: const BorderSide(
-                                  color: Color.fromRGBO(220, 220, 220, 1),
+                              textAlign: TextAlign.start,
+                              cursorColor: const Color.fromRGBO(2, 201, 141, 1),
+                              textAlignVertical: TextAlignVertical.top,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0.5.h,
+                                  horizontal: 2.77.w,
                                 ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(50),
-                                borderSide: const BorderSide(
-                                  color: Color.fromRGBO(220, 220, 220, 1),
+                                hintStyle: TextStyle(
+                                  fontFamily: 'Gilroy-Light',
+                                  fontSize: 11.sp,
+                                  color: Colors.grey,
                                 ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(50),
+                                  borderSide: const BorderSide(
+                                    color: Color.fromRGBO(220, 220, 220, 1),
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(50),
+                                  borderSide: const BorderSide(
+                                    color: Color.fromRGBO(220, 220, 220, 1),
+                                  ),
+                                ),
+                                filled: true,
+                                fillColor: const Color.fromRGBO(220, 220, 220, 1),
                               ),
-                              filled: true,
-                              fillColor: const Color.fromRGBO(220, 220, 220, 1),
                             ),
-                          ), */
+                          ),
                         ],
                       ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             'Время',
@@ -471,44 +451,49 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                               color: Colors.black,
                             ),
                           ),
-                          /*TextField( - виджет с выбором времени (TimePicker)
-                            readOnly: true,
-                            style: TextStyle(
-                              fontFamily: 'Gilroy-Light',
-                              color: Colors.black,
-                              fontSize: 11.sp,
-                            ),
-                            textAlign: TextAlign.start,
-                            cursorColor: const Color.fromRGBO(2, 201, 141, 1),
-                            textAlignVertical: TextAlignVertical.top,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              contentPadding: EdgeInsets.symmetric(
-                                vertical: 0.5.h,
-                                horizontal: 2.77.w,
-                              ),
-                              hintText: '31.03.2023',
-                              hintStyle: TextStyle(
+                          SizedBox(
+                            height: 1.h,
+                          ),
+                          SizedBox(
+                            width: 30.w,
+                            child: TextField(
+                              readOnly: false,
+                              style: TextStyle(
                                 fontFamily: 'Gilroy-Light',
+                                color: Colors.black,
                                 fontSize: 11.sp,
-                                color: Colors.grey,
                               ),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(50),
-                                borderSide: const BorderSide(
-                                  color: Color.fromRGBO(220, 220, 220, 1),
+                              textAlign: TextAlign.start,
+                              cursorColor: const Color.fromRGBO(2, 201, 141, 1),
+                              textAlignVertical: TextAlignVertical.top,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0.5.h,
+                                  horizontal: 2.77.w,
                                 ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(50),
-                                borderSide: const BorderSide(
-                                  color: Color.fromRGBO(220, 220, 220, 1),
+                                hintStyle: TextStyle(
+                                  fontFamily: 'Gilroy-Light',
+                                  fontSize: 11.sp,
+                                  color: Colors.grey,
                                 ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(50),
+                                  borderSide: const BorderSide(
+                                    color: Color.fromRGBO(220, 220, 220, 1),
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(50),
+                                  borderSide: const BorderSide(
+                                    color: Color.fromRGBO(220, 220, 220, 1),
+                                  ),
+                                ),
+                                filled: true,
+                                fillColor: const Color.fromRGBO(220, 220, 220, 1),
                               ),
-                              filled: true,
-                              fillColor: const Color.fromRGBO(220, 220, 220, 1),
                             ),
-                          ), */
+                          ),
                         ],
                       ),
                     ],
@@ -587,8 +572,8 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                     ),
                     textAlign: TextAlign.start,
                     maxLines: 4,
-                    scrollPhysics: const NeverScrollableScrollPhysics(),
-                    minLines: 1,
+                    scrollPhysics: const BouncingScrollPhysics(),
+                    minLines: 2,
                     cursorColor: const Color.fromRGBO(2, 201, 141, 1),
                     textAlignVertical: TextAlignVertical.top,
                     decoration: InputDecoration(
