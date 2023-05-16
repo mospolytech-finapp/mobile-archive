@@ -33,7 +33,6 @@ class _RegistrationPage extends State<RegistrationPage> {
           ) {
             final registerModel = Provider.of<RegisterModel>(context, listen: false);
             return Scaffold(
-              resizeToAvoidBottomInset: false,
               body: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -61,7 +60,8 @@ class _RegistrationPage extends State<RegistrationPage> {
                           ],
                         ),
                       ),
-                      child: Column(
+                      child: ListView(
+                        physics: const ClampingScrollPhysics(),
                         children: [
                           Column(
                             children: [
