@@ -38,7 +38,17 @@ class RegisterModel extends ChangeNotifier {
         print("Undefined error");
       }
     } catch (e) {
-      print(e);
+      if(!context.mounted){
+
+        return;
+
+      }
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Ошибка регистрации"),
+          ),
+        );
+
     }
   }
 }
