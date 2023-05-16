@@ -128,6 +128,19 @@ class _TransactionsPageState extends State<TransactionsPage> {
                   ),
                 ],
               ),
+              Positioned(
+                bottom: 16 + MediaQuery.of(context).padding.bottom,
+                right: 16,
+                child: FloatingActionButton(
+                  onPressed: () {},
+                  backgroundColor: Color(0xff00B881),
+                  hoverColor: Color(0xff383737),
+                  child: Icon(
+                    Icons.add,
+                    color: Colors.white,
+                  ),
+                ),
+              )
             ],
           );
         },
