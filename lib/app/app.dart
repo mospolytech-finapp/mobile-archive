@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:finapp/app/components/app_navigator.dart';
 import 'package:finapp/app/components/app_themes.dart';
 import 'package:finapp/app/app_model.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 class App extends StatefulWidget {
@@ -25,7 +26,12 @@ class _AppState extends State<App> {
           future: appModel.initApp(),
           builder: (BuildContext context, AsyncSnapshot<void> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
+              return Container(
+                color: Colors.white,
+                child: Center(
+                    child: SvgPicture.asset('assets/logo.svg')
+                ),
+              );
             } else {
               return MaterialApp(
                 localizationsDelegates: [
