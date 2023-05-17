@@ -7,7 +7,7 @@ import 'package:finapp/app/components/secure_storage.dart';
 
 class Transactions_model extends ChangeNotifier {
   List<Transaction>? transactions;
-  List<Category>? categories;
+  Map<int, String>? categories;
   List<int>? categoryIds;
   bool isLoading = false;
   bool isError = false;
@@ -189,21 +189,12 @@ class Transactions_model extends ChangeNotifier {
     }
   }
 
-  void makeCategoryIds() {
-    categoryIds = [];
-    for (int i = 0; i < categories!.length; i++) {
-      categoryIds!.add(categories![i].id);
-    }
-  }
+
 
   String findCategoryName(int id) {
-    for (int i = 0; i < categories!.length; i++) {
-      if (categories![i].id == id) {
-        return categories![i].name;
-      }
-    }
-    return "";
+    return categories != null ? categories![id] ?? "" : "";
   }
+
 
   Future<void> loadCategories() async {
     isLoading = true;
@@ -213,10 +204,13 @@ class Transactions_model extends ChangeNotifier {
       if (token != null) {
         final response = await AppNetwork.getCategory(token: token);
         if (response.statusCode == 200) {
-          categories = (response.data as List).map((json) => Category.fromJson(json)).toList();
+          categories = Map.fromIterable(
+            (response.data as List).map((json) => Category.fromJson(json)),
+            key: (category) => category.id,
+            value: (category) => category.name,
+          );
           print("loadCategories() вызван");
           print(token);
-          makeCategoryIds();
           isError = false;
         } else {
           isError = true;
