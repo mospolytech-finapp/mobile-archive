@@ -34,21 +34,19 @@ class RegisterModel extends ChangeNotifier {
         date: date,
       );
       if (response.statusCode == 201) {
+        Navigator.of(context).pop();
       } else {
         print("Undefined error");
       }
     } catch (e) {
-      if(!context.mounted){
-
+      if (!context.mounted) {
         return;
-
       }
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Ошибка регистрации"),
-          ),
-        );
-
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Ошибка регистрации"),
+        ),
+      );
     }
   }
 }
