@@ -1,6 +1,5 @@
 import 'package:finapp/app/components/models/category.dart';
 import 'package:flutter/material.dart';
-
 import 'package:finapp/app/components/app_network.dart';
 import 'package:finapp/app/components/models/transaction.dart';
 import 'package:finapp/app/components/secure_storage.dart';
@@ -61,8 +60,8 @@ class Transactions_model extends ChangeNotifier {
       );
       return;
     }
-    final amountValue =
-        transactionTypeValue == 0 ? double.parse(amountController.text) : -double.parse(amountController.text);
+    final amount = double.parse(amountController.text).abs();
+    final amountValue = transactionTypeValue == 0 ? amount : -amount;
 
     final flag = await addTransaction(
       title: nameController.text,
