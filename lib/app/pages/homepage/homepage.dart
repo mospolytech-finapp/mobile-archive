@@ -22,12 +22,12 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  final List _screens = [
-    const Empty(),
-    const TransactionsPage(),
-    const Empty(),
-    const TargetsPage(),
-  ];
+  // final List _screens = [
+  //   const Empty(),
+  //   const TransactionsPage(),
+  //   const Empty(),
+  //   const TargetsPage(),
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -50,39 +50,39 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          body: _screens[_selectedIndex],
-          bottomNavigationBar: Theme(
-            data: ThemeData(
-              canvasColor: const Color(0xFF801CAF),
-              textTheme: const TextTheme(
-                bodyLarge: TextStyle(fontFamily: 'Gilroy-Light'),
-              ),
-            ),
-            child: ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(30.0),
-                topRight: Radius.circular(30.0),
-              ),
-              child: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                elevation: 0,
-                enableFeedback: false,
-                unselectedItemColor: const Color(0x80FFFFFF),
-                selectedFontSize: 15,
-                unselectedFontSize: 15,
-                iconSize: 30,
-                selectedItemColor: Colors.white,
-                currentIndex: _selectedIndex,
-                onTap: _changeIndex,
-                items: const [
-                  BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Главная'),
-                  BottomNavigationBarItem(icon: Icon(Icons.credit_card), label: 'Транзакции'),
-                  BottomNavigationBarItem(icon: Icon(Icons.pie_chart_outline), label: 'БДР'),
-                  BottomNavigationBarItem(icon: Icon(Icons.checklist), label: 'Цели'),
-                ],
-              ),
-            ),
-          ),
+          body: TransactionsPage(),
+          // bottomNavigationBar: Theme(
+          //   data: ThemeData(
+          //     canvasColor: const Color(0xFF801CAF),
+          //     textTheme: const TextTheme(
+          //       bodyLarge: TextStyle(fontFamily: 'Gilroy-Light'),
+          //     ),
+          //   ),
+          //   child: ClipRRect(
+          //     borderRadius: const BorderRadius.only(
+          //       topLeft: Radius.circular(30.0),
+          //       topRight: Radius.circular(30.0),
+          //     ),
+          //     child: BottomNavigationBar(
+          //       type: BottomNavigationBarType.fixed,
+          //       elevation: 0,
+          //       enableFeedback: false,
+          //       unselectedItemColor: const Color(0x80FFFFFF),
+          //       selectedFontSize: 15,
+          //       unselectedFontSize: 15,
+          //       iconSize: 30,
+          //       selectedItemColor: Colors.white,
+          //       currentIndex: _selectedIndex,
+          //       onTap: _changeIndex,
+          //       items: const [
+          //         BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Главная'),
+          //         BottomNavigationBarItem(icon: Icon(Icons.credit_card), label: 'Транзакции'),
+          //         BottomNavigationBarItem(icon: Icon(Icons.pie_chart_outline), label: 'БДР'),
+          //         BottomNavigationBarItem(icon: Icon(Icons.checklist), label: 'Цели'),
+          //       ],
+          //     ),
+          //   ),
+          // ),
         );
       }),
     );
