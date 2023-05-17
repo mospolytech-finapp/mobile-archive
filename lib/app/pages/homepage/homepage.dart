@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   void _changeIndex(int index) {
     setState(() {
@@ -44,20 +44,11 @@ class _HomePageState extends State<HomePage> {
             title: const Text("FINAPP"),
             actions: [
               IconButton(
-                onPressed: () {},
-                color: Colors.black,
-                icon: const Icon(Icons.notifications_none_rounded),
-              ),
-              IconButton(
                 onPressed: () => homePageModel.logOut(context),
                 color: Colors.black,
                 icon: const Icon(Icons.person_outline_rounded),
               ),
             ],
-            leading: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.settings_outlined),
-            ),
           ),
           body: _screens[_selectedIndex],
           bottomNavigationBar: Theme(
