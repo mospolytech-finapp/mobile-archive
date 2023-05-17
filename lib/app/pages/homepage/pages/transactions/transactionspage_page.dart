@@ -82,10 +82,9 @@ class _TransactionsPageState extends State<TransactionsPage> {
                                   children: [
                                     Expanded(
                                       child: Container(
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                               color: Color(0xff383737),
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(20), bottomLeft: Radius.circular(20))),
+                                              borderRadius: BorderRadius.all(Radius.circular(20))),
                                           child: Center(
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.center,
