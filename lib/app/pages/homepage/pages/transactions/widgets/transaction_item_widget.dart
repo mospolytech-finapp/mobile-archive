@@ -15,7 +15,7 @@ class TransactionItemWidget extends StatelessWidget {
     String name = transaction.name;
     double expense = transaction.amount;
     String? time = transaction.time;
-    String category = model.findCategoryName(transaction.category);
+    String category = model.categories?[transaction.id] ?? '';
     IconData icon;
     Color iconColor;
     String expenseText;

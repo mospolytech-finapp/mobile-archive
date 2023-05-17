@@ -189,13 +189,6 @@ class Transactions_model extends ChangeNotifier {
     }
   }
 
-
-
-  String findCategoryName(int id) {
-    return categories != null ? categories![id] ?? "" : "";
-  }
-
-
   Future<void> loadCategories() async {
     isLoading = true;
 
@@ -211,7 +204,7 @@ class Transactions_model extends ChangeNotifier {
           );
           print("loadCategories() вызван");
           print(token);
-          isError = false;
+          categoryIds = categories?.keys.toList();
         } else {
           isError = true;
           print("Error loading categories");
