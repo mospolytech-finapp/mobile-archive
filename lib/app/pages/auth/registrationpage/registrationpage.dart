@@ -106,6 +106,7 @@ class _RegistrationPage extends State<RegistrationPage> {
                                           height: 0.94.h,
                                         ),
                                         TextField(
+                                          textInputAction: TextInputAction.next,
                                           controller: registerModel.lastNameController,
                                           style: TextStyle(
                                             fontFamily: 'Gilroy-Light',
@@ -150,6 +151,7 @@ class _RegistrationPage extends State<RegistrationPage> {
                                           height: 0.94.h,
                                         ),
                                         TextField(
+                                          textInputAction: TextInputAction.next,
                                           controller: registerModel.firstNameController,
                                           style: TextStyle(
                                             fontFamily: 'Gilroy-Light',
@@ -194,6 +196,7 @@ class _RegistrationPage extends State<RegistrationPage> {
                                           height: 0.94.h,
                                         ),
                                         TextField(
+                                          textInputAction: TextInputAction.next,
                                           controller: registerModel.middleNameController,
                                           style: TextStyle(
                                             fontFamily: 'Gilroy-Light',
@@ -238,6 +241,7 @@ class _RegistrationPage extends State<RegistrationPage> {
                                           height: 0.94.h,
                                         ),
                                         TextField(
+                                          textInputAction: TextInputAction.next,
                                           controller: registerModel.passwordController,
                                           style: TextStyle(
                                             fontFamily: 'Gilroy-Light',
@@ -293,6 +297,7 @@ class _RegistrationPage extends State<RegistrationPage> {
                                           height: 0.94.h,
                                         ),
                                         TextField(
+                                          textInputAction: TextInputAction.done,
                                           controller: registerModel.emailController,
                                           style: TextStyle(
                                             fontFamily: 'Gilroy-Light',

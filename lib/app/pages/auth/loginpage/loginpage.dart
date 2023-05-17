@@ -95,6 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               //? Текстовое поле Адрес электронной почты
                               TextField(
+                                  textInputAction: TextInputAction.next,
                                   controller: authModel.emailController,
                                   style: TextStyle(color: Colors.black, fontSize: 16.sp, fontFamily: 'Gilroy-Light'),
                                   cursorColor: const Color(0xff1BD0B8),
@@ -154,6 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               //? Текстовое поле Пароль
                               TextField(
+                                  textInputAction: TextInputAction.done,
                                   controller: authModel.passwordController,
                                   style: TextStyle(color: Colors.black, fontSize: 16.sp, fontFamily: 'Gilroy-Light'),
                                   cursorColor: const Color(0xff1BD0B8),

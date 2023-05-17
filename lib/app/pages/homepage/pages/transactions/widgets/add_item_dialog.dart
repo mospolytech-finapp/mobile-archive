@@ -224,6 +224,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                     height: 1.h,
                   ),
                   TextField(
+                    textInputAction: TextInputAction.next,
                     controller: model.nameController,
                     style: TextStyle(
                       fontFamily: 'Gilroy-Light',
@@ -514,7 +515,9 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                     height: 1.h,
                   ),
                   TextField(
+                    textInputAction: TextInputAction.next,
                     controller: model.amountController,
+                    keyboardType: TextInputType.number,
                     style: TextStyle(
                       fontFamily: 'Gilroy-Light',
                       color: Colors.black,
@@ -566,6 +569,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                     height: 1.h,
                   ),
                   TextField(
+                    textInputAction: TextInputAction.done,
                     controller: model.descriptionController,
                     style: TextStyle(
                       fontFamily: 'Gilroy-Light',
