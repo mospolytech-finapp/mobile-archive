@@ -6,7 +6,13 @@ import 'package:finapp/app/components/models/transaction.dart';
 import 'package:finapp/app/components/secure_storage.dart';
 
 class Transactions_model extends ChangeNotifier {
-  List<Transaction>? transactions;
+  List<Transaction>? _transactions;
+  List<Transaction>? get transactions {
+    var sortedTransactions = _transactions?.toList();
+    sortedTransactions?.sort((a, b) => a.date.compareTo(b.date));
+    return sortedTransactions?.reversed.toList() ?? [];
+  }
+
   Map<int, String>? categories;
   List<int>? categoryIds;
   bool isLoading = false;
@@ -92,7 +98,7 @@ class Transactions_model extends ChangeNotifier {
         final response = await AppNetwork.getTransactions(token: token);
         if (response.statusCode == 200) {
           print(response.data);
-          transactions = (response.data as List).map((json) => Transaction.fromJson(json)).toList();
+          _transactions = (response.data as List).map((json) => Transaction.fromJson(json)).toList();
           print("loadTransactions() вызван");
           isError = false;
         } else {
