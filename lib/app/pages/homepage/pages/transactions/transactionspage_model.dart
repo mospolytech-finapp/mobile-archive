@@ -8,6 +8,7 @@ import 'package:finapp/app/components/secure_storage.dart';
 class Transactions_model extends ChangeNotifier {
   List<Transaction>? transactions;
   List<Category>? categories;
+  List<int>? categoryIds;
   bool isLoading = false;
   bool isError = false;
 
@@ -45,6 +46,15 @@ class Transactions_model extends ChangeNotifier {
   }
 
   Future<void> onSaveTransactionClick(BuildContext context) async {
+    if (nameController.text.isEmpty || amountController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Заполните все поля"),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
     final amountValue =
         transactionTypeValue == 0 ? double.parse(amountController.text) : -double.parse(amountController.text);
 
@@ -54,7 +64,7 @@ class Transactions_model extends ChangeNotifier {
       date: date!,
       time: timeController.text,
       description: descriptionController.text,
-      category: categories![transactionCategoryValue!].id,
+      category: categoryIds![transactionCategoryValue!],
     );
     if (flag) {
       Navigator.pop(context);
@@ -179,6 +189,22 @@ class Transactions_model extends ChangeNotifier {
     }
   }
 
+  void makeCategoryIds() {
+    categoryIds = [];
+    for (int i = 0; i < categories!.length; i++) {
+      categoryIds!.add(categories![i].id);
+    }
+  }
+
+  String findCategoryName(int id) {
+    for (int i = 0; i < categories!.length; i++) {
+      if (categories![i].id == id) {
+        return categories![i].name;
+      }
+    }
+    return "";
+  }
+
   Future<void> loadCategories() async {
     isLoading = true;
 
@@ -190,6 +216,7 @@ class Transactions_model extends ChangeNotifier {
           categories = (response.data as List).map((json) => Category.fromJson(json)).toList();
           print("loadCategories() вызван");
           print(token);
+          makeCategoryIds();
           isError = false;
         } else {
           isError = true;

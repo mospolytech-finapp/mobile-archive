@@ -16,9 +16,7 @@ class ListViewItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-          color: Color(0xffEAEAEA),
-          borderRadius: BorderRadius.all(Radius.circular(20))),
+      decoration: BoxDecoration(color: Color(0xffEAEAEA), borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Row(
         children: [
           //? День и месяц(Дата)
@@ -53,6 +51,7 @@ class ListViewItemWidget extends StatelessWidget {
           //? Информация о транзакциях
           Expanded(
             child: ListView.builder(
+              shrinkWrap: true,
               itemCount: transactions.length,
               itemBuilder: (context, i) {
                 return TransactionItemWidget(transaction: transactions[i]);
