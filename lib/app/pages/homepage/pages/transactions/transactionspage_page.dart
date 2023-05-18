@@ -1,13 +1,15 @@
 import 'package:collection/collection.dart';
-import 'package:finapp/app/components/models/transaction.dart';
-import 'package:finapp/app/pages/homepage/pages/transactions/transactionspage_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-import 'package:finapp/app/pages/homepage/pages/transactions/widgets/listview_item_widget.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
+
+import 'package:finapp/app/components/models/transaction.dart';
+import 'package:finapp/app/pages/homepage/pages/transactions/transactionspage_model.dart';
 import 'package:finapp/app/pages/homepage/pages/transactions/widgets/add_item_dialog.dart';
+import 'package:finapp/app/pages/homepage/pages/transactions/widgets/delete_item_dialog.dart';
+import 'package:finapp/app/pages/homepage/pages/transactions/widgets/listview_item_widget.dart';
 
 class TransactionsPage extends StatefulWidget {
   const TransactionsPage({super.key});
@@ -97,7 +99,16 @@ class _TransactionsPageState extends State<TransactionsPage> {
                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                 children: [
                                                   IconButton(
-                                                      onPressed: () {},
+                                                      onPressed: () {
+                                                        showDialog(
+                                                          context: context,
+                                                          builder: (context) => DeleteItemDialogWidget(
+                                                            model: transactionsModel,
+                                                            transactionDate: date,
+                                                            transactions: transactions ?? [],
+                                                          ),
+                                                        );
+                                                      },
                                                       icon: Icon(
                                                         Icons.delete,
                                                         color: Colors.white,

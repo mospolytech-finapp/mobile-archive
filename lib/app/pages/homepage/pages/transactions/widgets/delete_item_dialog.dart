@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:sizer/sizer.dart';
 
-class DeleteItemDialogWidget extends StatefulWidget {
-  DeleteItemDialogWidget({super.key});
+import 'package:finapp/app/components/models/transaction.dart';
+import 'package:finapp/app/pages/homepage/pages/transactions/transactionspage_model.dart';
 
-  @override
-  State<DeleteItemDialogWidget> createState() => _DeleteItemDialogWidgetState();
-}
-
-class _DeleteItemDialogWidgetState extends State<DeleteItemDialogWidget> {
+class DeleteItemDialogWidget extends StatelessWidget {
+  DeleteItemDialogWidget({super.key, required this.model, required this.transactionDate, required this.transactions});
+  Transactions_model model;
+  DateTime transactionDate;
+  List<Transaction> transactions;
   @override
   Widget build(BuildContext context) {
     return Sizer(
@@ -21,7 +20,6 @@ class _DeleteItemDialogWidgetState extends State<DeleteItemDialogWidget> {
           ),
           child: Container(
             width: 90.w,
-            height: 43.h,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(25)),
               gradient: LinearGradient(
@@ -71,8 +69,7 @@ class _DeleteItemDialogWidgetState extends State<DeleteItemDialogWidget> {
                   SizedBox(
                     height: 7.h,
                     child: Text(
-                      'Выберите транзакцию, которую хотели бы удалить за '
-                      '31.03.2023',
+                      'Выберите транзакцию, которую хотели бы удалить за ${transactionDate.day}.${transactionDate.month}.${transactionDate.year}',
                       style: TextStyle(
                         fontSize: 12.sp,
                         fontFamily: 'Gilroy-Light',
@@ -80,94 +77,17 @@ class _DeleteItemDialogWidgetState extends State<DeleteItemDialogWidget> {
                       ),
                     ),
                   ),
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: true,
-                        onChanged: ((value) {}),
-                      ),
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 0.5.h,
-                          horizontal: 3.5.w,
-                        ),
-                        width: 69.w,
-                        height: 6.5.h,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(25)),
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Квартплата ' '-40 376₽',
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                fontFamily: 'Gilroy-Light',
-                                color: Colors.black,
-                              ),
-                            ),
-                            Text(
-                              '14:31',
-                              style: TextStyle(
-                                fontSize: 11.sp,
-                                fontFamily: 'Gilroy-Light',
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: true,
-                        onChanged: ((value) {}),
-                      ),
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 0.5.h,
-                          horizontal: 3.5.w,
-                        ),
-                        width: 69.w,
-                        height: 6.5.h,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(25)),
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Зарплата ' '+100 876₽',
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                fontFamily: 'Gilroy-Light',
-                                color: Colors.black,
-                              ),
-                            ),
-                            Text(
-                              '12:49',
-                              style: TextStyle(
-                                fontSize: 11.sp,
-                                fontFamily: 'Gilroy-Light',
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: transactions.length,
+                    itemBuilder: (context, i) {
+                      return TransactionRow(transaction: transactions[i]);
+                    },
                   ),
                   SizedBox(
                     height: 3.h,
                   ),
+                  //? Кнопка удаления
                   Center(
                     child: ElevatedButton(
                       style: TextButton.styleFrom(
@@ -198,6 +118,84 @@ class _DeleteItemDialogWidgetState extends State<DeleteItemDialogWidget> {
           ),
         );
       },
+    );
+  }
+}
+
+class TransactionRow extends StatelessWidget {
+  TransactionRow({super.key, required this.transaction});
+  Transaction transaction;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Checkbox(
+              value: true,
+              onChanged: ((value) {}),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                vertical: 0.5.h,
+                horizontal: 3.5.w,
+              ),
+              width: 69.w,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(25)),
+                color: Colors.white,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    transaction.name,
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      fontFamily: 'Gilroy-Light',
+                      color: Colors.black,
+                    ),
+                  ),
+                  Builder(builder: (context) {
+                    String expenseText;
+                    String expense = transaction.amount.toString();
+                    if (transaction.amount < 0) {
+                      expenseText = '$expense ₽';
+                    } else {
+                      expenseText = '+$expense ₽';
+                    }
+                    ;
+                    return Text(
+                      expenseText,
+                      style: TextStyle(
+                        fontSize: 12.sp,
+                        fontFamily: 'Gilroy-Light',
+                        color: Colors.black,
+                      ),
+                    );
+                  }),
+                  Builder(builder: (context) {
+                    if (transaction.time != null) {
+                      return Text(
+                        transaction.time!.substring(0, 5),
+                        style: TextStyle(
+                          fontSize: 11.sp,
+                          fontFamily: 'Gilroy-Light',
+                          color: Colors.black,
+                        ),
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  }),
+                ],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 1.h,
+        )
+      ],
     );
   }
 }
