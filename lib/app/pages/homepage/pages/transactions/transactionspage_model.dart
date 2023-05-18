@@ -1,10 +1,15 @@
-import 'package:finapp/app/components/models/category.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:finapp/app/app_model.dart';
 import 'package:finapp/app/components/app_network.dart';
+import 'package:finapp/app/components/models/category.dart';
 import 'package:finapp/app/components/models/transaction.dart';
 import 'package:finapp/app/components/secure_storage.dart';
 
 class Transactions_model extends ChangeNotifier {
+  late AppModel appModel;
   List<Transaction>? _transactions;
   List<Transaction>? get transactions {
     var sortedTransactions = _transactions?.toList();
@@ -22,6 +27,7 @@ class Transactions_model extends ChangeNotifier {
   int? transactionCategoryValue;
   DateTime? date;
   TimeOfDay? time;
+
   TextEditingController dateController = TextEditingController();
   TextEditingController timeController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -50,8 +56,12 @@ class Transactions_model extends ChangeNotifier {
     notifyListeners();
   }
 
+  void init(BuildContext context) {
+    appModel = Provider.of<AppModel>(context, listen: true);
+  }
+
   Future<void> onSaveTransactionClick(BuildContext context) async {
-    if (nameController.text.isEmpty || amountController.text.isEmpty) {
+    if (nameController.text.isEmpty || amountController.text.isEmpty || date == null || timeController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text("Заполните все поля"),
@@ -92,7 +102,12 @@ class Transactions_model extends ChangeNotifier {
     isLoading = true;
 
     try {
-      String? token = await AppSecureStorage.getToken();
+      String? token;
+      if (appModel.tempToken != null) {
+        token = appModel.tempToken;
+      } else {
+        token = await AppSecureStorage.getToken();
+      }
       if (token != null) {
         final response = await AppNetwork.getTransactions(token: token);
         if (response.statusCode == 200) {
@@ -125,28 +140,36 @@ class Transactions_model extends ChangeNotifier {
     String? description,
     required int category,
   }) async {
-    String? token = await AppSecureStorage.getToken();
+    String? token;
+    if (appModel.tempToken != null) {
+      token = appModel.tempToken;
+    } else {
+      token = await AppSecureStorage.getToken();
+    }
+
     if (token != null) {
-      final response = await AppNetwork.addTransaction(
-        token: token,
-        title: title,
-        amount: amount,
-        date: date.toIso8601String().split('T').first,
-        time: time,
-        description: description,
-        category: category,
-      );
-      if (response.statusCode == 201) {
-        loadTransactions();
-        return true; // Reload transactions after a new one has been added
-      } else {
-        print("Error adding transaction");
+      try {
+        final response = await AppNetwork.addTransaction(
+          token: token,
+          title: title,
+          amount: amount,
+          date: date.toIso8601String().split('T').first,
+          time: time,
+          description: description,
+          category: category,
+        );
+        if (response.statusCode == 201) {
+          loadTransactions();
+          return true;
+        } else {
+          return false;
+        }
+      } catch (e) {
+        print(e);
         return false;
       }
-    } else {
-      print("No token found");
-      return false;
     }
+    return false;
   }
 
   Future<void> editTransaction({
@@ -158,7 +181,12 @@ class Transactions_model extends ChangeNotifier {
     String? description,
     String? time,
   }) async {
-    String? token = await AppSecureStorage.getToken();
+    String? token;
+    if (appModel.tempToken != null) {
+      token = appModel.tempToken;
+    } else {
+      token = await AppSecureStorage.getToken();
+    }
     if (token != null) {
       final response = await AppNetwork.editTransaction(
         token: token,
@@ -181,7 +209,12 @@ class Transactions_model extends ChangeNotifier {
   }
 
   Future<void> deleteTransaction(int id) async {
-    String? token = await AppSecureStorage.getToken();
+    String? token;
+    if (appModel.tempToken != null) {
+      token = appModel.tempToken;
+    } else {
+      token = await AppSecureStorage.getToken();
+    }
     if (token != null) {
       final response = await AppNetwork.deleteTransaction(token: token, id: id);
       if (response.statusCode == 204) {
@@ -198,7 +231,12 @@ class Transactions_model extends ChangeNotifier {
     isLoading = true;
 
     try {
-      String? token = await AppSecureStorage.getToken();
+      String? token;
+      if (appModel.tempToken != null) {
+        token = appModel.tempToken;
+      } else {
+        token = await AppSecureStorage.getToken();
+      }
       if (token != null) {
         final response = await AppNetwork.getCategory(token: token);
         if (response.statusCode == 200) {
