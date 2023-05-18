@@ -132,6 +132,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
                 right: 16,
                 child: FloatingActionButton(
                   onPressed: () {
+                    transactionsModel.resetAddTransaction();
                     showDialog(
                       context: context,
                       builder: (context) => AddItemDialogWidget(model: transactionsModel),

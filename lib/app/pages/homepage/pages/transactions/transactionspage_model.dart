@@ -35,6 +35,18 @@ class Transactions_model extends ChangeNotifier {
   TextEditingController amountController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
+  void resetAddTransaction() {
+    transactionTypeValue = null;
+    transactionCategoryValue = null;
+    date = null;
+    time = null;
+    dateController.text = "";
+    timeController.text = "";
+    nameController.text = "";
+    amountController.text = "";
+    descriptionController.text = "";
+  }
+
   Future<void> setDate(BuildContext context) async {
     date = await showDatePicker(
       context: context,
