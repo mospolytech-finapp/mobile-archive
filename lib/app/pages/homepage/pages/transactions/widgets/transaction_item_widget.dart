@@ -7,15 +7,15 @@ import 'package:finapp/app/pages/homepage/pages/transactions/transactionspage_mo
 class TransactionItemWidget extends StatelessWidget {
   final Transaction transaction;
 
-  TransactionItemWidget({required this.transaction});
+  const TransactionItemWidget({super.key, required this.transaction});
 
   @override
   Widget build(BuildContext context) {
-    final model = Provider.of<Transactions_model>(context, listen: false);
+    final model = Provider.of<Transactions_model>(context, listen: true);
     String name = transaction.name;
     double expense = transaction.amount;
     String? time = transaction.time;
-    String category = model.categories?[transaction.id] ?? '';
+    String category = model.categories?[transaction.category] ?? '';
     IconData icon;
     Color iconColor;
     String expenseText;

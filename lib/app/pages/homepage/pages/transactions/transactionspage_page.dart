@@ -60,6 +60,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
                       onRefresh: () async {
                         await Future.delayed(const Duration(seconds: 2));
                         transactionsModel.loadTransactions();
+                        transactionsModel.loadCategories();
                       },
                       child: ListView.builder(
                         padding: const EdgeInsets.all(8),
