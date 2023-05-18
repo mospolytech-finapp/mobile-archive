@@ -34,63 +34,65 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => HomePageModel(),
-      child: Sizer(builder: (context, orientation, deviceType) {
-        final homePageModel = Provider.of<HomePageModel>(context, listen: true);
-        return Scaffold(
-          extendBody: true,
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            toolbarTextStyle: const TextStyle(fontFamily: 'Gilroy-Light'),
-            iconTheme: const IconThemeData(size: 30),
-            title: const Text("FINAPP"),
-            actions: [
-              IconButton(
-                onPressed: () => showDialog(
-                  context: context,
-                  builder: (context) => ConfirmExitDialog(
-                    model: homePageModel,
+      child: SafeArea(
+        child: Sizer(builder: (context, orientation, deviceType) {
+          final homePageModel = Provider.of<HomePageModel>(context, listen: true);
+          return Scaffold(
+            extendBody: true,
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              toolbarTextStyle: const TextStyle(fontFamily: 'Gilroy-Light'),
+              iconTheme: const IconThemeData(size: 30),
+              title: const Text("FINAPP"),
+              actions: [
+                IconButton(
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (context) => ConfirmExitDialog(
+                      model: homePageModel,
+                    ),
                   ),
+                  color: Colors.black,
+                  icon: const Icon(Icons.person_outline_rounded),
                 ),
-                color: Colors.black,
-                icon: const Icon(Icons.person_outline_rounded),
-              ),
-            ],
-          ),
-          body: TransactionsPage(),
-          // bottomNavigationBar: Theme(
-          //   data: ThemeData(
-          //     canvasColor: const Color(0xFF801CAF),
-          //     textTheme: const TextTheme(
-          //       bodyLarge: TextStyle(fontFamily: 'Gilroy-Light'),
-          //     ),
-          //   ),
-          //   child: ClipRRect(
-          //     borderRadius: const BorderRadius.only(
-          //       topLeft: Radius.circular(30.0),
-          //       topRight: Radius.circular(30.0),
-          //     ),
-          //     child: BottomNavigationBar(
-          //       type: BottomNavigationBarType.fixed,
-          //       elevation: 0,
-          //       enableFeedback: false,
-          //       unselectedItemColor: const Color(0x80FFFFFF),
-          //       selectedFontSize: 15,
-          //       unselectedFontSize: 15,
-          //       iconSize: 30,
-          //       selectedItemColor: Colors.white,
-          //       currentIndex: _selectedIndex,
-          //       onTap: _changeIndex,
-          //       items: const [
-          //         BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Главная'),
-          //         BottomNavigationBarItem(icon: Icon(Icons.credit_card), label: 'Транзакции'),
-          //         BottomNavigationBarItem(icon: Icon(Icons.pie_chart_outline), label: 'БДР'),
-          //         BottomNavigationBarItem(icon: Icon(Icons.checklist), label: 'Цели'),
-          //       ],
-          //     ),
-          //   ),
-          // ),
-        );
-      }),
+              ],
+            ),
+            body: TransactionsPage(),
+            // bottomNavigationBar: Theme(
+            //   data: ThemeData(
+            //     canvasColor: const Color(0xFF801CAF),
+            //     textTheme: const TextTheme(
+            //       bodyLarge: TextStyle(fontFamily: 'Gilroy-Light'),
+            //     ),
+            //   ),
+            //   child: ClipRRect(
+            //     borderRadius: const BorderRadius.only(
+            //       topLeft: Radius.circular(30.0),
+            //       topRight: Radius.circular(30.0),
+            //     ),
+            //     child: BottomNavigationBar(
+            //       type: BottomNavigationBarType.fixed,
+            //       elevation: 0,
+            //       enableFeedback: false,
+            //       unselectedItemColor: const Color(0x80FFFFFF),
+            //       selectedFontSize: 15,
+            //       unselectedFontSize: 15,
+            //       iconSize: 30,
+            //       selectedItemColor: Colors.white,
+            //       currentIndex: _selectedIndex,
+            //       onTap: _changeIndex,
+            //       items: const [
+            //         BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Главная'),
+            //         BottomNavigationBarItem(icon: Icon(Icons.credit_card), label: 'Транзакции'),
+            //         BottomNavigationBarItem(icon: Icon(Icons.pie_chart_outline), label: 'БДР'),
+            //         BottomNavigationBarItem(icon: Icon(Icons.checklist), label: 'Цели'),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+          );
+        }),
+      ),
     );
   }
 }
