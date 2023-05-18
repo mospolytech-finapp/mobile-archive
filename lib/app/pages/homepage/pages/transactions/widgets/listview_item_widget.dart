@@ -20,8 +20,9 @@ class ListViewItemWidget extends StatelessWidget {
       child: Row(
         children: [
           //? День и месяц(Дата)
-          Padding(
-            padding: EdgeInsets.fromLTRB(9.w, 0, 8.w, 0),
+          Container(
+            padding: EdgeInsets.fromLTRB(2.5.w, 0, 0, 0),
+            width: 22.w,
             child: Center(
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
