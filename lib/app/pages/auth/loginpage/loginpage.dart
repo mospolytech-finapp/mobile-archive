@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: [Color(0xff02C98D), Color(0xff3589D7)])),
-                    child: Column(children: [
+                    child: ListView(shrinkWrap: true, physics: const ClampingScrollPhysics(), children: [
                       //? Колонка до Войти
                       Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                         SizedBox(
