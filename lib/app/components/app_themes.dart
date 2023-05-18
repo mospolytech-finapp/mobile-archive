@@ -8,6 +8,7 @@ abstract class AppTheme {
           scrolledUnderElevation: 0,
           shadowColor: Colors.transparent,
         ),
+        splashFactory: InkRipple.splashFactory,
         colorScheme: ColorScheme.fromSeed(brightness: Brightness.light, seedColor: const Color(0xFF1BD0B8)));
   }
 }
