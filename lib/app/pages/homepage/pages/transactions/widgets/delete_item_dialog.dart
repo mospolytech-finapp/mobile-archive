@@ -87,13 +87,17 @@ class DeleteItemDialogWidget extends StatelessWidget {
                       ),
                     ),
                   ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: transactions.length,
-                    itemBuilder: (context, i) {
-                      return TransactionRow(
-                          transaction: transactions[i], onSelectionChanged: handleSelectedTransactions);
-                    },
+                  SizedBox(
+                    height: 40.h,
+                    child: ListView.builder(
+                      physics: const ClampingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: transactions.length,
+                      itemBuilder: (context, i) {
+                        return TransactionRow(
+                            transaction: transactions[i], onSelectionChanged: handleSelectedTransactions);
+                      },
+                    ),
                   ),
                   SizedBox(
                     height: 3.h,
