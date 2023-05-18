@@ -231,19 +231,9 @@ class _LoginPageState extends State<LoginPage> {
                               SizedBox(
                                 width: 16.67.w,
                               ),
-                              TextButton(
-                                onPressed: () {},
-                                style: TextButton.styleFrom(fixedSize: Size(32.w, 1.88.h)),
-                                child: Text(
-                                  'Забыли пароль?',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    fontSize: 10.sp,
-                                    color: Colors.white,
-                                    fontFamily: 'Gilroy-Light',
-                                  ),
-                                ),
-                              ),
+                              SizedBox(
+                                height: 5.h,
+                              )
                             ]);
                           } else {
                             return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -254,19 +244,9 @@ class _LoginPageState extends State<LoginPage> {
                                     color: Colors.black,
                                     fontFamily: 'Gilroy-Light',
                                   )),
-                              TextButton(
-                                onPressed: () {},
-                                style: TextButton.styleFrom(fixedSize: Size(32.w, 1.88.h)),
-                                child: Text(
-                                  'Забыли пароль?',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    fontSize: 10.sp,
-                                    color: Colors.white,
-                                    fontFamily: 'Gilroy-Light',
-                                  ),
-                                ),
-                              ),
+                              SizedBox(
+                                height: 5.h,
+                              )
                             ]);
                           }
                         }),
