@@ -10,6 +10,7 @@ import 'package:finapp/app/components/secure_storage.dart';
 
 class Transactions_model extends ChangeNotifier {
   late AppModel appModel;
+  BuildContext? context;
   List<Transaction>? _transactions;
   List<Transaction>? get transactions {
     var sortedTransactions = _transactions?.toList();
@@ -57,6 +58,7 @@ class Transactions_model extends ChangeNotifier {
   }
 
   void init(BuildContext context) {
+    this.context = context;
     appModel = Provider.of<AppModel>(context, listen: true);
   }
 
@@ -128,7 +130,6 @@ class Transactions_model extends ChangeNotifier {
       print(e);
     } finally {
       isLoading = false;
-      notifyListeners();
     }
   }
 
@@ -248,6 +249,7 @@ class Transactions_model extends ChangeNotifier {
           print("loadCategories() вызван");
           print(token);
           categoryIds = categories?.keys.toList();
+          notifyListeners();
         } else {
           isError = true;
           print("Error loading categories");

@@ -32,9 +32,8 @@ class _TransactionsPageState extends State<TransactionsPage> {
       ],
       child: Builder(
         builder: (context) {
-          Provider.of<Transactions_model>(context, listen: false).init(context);
-
           if (i == 0) {
+            Provider.of<Transactions_model>(context, listen: false).init(context);
             Provider.of<Transactions_model>(context, listen: false).loadTransactions();
             Provider.of<Transactions_model>(context, listen: false).loadCategories();
             i++;
