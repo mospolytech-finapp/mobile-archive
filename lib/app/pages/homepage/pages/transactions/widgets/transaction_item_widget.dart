@@ -14,7 +14,7 @@ class TransactionItemWidget extends StatelessWidget {
     final model = Provider.of<Transactions_model>(context, listen: true);
     String name = transaction.name;
     double expense = transaction.amount;
-    String? time = transaction.time;
+    String? time = transaction.time?.substring(0, 5);
     String category = model.categories?[transaction.category] ?? '';
     IconData icon;
     Color iconColor;
@@ -34,11 +34,12 @@ class TransactionItemWidget extends StatelessWidget {
       data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
       child: ExpansionTile(
         expandedCrossAxisAlignment: CrossAxisAlignment.start,
-        // trailing: SizedBox.shrink(),
+        trailing: const SizedBox.shrink(),
+        tilePadding: EdgeInsets.zero,
         childrenPadding: EdgeInsets.zero,
-
         initiallyExpanded: true,
         title: Row(
+          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Icon(
@@ -56,13 +57,19 @@ class TransactionItemWidget extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      name,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w200,
-                        fontSize: 12.sp,
-                        color: Colors.black,
-                        fontFamily: 'Gilroy-Light',
+                    SizedBox(
+                      width: 50.w,
+                      child: Text(
+                        name,
+                        overflow: TextOverflow.visible, // или TextOverflow.ellipsis
+                        softWrap: true,
+                        // maxlines:null
+                        style: TextStyle(
+                          fontWeight: FontWeight.w200,
+                          fontSize: 12.sp,
+                          color: Colors.black,
+                          fontFamily: 'Gilroy-Light',
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -87,8 +94,35 @@ class TransactionItemWidget extends StatelessWidget {
                       fontFamily: 'Gilroy-Light',
                     )),
                 //? Время транзакции
-                Text(
-                  time!,
+
+                Builder(builder: (context) {
+                  if (time == null) return const SizedBox.shrink();
+                  return Text(
+                    time,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w200,
+                      fontSize: 10.sp,
+                      color: Colors.black,
+                      fontFamily: 'Gilroy-Light',
+                    ),
+                  );
+                }),
+              ],
+            ),
+          ],
+        ),
+        children: [
+          if (transaction.description != null)
+            Builder(builder: (context) {
+              if (transaction.description!.isEmpty) return const SizedBox.shrink();
+              return Container(
+                width: 60.w,
+                padding: EdgeInsets.fromLTRB(2.w, 1.w, 2.w, 1.w),
+                decoration:
+                    const BoxDecoration(color: Color(0xffA1C7EA), borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: Text(
+                  transaction.description!,
+                  maxLines: null,
                   style: TextStyle(
                     fontWeight: FontWeight.w200,
                     fontSize: 10.sp,
@@ -96,26 +130,8 @@ class TransactionItemWidget extends StatelessWidget {
                     fontFamily: 'Gilroy-Light',
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
-        children: [
-          Container(
-            width: 57.w,
-            padding: EdgeInsets.fromLTRB(3.w, 1.w, 3.w, 1.w),
-            decoration: BoxDecoration(color: Color(0xffA1C7EA), borderRadius: BorderRadius.all(Radius.circular(20))),
-            child: Text(
-              transaction.description!,
-              maxLines: 2,
-              style: TextStyle(
-                fontWeight: FontWeight.w200,
-                fontSize: 10.sp,
-                color: Colors.black,
-                fontFamily: 'Gilroy-Light',
-              ),
-            ),
-          ),
+              );
+            }),
         ],
       ),
     );
