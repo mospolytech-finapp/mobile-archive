@@ -9,6 +9,16 @@ class DeleteItemDialogWidget extends StatelessWidget {
   Transactions_model model;
   DateTime transactionDate;
   List<Transaction> transactions;
+  List<int> selectedTransactions = [];
+
+  void handleSelectedTransactions(bool isSelected, int id) {
+    if (isSelected) {
+      selectedTransactions.add(id);
+    } else {
+      selectedTransactions.remove(id);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Sizer(
@@ -81,7 +91,8 @@ class DeleteItemDialogWidget extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: transactions.length,
                     itemBuilder: (context, i) {
-                      return TransactionRow(transaction: transactions[i]);
+                      return TransactionRow(
+                          transaction: transactions[i], onSelectionChanged: handleSelectedTransactions);
                     },
                   ),
                   SizedBox(
@@ -107,8 +118,9 @@ class DeleteItemDialogWidget extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.pop(context);
-                        // И сохранение данных
+                        if (selectedTransactions.isNotEmpty) {
+                          model.onDeleteTransactionClick(context, selectedTransactions);
+                        }
                       },
                     ),
                   ),
@@ -122,9 +134,18 @@ class DeleteItemDialogWidget extends StatelessWidget {
   }
 }
 
-class TransactionRow extends StatelessWidget {
-  TransactionRow({super.key, required this.transaction});
+class TransactionRow extends StatefulWidget {
+  TransactionRow({super.key, required this.transaction, required this.onSelectionChanged});
   Transaction transaction;
+  final Function(bool isSelected, int id) onSelectionChanged;
+
+  @override
+  State<TransactionRow> createState() => _TransactionRowState();
+}
+
+class _TransactionRowState extends State<TransactionRow> {
+  bool _isSelected = false;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -132,8 +153,18 @@ class TransactionRow extends StatelessWidget {
         Row(
           children: [
             Checkbox(
-              value: true,
-              onChanged: ((value) {}),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              fillColor: MaterialStateColor.resolveWith((_) => const Color(0xffECECEC)),
+              checkColor: const Color(0xff1BD0B8),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5), side: const BorderSide(color: Color(0xffECECEC))),
+              value: _isSelected,
+              onChanged: ((value) {
+                setState(() {
+                  _isSelected = !_isSelected;
+                });
+                widget.onSelectionChanged(_isSelected, widget.transaction.id);
+              }),
             ),
             Container(
               padding: EdgeInsets.symmetric(
@@ -149,7 +180,7 @@ class TransactionRow extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    transaction.name,
+                    widget.transaction.name,
                     style: TextStyle(
                       fontSize: 12.sp,
                       fontFamily: 'Gilroy-Light',
@@ -158,13 +189,12 @@ class TransactionRow extends StatelessWidget {
                   ),
                   Builder(builder: (context) {
                     String expenseText;
-                    String expense = transaction.amount.toString();
-                    if (transaction.amount < 0) {
+                    String expense = widget.transaction.amount.toString();
+                    if (widget.transaction.amount < 0) {
                       expenseText = '$expense ₽';
                     } else {
                       expenseText = '+$expense ₽';
                     }
-                    ;
                     return Text(
                       expenseText,
                       style: TextStyle(
@@ -175,9 +205,9 @@ class TransactionRow extends StatelessWidget {
                     );
                   }),
                   Builder(builder: (context) {
-                    if (transaction.time != null) {
+                    if (widget.transaction.time != null) {
                       return Text(
-                        transaction.time!.substring(0, 5),
+                        widget.transaction.time!.substring(0, 5),
                         style: TextStyle(
                           fontSize: 11.sp,
                           fontFamily: 'Gilroy-Light',

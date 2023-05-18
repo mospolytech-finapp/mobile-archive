@@ -69,11 +69,6 @@ class Transactions_model extends ChangeNotifier {
     notifyListeners();
   }
 
-  void init(BuildContext context) {
-    this.context = context;
-    appModel = Provider.of<AppModel>(context, listen: true);
-  }
-
   Future<void> onSaveTransactionClick(BuildContext context) async {
     if (nameController.text.isEmpty || amountController.text.isEmpty || date == null || timeController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -112,6 +107,34 @@ class Transactions_model extends ChangeNotifier {
   }
 
 //add item
+
+//delete item
+  Future<void> onDeleteTransactionClick(BuildContext context, List<int> id) async {
+    bool flag = false;
+    for (int i = 0; i < id.length; i++) {
+      flag = await deleteTransaction(id[i]);
+    }
+    if (flag) {
+      Navigator.pop(context);
+    } else {
+      if (!context.mounted) {
+        return;
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Ошибка при удалении транзакции"),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    }
+    notifyListeners();
+  }
+
+  void init(BuildContext context) {
+    this.context = context;
+    appModel = Provider.of<AppModel>(context, listen: true);
+  }
+
   Future<void> loadTransactions() async {
     isLoading = true;
 
@@ -221,7 +244,7 @@ class Transactions_model extends ChangeNotifier {
     }
   }
 
-  Future<void> deleteTransaction(int id) async {
+  Future<bool> deleteTransaction(int id) async {
     String? token;
     if (appModel.tempToken != null) {
       token = appModel.tempToken;
@@ -232,12 +255,14 @@ class Transactions_model extends ChangeNotifier {
       final response = await AppNetwork.deleteTransaction(token: token, id: id);
       if (response.statusCode == 204) {
         loadTransactions(); // Reload transactions after one has been deleted
+        return true;
       } else {
         print("Error deleting transaction");
       }
     } else {
       print("No token found");
     }
+    return false;
   }
 
   Future<void> loadCategories() async {
