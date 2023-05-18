@@ -64,8 +64,11 @@ class Transactions_model extends ChangeNotifier {
       context: context,
       initialTime: TimeOfDay.now(),
     );
-    String? timeText = time != null ? "${time?.hour}:${time?.minute}" : "";
-    timeController.text = timeText;
+    if (time != null) {
+      String formattedTime = '${time?.hour.toString().padLeft(2, '0')}:${time?.minute.toString().padLeft(2, '0')}';
+      timeController.text = formattedTime;
+    }
+
     notifyListeners();
   }
 
