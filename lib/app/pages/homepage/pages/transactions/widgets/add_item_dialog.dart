@@ -18,7 +18,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
   Transactions_model model;
 
   //Список из DropdownMenuItem'ов
-  final _transactionCategoryIncomesDropdown = [
+  final _transactionCategoryDropdown = [
     DropdownMenuItem(
       value: 0,
       child: Row(
@@ -55,8 +55,6 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
         ],
       ),
     ),
-  ];
-  final _transactionCategoryOutcomesDropdown = [
     DropdownMenuItem(
       value: 4,
       child: Row(
@@ -367,9 +365,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                       fontFamily: 'Gilroy-Light',
                       color: Colors.black,
                     ),
-                    items: model.transactionTypeValue == 0
-                        ? _transactionCategoryIncomesDropdown
-                        : _transactionCategoryOutcomesDropdown,
+                    items: _transactionCategoryDropdown,
                     onChanged: (v) {
                       setState(() {
                         model.transactionCategoryValue = v as int;
