@@ -56,66 +56,72 @@ class _TransactionsPageState extends State<TransactionsPage> {
                 children: [
                   //? Строка с кнопками Фильтры, добавить, редактировать
                   Expanded(
-                    child: ListView.builder(
-                      padding: const EdgeInsets.all(8),
-                      itemCount: groupedTransactions.keys.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        final date = groupedTransactions.keys.elementAt(index);
-                        final transactions = groupedTransactions[date];
-                        return Padding(
-                            padding: EdgeInsets.only(bottom: 2.5.h),
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  if (selectedIndex == -1) {
-                                    selectedIndex = index;
-                                  } else if (selectedIndex == index) {
-                                    selectedIndex = -1;
-                                  } else if (selectedIndex != index) {
-                                    selectedIndex = index;
-                                  }
-                                });
-                              },
-                              child: Slidable(
-                                key: const ValueKey(0),
-                                startActionPane: ActionPane(
-                                  motion: ScrollMotion(),
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                          decoration: const BoxDecoration(
-                                              color: Color(0xff383737),
-                                              borderRadius: BorderRadius.all(Radius.circular(20))),
-                                          child: Center(
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                IconButton(
-                                                    onPressed: () {},
-                                                    icon: Icon(
-                                                      Icons.delete,
-                                                      color: Colors.white,
-                                                      size: 10.w,
-                                                    ))
-                                              ],
-                                            ),
-                                          )),
+                    child: RefreshIndicator(
+                      onRefresh: () async {
+                        await Future.delayed(const Duration(seconds: 2));
+                        transactionsModel.loadTransactions();
+                      },
+                      child: ListView.builder(
+                        padding: const EdgeInsets.all(8),
+                        itemCount: groupedTransactions.keys.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final date = groupedTransactions.keys.elementAt(index);
+                          final transactions = groupedTransactions[date];
+                          return Padding(
+                              padding: EdgeInsets.only(bottom: 2.5.h),
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    if (selectedIndex == -1) {
+                                      selectedIndex = index;
+                                    } else if (selectedIndex == index) {
+                                      selectedIndex = -1;
+                                    } else if (selectedIndex != index) {
+                                      selectedIndex = index;
+                                    }
+                                  });
+                                },
+                                child: Slidable(
+                                  key: const ValueKey(0),
+                                  startActionPane: ActionPane(
+                                    motion: ScrollMotion(),
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                            decoration: const BoxDecoration(
+                                                color: Color(0xff383737),
+                                                borderRadius: BorderRadius.all(Radius.circular(20))),
+                                            child: Center(
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  IconButton(
+                                                      onPressed: () {},
+                                                      icon: Icon(
+                                                        Icons.delete,
+                                                        color: Colors.white,
+                                                        size: 10.w,
+                                                      ))
+                                                ],
+                                              ),
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                  child: AnimatedContainer(
+                                    height: calculate_height(index, selectedIndex),
+                                    curve: Curves.easeInOutCubic,
+                                    duration: const Duration(milliseconds: 1000),
+                                    child: ListViewItemWidget(
+                                      index: index,
+                                      transactions: transactions ?? [],
+                                      // calculate_height: calculate_height(index, selectedIndex),
                                     ),
-                                  ],
-                                ),
-                                child: AnimatedContainer(
-                                  height: calculate_height(index, selectedIndex),
-                                  curve: Curves.easeInOutCubic,
-                                  duration: const Duration(milliseconds: 1000),
-                                  child: ListViewItemWidget(
-                                    index: index,
-                                    transactions: transactions ?? [],
-                                    // calculate_height: calculate_height(index, selectedIndex),
                                   ),
                                 ),
-                              ),
-                            ));
-                      },
+                              ));
+                        },
+                      ),
                     ),
                   ),
                 ],
