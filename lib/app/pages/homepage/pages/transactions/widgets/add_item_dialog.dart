@@ -224,6 +224,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                   TextField(
                     textInputAction: TextInputAction.next,
                     controller: model.nameController,
+                    maxLength: 128,
                     style: TextStyle(
                       fontFamily: 'Gilroy-Light',
                       color: Colors.black,
@@ -567,6 +568,7 @@ class _AddItemDialogWidgetState extends State<AddItemDialogWidget> {
                   TextField(
                     textInputAction: TextInputAction.done,
                     controller: model.descriptionController,
+                    maxLength: 128,
                     style: TextStyle(
                       fontFamily: 'Gilroy-Light',
                       color: Colors.black,
