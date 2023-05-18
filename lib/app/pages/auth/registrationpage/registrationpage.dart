@@ -231,6 +231,53 @@ class _RegistrationPage extends State<RegistrationPage> {
                                         SizedBox(
                                           height: 0.625.h,
                                         ),
+                                        Text(
+                                          'E-mail*',
+                                          style: TextStyle(
+                                            fontFamily: 'Gilroy-Light',
+                                            fontSize: 10.sp,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 0.94.h,
+                                        ),
+                                        TextField(
+                                          textInputAction: TextInputAction.done,
+                                          controller: registerModel.emailController,
+                                          style: TextStyle(
+                                            fontFamily: 'Gilroy-Light',
+                                            color: Colors.black,
+                                            fontSize: 16.sp,
+                                          ),
+                                          textAlign: TextAlign.start,
+                                          cursorColor: const Color.fromRGBO(2, 201, 141, 1),
+                                          textAlignVertical: TextAlignVertical.top,
+                                          decoration: InputDecoration(
+                                            isDense: true,
+                                            contentPadding: EdgeInsets.symmetric(
+                                              vertical: 0.5.h,
+                                              horizontal: 2.77.w,
+                                            ),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(50),
+                                              borderSide: const BorderSide(
+                                                color: Color.fromRGBO(220, 220, 220, 1),
+                                              ),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(50),
+                                              borderSide: const BorderSide(
+                                                color: Color.fromRGBO(220, 220, 220, 1),
+                                              ),
+                                            ),
+                                            filled: true,
+                                            fillColor: const Color.fromRGBO(220, 220, 220, 1),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 0.625.h,
+                                        ),
                                         Text('Пароль*',
                                             style: TextStyle(
                                               fontFamily: 'Gilroy-Light',
@@ -281,53 +328,6 @@ class _RegistrationPage extends State<RegistrationPage> {
                                                 filled: true,
                                                 fillColor: const Color(0xffDCDCDC));
                                           }(),
-                                        ),
-                                        SizedBox(
-                                          height: 0.625.h,
-                                        ),
-                                        Text(
-                                          'E-mail*',
-                                          style: TextStyle(
-                                            fontFamily: 'Gilroy-Light',
-                                            fontSize: 10.sp,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 0.94.h,
-                                        ),
-                                        TextField(
-                                          textInputAction: TextInputAction.done,
-                                          controller: registerModel.emailController,
-                                          style: TextStyle(
-                                            fontFamily: 'Gilroy-Light',
-                                            color: Colors.black,
-                                            fontSize: 16.sp,
-                                          ),
-                                          textAlign: TextAlign.start,
-                                          cursorColor: const Color.fromRGBO(2, 201, 141, 1),
-                                          textAlignVertical: TextAlignVertical.top,
-                                          decoration: InputDecoration(
-                                            isDense: true,
-                                            contentPadding: EdgeInsets.symmetric(
-                                              vertical: 0.5.h,
-                                              horizontal: 2.77.w,
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(50),
-                                              borderSide: const BorderSide(
-                                                color: Color.fromRGBO(220, 220, 220, 1),
-                                              ),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.circular(50),
-                                              borderSide: const BorderSide(
-                                                color: Color.fromRGBO(220, 220, 220, 1),
-                                              ),
-                                            ),
-                                            filled: true,
-                                            fillColor: const Color.fromRGBO(220, 220, 220, 1),
-                                          ),
                                         ),
                                         SizedBox(
                                           height: 0.625.h,
