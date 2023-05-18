@@ -5,6 +5,7 @@ import 'package:sizer/sizer.dart';
 import 'package:finapp/app/pages/homepage/pages/transactions/transactionspage_page.dart';
 import 'package:finapp/app/pages/homepage/homepage_model.dart';
 import 'package:provider/provider.dart';
+import 'package:finapp/app/pages/homepage/widgets/confirm_exit_dialog.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -44,7 +45,12 @@ class _HomePageState extends State<HomePage> {
             title: const Text("FINAPP"),
             actions: [
               IconButton(
-                onPressed: () => homePageModel.logOut(context),
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (context) => ConfirmExitDialog(
+                    model: homePageModel,
+                  ),
+                ),
                 color: Colors.black,
                 icon: const Icon(Icons.person_outline_rounded),
               ),
