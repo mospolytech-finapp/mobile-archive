@@ -1,0 +1,47 @@
+name: finapp
+description: finapp
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+
+dependencies:
+  build_runner: ^2.3.0
+  collection: ^1.17.0
+  dio: ^5.1.1
+  flutter:
+    sdk: flutter
+  flutter_launcher_icons: ^0.13.1
+  flutter_localizations:
+    sdk: flutter
+  flutter_secure_storage: ^8.0.0
+  flutter_slidable: ^3.0.0
+  flutter_svg: ^2.0.5
+  google_fonts: ^4.0.3
+  intl: any
+  json_annotation: ^4.8.1
+  json_serializable: ^6.6.2
+  provider: ^6.0.5
+  sizer: ^2.0.15
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter_icons:
+  image_path: 'assets/logo.png'
+  android: true
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/logo.svg
+    - assets/background.svg
+  fonts:
+    - family: Gilroy-Light
+      fonts:
+        - asset: assets/Gilroy-Light.ttf
